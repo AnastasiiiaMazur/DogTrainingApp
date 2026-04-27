@@ -1,0 +1,102 @@
+{
+  "recommendations": [
+    {
+      "id": "rec-001",
+      "title": "Healthy Feeding",
+      "imageName": "rec_2",
+      "goal": "Ensure your dog receives balanced, nutritious meals tailored to their age, breed, and activity level.",
+      "tips": [
+        "Balanced Diet: Include quality proteins (meat or fish), carbohydrates (rice, oats), and healthy fats (omega-3).",
+        "Portion Control: Measure meals based on your dog's weight and activity to maintain ideal health.",
+        "Hydration: Ensure fresh water is always available, especially during warmer days or after exercise.",
+        "Treats in Moderation: Limit treats to 10% of daily calorie intake to avoid weight gain.",
+        "Food Safety: Always check food freshness and avoid dangerous foods like chocolate, grapes, onions, or garlic."
+      ],
+      "dailyAction": "Check your dog's portion sizes today and adjust if needed to match their current activity level."
+    },
+    {
+      "id": "rec-002",
+      "title": "Grooming Guide",
+      "imageName": "rec_1",
+      "goal": "Maintain your dog’s hygiene and comfort through regular, stress-free grooming routines.",
+      "tips": [
+        "Regular Brushing: Brush your dog's coat daily or weekly to reduce shedding and matting.",
+        "Ear & Eye Care: Regularly inspect and gently clean ears and eyes to prevent infections.",
+        "Nail Maintenance: Trim nails every 2–4 weeks to avoid discomfort or mobility issues.",
+        "Bathing Routine: Bathe your dog every 4–6 weeks using gentle dog shampoos to avoid skin irritation.",
+        "Positive Experience: Keep grooming sessions calm, reward frequently, and introduce grooming tools slowly."
+      ],
+      "dailyAction": "Spend a few minutes today gently brushing your dog’s coat, rewarding them to reinforce a positive experience."
+    },
+    {
+      "id": "rec-003",
+      "title": "Playtime Ideas",
+      "imageName": "rec_3",
+      "goal": "Provide engaging, fun activities to stimulate your dog's mind, boost their mood, and strengthen your bond.",
+      "tips": [
+        "Interactive Toys: Use puzzle feeders or toys that encourage problem-solving to stimulate mental activity.",
+        "Fetch and Retrieve: Regularly play fetch games, reinforcing recall and obedience in a playful way.",
+        "Hide-and-Seek: Hide treats or favorite toys around the house or yard for your dog to find, enhancing their scent-tracking abilities.",
+        "Tug-of-War: Play gentle tug-of-war games to strengthen muscles, confidence, and communication.",
+        "Social Playdates: Arrange playdates with friendly dogs to encourage social skills and reduce boredom."
+      ],
+      "dailyAction": "Play a short game of hide-and-seek with your dog's favorite toy or treat today."
+    },
+    {
+      "id": "rec-004",
+      "title": "Training Tips",
+      "imageName": "rec_4",
+      "goal": "Consistently improve your dog's behavior and responsiveness with easy-to-follow training methods.",
+      "tips": [
+        "Short & Positive Sessions: Keep sessions brief (10–15 min) and end on a positive note to maintain enthusiasm.",
+        "Consistent Commands: Use clear and consistent verbal cues and hand signals for effective learning.",
+        "Immediate Rewards: Reward your dog instantly after desired behaviors to reinforce their learning quickly.",
+        "Daily Practice: Incorporate small training exercises into daily routines to build strong habits.",
+        "Patience & Persistence: Be patient and repeat exercises frequently—dogs learn best with consistency and repetition."
+      ],
+      "dailyAction": "Practice a basic command (e.g., \"Sit\" or \"Stay\") today, rewarding your dog immediately each time they succeed."
+    },
+    {
+      "id": "rec-005",
+      "title": "Stress Management",
+      "imageName": "rec_5",
+      "goal": "Help your dog feel calm, relaxed, and secure using simple and effective techniques.",
+      "tips": [
+        "Calm Environment: Provide a quiet, comfortable area for rest, away from noise or high activity.",
+        "Routine Stability: Maintain predictable daily routines to reduce anxiety and enhance security.",
+        "Gentle Massage: Regularly use gentle strokes and massages to soothe and relax your dog.",
+        "Soothing Sounds: Play soft classical music or white noise during stressful periods or when you leave home.",
+        "Exercise & Play: Regular exercise helps relieve stress and excess energy, promoting calmness."
+      ],
+      "dailyAction": "Spend 5–10 minutes giving your dog a gentle massage to relax them today."
+    },
+    {
+      "id": "rec-006",
+      "title": "Outdoor Safety",
+      "imageName": "rec_6",
+      "goal": "Ensure your dog remains safe and secure during outdoor activities and adventures.",
+      "tips": [
+        "ID & Microchip: Always have up-to-date ID tags and microchip registration in case of emergencies.",
+        "Leash Training: Ensure your dog walks comfortably on a leash, providing better control near roads or wildlife.",
+        "Temperature Awareness: Avoid exercising during extreme heat or cold, and always carry fresh water.",
+        "Safe Spaces: Choose secure, dog-friendly parks or trails to minimize risks.",
+        "Health Checks: Regularly check for ticks, burrs, or minor injuries after outdoor adventures."
+      ],
+      "dailyAction": "Inspect your dog's paws and fur today after your walk to ensure they're injury-free."
+    },
+    {
+      "id": "rec-007",
+      "title": "Home Enrichment",
+      "imageName": "rec_7",
+      "goal": "Keep your dog mentally stimulated, happy, and entertained at home with simple activities.",
+      "tips": [
+        "Interactive Feeding: Use slow-feeders or puzzle toys for meals to encourage mental engagement.",
+        "Rotate Toys: Regularly rotate available toys to maintain novelty and interest.",
+        "Training Games: Incorporate fun training games into daily routines to reinforce good behavior and mental sharpness.",
+        "DIY Obstacles: Set up simple indoor obstacle courses or tunnels for playful exercise.",
+        "Sensory Activities: Provide different textures, sounds, and smells indoors to stimulate your dog's senses."
+      ],
+      "dailyAction": "Introduce one new enrichment activity (e.g., puzzle feeder or scent game) today to engage your dog's senses."
+    }
+  ]
+}

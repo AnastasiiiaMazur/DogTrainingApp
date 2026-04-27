@@ -1,0 +1,1426 @@
+{
+  "courses": [
+    {
+      "id": "mod-001",
+      "title": "Essential Commands",
+      "description": "Teach fundamental commands every puppy needs.",
+      "level": "Beginner",
+      "imageName": "mod1_l1",
+      "lessons": [
+        {
+          "id": "les-001",
+          "title": "Lesson 1: Name Recognition",
+          "image": "mod1_l1",
+          "goal": "Teach your puppy to respond promptly and consistently to their name.",
+          "duration": " 10–15 minutes",
+          "steps": [
+            "Gather Treats: Prepare small, tasty treats your puppy loves.",
+            "Quiet Environment: Start in a quiet area without distractions.",
+            "Say the Name Clearly: Clearly call your puppy’s name in a happy, gentle tone.",
+            "Reward Attention: As soon as your puppy looks at you, immediately reward them with a treat and praise (“Good job!”).",
+            "Repeat Regularly: Practice short sessions (3–5 mins) several times a day."
+          ],
+          "tips": [
+            "Always keep your voice friendly and inviting.",
+            "Never use the puppy’s name negatively or during corrections."
+          ],
+          "completionCriteria": "Your puppy consistently turns toward you when called 8 out of 10 times."
+        },
+        {
+          "id": "les-002",
+          "title": "Lesson 2: Sit Command",
+          "image": "mod1_l2",
+          "goal": "Teach your puppy to reliably sit on cue with simple, effective steps.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Prepare Reward: Have treats ready in your hand.",
+            "Attract Attention: Let your puppy see and smell the treat in your hand.",
+            "Lure Into Sitting: Slowly move the treat from your puppy's nose upward and slightly over their head, guiding them into a natural sitting position.",
+            "Immediate Reward: When your puppy’s rear touches the ground, say clearly “Sit!”, then immediately give the treat and praise.",
+            "Repeat the Cue: Repeat several times until your puppy consistently sits with minimal guidance."
+          ],
+          "tips": [
+            "Keep training sessions brief (3–5 mins each session).",
+            "Gradually reduce hand gestures until only the verbal cue is needed."
+          ],
+          "completionCriteria": "Puppy consistently sits promptly upon hearing the “Sit” command at least 8 out of 10 times."
+        },
+        {
+          "id": "les-003",
+          "title": "Lesson 3: Lie Down",
+          "image": "mod1_l3",
+          "goal": "Encourage your puppy to calmly lie down on cue and remain relaxed.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Begin from Sitting: Get your puppy into the sitting position first.",
+            "Lure Downward: Take a treat, hold it close to your puppy’s nose, then slowly move the treat downward toward the ground, guiding them into a lying position.",
+            "Praise and Reward: The moment your puppy’s elbows touch the floor, clearly say “Down!” and reward immediately.",
+            "Practice Regularly: Repeat multiple short sessions, gradually reducing the treat guidance."
+          ],
+          "tips": [
+            "Avoid forcing or pressing your puppy into the down position.",
+            "Be patient—some puppies take longer to feel comfortable lying down."
+          ],
+          "completionCriteria": "Puppy reliably lies down within seconds of hearing the command “Down” 8 out of 10 times."
+        },
+        {
+          "id": "les-004",
+          "title": "Lesson 4: Stay Command",
+          "image": "mod1_l4",
+          "goal": "Teach your puppy patience, self-control, and reliability by holding a position until released.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Begin with “Sit”: Command your puppy into the sit position first.",
+            "Use Clear Signal: Hold up your open hand clearly in front of your puppy’s face and calmly say “Stay.”",
+            "Short Duration: Initially wait just 2–3 seconds, then say “OK” or “Free,” release the puppy and reward immediately.",
+            "Gradually Extend: Slowly increase the duration and distance, stepping back while your puppy remains seated."
+          ],
+          "tips": [
+            "Always clearly release your puppy before they move.",
+            "Move slowly to avoid overwhelming your puppy."
+          ],
+          "completionCriteria": "Puppy remains reliably in place (sit or down) for at least 15–20 seconds, with mild distractions, 8 out of 10 times."
+        },
+        {
+          "id": "les-005",
+          "title": "Lesson 5: Come When Called",
+          "image": "mod1_l5",
+          "goal": "Teach your puppy to reliably return to you immediately when called, ensuring their safety.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Choose Your Cue: Use a friendly, inviting voice to call your puppy clearly, e.g., “Come!” or “Here!”",
+            "Short Distance Practice: Begin indoors from short distances (3–5 feet). Call your puppy enthusiastically, then reward instantly with treats and praise when they come.",
+            "Increase Distance Gradually: Once your puppy reliably responds, increase distance and try calling from another room.",
+            "Introduce Mild Distractions: After consistent responses indoors, practice outdoors with minimal distractions."
+          ],
+          "tips": [
+            "Always reward your puppy generously when they respond.",
+            "Never punish or scold your puppy after they come to you."
+          ],
+          "completionCriteria": "Puppy reliably returns promptly upon hearing your recall command 8 out of 10 times from varying short distances."
+        },
+        {
+          "id": "les-006",
+          "title": "Lesson 6: Walking Nicely on a Leash",
+          "image": "mod1_l6",
+          "goal": "Help your puppy learn to walk calmly at your side, preventing leash pulling.",
+          "duration": "20 minutes",
+          "steps": [
+            "Introduce the Leash: Let your puppy sniff and get comfortable with the leash before starting.",
+            "Start Indoors or Quiet Area: With the leash loose, start walking slowly. Reward your puppy for staying close.",
+            "Stop When Pulling Occurs: If your puppy pulls, immediately stop walking. Wait until your puppy relaxes, then continue.",
+            "Change Direction Frequently: Make frequent gentle turns, encouraging your puppy’s focus on you."
+          ],
+          "tips": [
+            "Keep initial training sessions brief and positive (5–10 minutes).",
+            " Use small treats or praise frequently to reinforce good behavior."
+          ],
+          "completionCriteria": "Puppy consistently walks beside you on a loose leash without pulling, maintaining focus for at least 10 consecutive steps, 8 out of 10 times."
+        },
+        {
+          "id": "les-007",
+          "title": "Lesson 7: Leave It",
+          "image": "mod1_l7",
+          "goal": "Teach your puppy to ignore tempting but unwanted items on command, improving safety and impulse control.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Start with Treats: Place a treat in your closed fist. Let your puppy sniff but say “Leave it” firmly.",
+            "Reward for Compliance: As soon as your puppy stops sniffing or looks away, praise and give a different treat from your other hand.",
+            "Open-Hand Challenge: Progress to placing a treat openly on your palm and repeat the “Leave it” command.",
+            "Floor Test: Place a treat on the floor, cover it initially with your hand, gradually exposing it while reinforcing the “Leave it” cue."
+          ],
+          "tips": [
+            "Reinforce generously when your puppy successfully ignores the item.",
+            "Stay patient and consistent, avoiding frustration or punishment."
+          ],
+          "completionCriteria": "Puppy reliably ignores or looks away from tempting items when hearing “Leave it” at least 8 out of 10 attempts."
+        },
+        {
+          "id": "les-008",
+          "title": "Lesson 8: Drop It",
+          "image": "mod1_l8",
+          "goal": "Teach your puppy to willingly release items on command, facilitating safer interactions and preventing possessiveness.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Engage in Gentle Play: Offer your puppy a toy they enjoy, gently engaging in play.",
+            "Introduce the “Drop it” Cue: Clearly and calmly say “Drop it,” showing a tasty treat as a trade.",
+            "Immediate Reward: As soon as your puppy releases the toy, reward immediately with praise and the treat.",
+            "Repeat Frequently: Repeat with different toys, slowly phasing out the food lure, rewarding intermittently with praise."
+          ],
+          "tips": [
+            "Never forcibly remove items from your puppy’s mouth; instead, patiently encourage voluntary release.",
+            " Use valuable rewards initially, gradually reducing their frequency."
+          ],
+          "completionCriteria": "Puppy promptly releases items from their mouth on hearing “Drop it” command at least 8 out of 10 times."
+        },
+        {
+          "id": "les-009",
+          "title": "Lesson 9: Wait at Doors",
+          "image": "mod1_l9",
+          "goal": "Teach your puppy to calmly wait at doors until you give permission, promoting safe and polite behavior.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Approach the Door: Walk your puppy on a leash toward a closed door. Stop about 2 feet away.",
+            "Ask for a Sit: Give a clear “Sit” command. Once your puppy sits, praise calmly.",
+            "Introduce “Wait” Command: Clearly say “Wait” and slowly begin to open the door. If your puppy moves, gently close the door and repeat.",
+            "Allow Passage: When your puppy calmly waits as the door opens, say “Okay!” or “Let’s go!” and calmly move through together."
+          ],
+          "tips": [
+            "Initially practice at internal doors before trying exterior doors.",
+            "Be patient and consistent, rewarding generously for calm behavior."
+          ],
+          "completionCriteria": "Puppy reliably waits calmly at doors until given permission to pass, successfully 8 out of 10 times."
+        },
+        {
+          "id": "les-010",
+          "title": "Lesson 10: Gentle Greetings",
+          "image": "mod1_l10",
+          "goal": "Prevent your puppy from jumping up by teaching polite, calm greetings to family and visitors.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Controlled Setup: Start with your puppy on a leash. Have someone approach calmly to greet.",
+            "Reinforce Sit: As the person approaches, instruct your puppy clearly to “Sit.”",
+            "Reward Calmness: If your puppy remains sitting and calm, praise immediately and allow gentle greeting interaction.",
+            "Manage Jumping: If your puppy jumps, the greeter should calmly step back and ignore the puppy until calm again."
+          ],
+          "tips": [
+            "Ensure every greeting is calm; high-energy greetings reinforce jumping.",
+            "Gradually practice with more distractions or increased excitement levels."
+          ],
+          "completionCriteria": "Puppy consistently remains seated or standing calmly without jumping when greeting people, achieving success in 8 out of 10 greetings."
+        }
+      ]
+    },
+    {
+      "id": "mod-002",
+      "title": "Potty Training Success",
+      "description": "Quick methods to house-train your puppy.",
+      "level": "Beginner",
+      "imageName": "mod2_l1",
+      "lessons": [
+        {
+          "id": "les-001",
+          "title": "Lesson 1: Setting a Routine",
+          "image": "mod2_l1",
+          "goal": "Establish a clear and predictable potty schedule for your puppy, encouraging consistent habits.",
+          "duration": "15 minutes (planning/setup)",
+          "steps": [
+            "Identify Key Times: Observe when your puppy typically needs to go—after waking, playing, meals, or drinking water.",
+            "Create a Schedule: Write down specific potty times based on these observations (e.g., every 1–2 hours initially).",
+            "Consistent Implementation: Follow the schedule strictly for several days, ensuring you guide your puppy outdoors at scheduled times.",
+            "Reward Success: Praise and reward immediately every time your puppy eliminates outdoors as planned."
+          ],
+          "tips": [
+            "Adjust the schedule gradually as your puppy grows and their bladder control improves.",
+            "Keep the routine consistent every day to accelerate learning."
+          ],
+          "completionCriteria": "Puppy consistently follows the established potty schedule with minimal accidents over 2–3 consecutive days."
+        },
+        {
+          "id": "les-002",
+          "title": "Lesson 2: Choosing a Potty Spot",
+          "image": "mod2_l2",
+          "goal": "Teach your puppy to consistently use a specific, designated area outdoors for potty breaks.",
+          "duration": "15–20 minutes per session",
+          "steps": [
+            "Pick a Specific Spot: Select a convenient outdoor area as the dedicated potty zone.",
+            "Guide Your Puppy: Consistently take your puppy directly to this spot during scheduled potty breaks.",
+            "Use a Cue Word: When you arrive at the spot, use a consistent verbal cue such as “Go potty.”",
+            "Praise and Reward: Reward enthusiastically immediately after successful potty behavior at the spot."
+          ],
+          "tips": [
+            "Use a leash initially to guide your puppy directly to the spot.",
+            "Avoid play or distractions in the potty area to reinforce the specific purpose."
+          ],
+          "completionCriteria": "Puppy reliably goes potty in the chosen location when guided, at least 8 out of 10 potty breaks."
+        },
+        {
+          "id": "les-003",
+          "title": "Lesson 3: Recognizing Potty Signals",
+          "image": "mod2_l3",
+          "goal": "Learn to identify your puppy’s unique signals and body language indicating they need to potty.",
+          "duration": "Observation-based (3–5 days)",
+          "steps": [
+            "Careful Observation: Closely watch your puppy to notice signals like sniffing, circling, restlessness, or whining.",
+            "Take Notes: Keep a brief record of signals and corresponding potty breaks.",
+            "Prompt Response: When you notice these signals, immediately guide your puppy to the designated potty area.",
+            "Consistent Reinforcement: Reward and praise your puppy for successfully signaling and using the potty spot."
+          ],
+          "tips": [
+            "Each puppy has unique signals; attentive observation helps identify these quickly.",
+            "Quick responses reduce indoor accidents and accelerate training."
+          ],
+          "completionCriteria": "You confidently recognize your puppy’s potty signals and act promptly, resulting in successful pottying outdoors 8 out of 10 times."
+        },
+        {
+          "id": "les-004",
+          "title": "Lesson 4: Positive Reinforcement",
+          "image": "mod2_l4",
+          "goal": "Use rewards effectively to encourage and reinforce proper potty habits.",
+          "duration": "15–20 minutes per session",
+          "steps": [
+            "Prepare Rewards: Keep small, high-value treats ready near your potty spot.",
+            "Immediate Reward: Immediately reward your puppy after successfully pottying in the correct area, accompanied by enthusiastic praise.",
+            "Verbal Praise: Use consistent positive phrases like “Good potty!” each time.",
+            "Consistent Repetition: Repeat rewarding consistently every time the desired behavior occurs, gradually phasing out treats as habits form."
+          ],
+          "tips": [
+            "Rewards should be immediate for your puppy to make the correct association.",
+            "Maintain enthusiasm and consistency to strengthen learning."
+          ],
+          "completionCriteria": "Puppy associates pottying outside with rewards and praise consistently, responding positively at least 8 out of 10 times."
+        },
+        {
+          "id": "les-005",
+          "title": "Lesson 5: Handling Accidents",
+          "image": "mod2_l5",
+          "goal": "Effectively manage indoor potty accidents, minimizing frustration and reinforcing correct behavior.",
+          "duration": "15 minutes per session",
+          "steps": [
+            "Remain Calm: If an accident occurs indoors, remain calm and avoid scolding.",
+            "Immediate Response: Interrupt gently if you catch your puppy in the act, quickly guiding them outdoors to finish.",
+            "Effective Cleaning: Thoroughly clean accident areas using an enzymatic cleaner to eliminate odors and discourage repeat incidents.",
+            "Review Routine: Evaluate and adjust your potty schedule or watch more closely for signals if accidents persist."
+          ],
+          "tips": [
+            "Never punish after the fact; your puppy won’t understand and may become anxious.",
+            "Focus on positive reinforcement to reduce future accidents."
+          ],
+          "completionCriteria": "Indoor accidents noticeably reduced; puppy consistently redirected outside at least 8 out of 10 times after minor setbacks."
+        },
+        {
+          "id": "les-006",
+          "title": "Lesson 6: Nighttime Potty Training",
+          "image": "mod2_l6",
+          "goal": "Develop an effective nighttime potty routine to minimize overnight accidents and encourage longer sleep intervals.",
+          "duration": "20–25 minutes setup and observation",
+          "steps": [
+            "Adjust Feeding and Watering: Limit water intake 1–2 hours before bedtime, and schedule the last potty break right before sleep.",
+            "Set Alarms: Initially, set a nighttime alarm to take your puppy out for a brief potty break midway through the night.",
+            "Minimize Nighttime Interaction: Keep nighttime outings quiet, calm, and brief, avoiding play to indicate it’s sleep time.",
+            "Gradually Extend Sleep Periods: Slowly increase intervals between nighttime potty breaks as bladder control improves."
+          ],
+          "tips": [
+            "Consistency and calmness during night breaks help your puppy understand expectations.",
+            "Patience is key; improvement usually happens gradually."
+          ],
+          "completionCriteria": "Puppy sleeps through most of the night (6–8 hours) without accidents consistently over several consecutive nights."
+        },
+        {
+          "id": "les-007",
+          "title": "Lesson 7: Crate Training Integration",
+          "image": "mod2_l7",
+          "goal": "Incorporate crate training to effectively speed up potty training success and manage potty breaks efficiently.",
+          "duration": "20–25 minutes per session",
+          "steps": [
+            "Introduce the Crate Positively: Gradually introduce your puppy to the crate with treats and comfortable bedding.",
+            "Routine Crating: Use the crate for short periods when you cannot supervise, as puppies naturally avoid pottying where they sleep.",
+            "Scheduled Potty Breaks: Consistently let your puppy out to potty immediately upon removal from the crate.",
+            "Positive Association: Reward puppy immediately after pottying successfully outdoors following crate time."
+          ],
+          "tips": [
+            "Crate should never be used as punishment.",
+            "Gradually extend crate time as puppy adapts comfortably."
+          ],
+          "completionCriteria": "Puppy consistently keeps crate clean, with accidents reduced to nearly zero over multiple days of consistent crate usage."
+        },
+        {
+          "id": "les-008",
+          "title": "Lesson 8: Troubleshooting Challenges",
+          "image": "mod2_l8",
+          "goal": "Identify, address, and overcome common potty training issues and setbacks.",
+          "duration": "Observation-based (3–5 days)",
+          "steps": [
+            "Identify Issues: Note specific problems (e.g., regression, frequent indoor accidents, refusal to potty outdoors).",
+            "Assess Routine: Review the current schedule, rewards system, and potty spot conditions for improvements.",
+            "Make Adjustments: Modify training methods, increase frequency of breaks, improve reward quality, or reassess crate usage.",
+            "Consistency and Patience: Persist with positive reinforcement, and calmly reinforce good habits to resolve setbacks effectively."
+          ],
+          "tips": [
+            "Avoid becoming frustrated; setbacks are common and manageable.",
+            "Be flexible and ready to adjust training methods as needed."
+          ],
+          "completionCriteria": "Common training issues resolved; puppy consistently demonstrates improved potty habits with few setbacks for at least 3–5 consecutive days."
+        }
+      ]
+    },
+    {
+      "id": "mod-003",
+      "title": "Basic Obedience",
+      "description": "Build foundational skills for good behavior.",
+      "level": "Intermediate",
+      "imageName": "mod3_l14",
+      "lessons": [
+        {
+          "id": "les-001",
+          "title": "Lesson 1: Eye Contact",
+          "image": "mod3_l1",
+          "goal": "Strengthen your dog's attention and communication by teaching focused eye contact on cue.",
+          "duration": "10–15 minutes",
+          "steps": [
+            "Prepare Rewards: Hold small, tasty treats near your face.",
+            "Gain Attention: Clearly say your dog's name and wait until they look directly at your eyes.",
+            "Immediate Reward: Instantly praise (\"Yes!\" or \"Good!\") and reward when eye contact occurs.",
+            "Gradually Extend Duration: Slowly increase the length of eye contact required before rewarding."
+          ],
+          "tips": [
+            "Always keep your voice gentle and encouraging.",
+            "Frequent short sessions yield the best results."
+          ],
+          "completionCriteria": "Dog reliably holds eye contact for at least 5 seconds upon hearing their name in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-002",
+          "title": "Lesson 2: Sit-Stay Basics",
+          "image": "mod3_l2",
+          "goal": "Teach your dog to remain seated calmly until explicitly released.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Give Sit Command: Instruct your dog to \"Sit\", rewarding immediately when sitting occurs.",
+            "Introduce Stay Command: With your open palm toward your dog, say \"Stay\" calmly.",
+            "Brief Stay Duration: Initially, keep the stay short (2–3 seconds). Reward instantly and clearly release with a cue like \"OK.\"",
+            "Increase Time Gradually: Slowly increase the duration of the stay, rewarding consistently."
+          ],
+          "tips": [
+            "If your dog moves prematurely, simply guide them back gently without scolding.",
+            "Regularly practice short sessions daily."
+          ],
+          "completionCriteria": "Dog reliably remains seated for at least 15–20 seconds until released, 8 out of 10 times."
+        },
+        {
+          "id": "les-003",
+          "title": "Lesson 3: Down-Stay Fundamentals",
+          "image": "mod3_l3",
+          "goal": "Establish foundational skills for your dog to remain calmly lying down until released.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Begin with Down: Command your dog into a \"Down\" position first, reward immediately.",
+            "Introduce Stay Cue: Clearly give the command \"Stay,\" using a calm, firm voice and an open-hand signal.",
+            "Short Initial Stays: Wait 2–3 seconds initially, then release and reward generously.",
+            "Extend Stay Gradually: Gradually increase both duration and distance while maintaining consistency."
+          ],
+          "tips": [
+            "Keep sessions short and positive, avoiding frustration or fatigue.",
+            "Reward generously and consistently."
+          ],
+          "completionCriteria": "Dog consistently holds a down-stay calmly for 20–30 seconds, successfully completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-004",
+          "title": "Lesson 4: Come When Called",
+          "image": "mod3_l4",
+          "goal": "Teach your dog to reliably return to you when called in various everyday situations.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Pick Your Cue: Use a clear, enthusiastic cue like \"Come!\" or \"Here!\"",
+            "Short-Distance Recall: Start indoors or in a quiet area at short distances (2–3 meters).",
+            "Reward Instantly: Immediately praise and reward generously when your dog arrives.",
+            "Practice Regularly: Gradually introduce minor distractions as recall improves."
+          ],
+          "tips": [
+            "Never call your dog to punish them; ensure recall always results in positive outcomes.",
+            "Regular, short sessions enhance reliability."
+          ],
+          "completionCriteria": "Dog consistently returns immediately upon hearing the recall command 8 out of 10 times, even with minor distractions."
+        },
+        {
+          "id": "les-005",
+          "title": "Lesson 5: Loose Leash Walking",
+          "image": "mod3_l5",
+          "goal": "Train your dog to walk calmly at your side without pulling on the leash.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Start Calmly: Begin leash training indoors or in a quiet, familiar outdoor area.",
+            "Reward Proper Position: Encourage your dog to stay close to your side. Reward immediately for maintaining position without pulling.",
+            "Stop-and-Go Technique: If your dog pulls, calmly stop walking. Wait until the leash loosens, then continue.",
+            "Directional Changes: Frequently change directions to encourage your dog’s attention on you."
+          ],
+          "tips": [
+            "Keep initial sessions short (5–10 minutes) and positive.",
+            "Consistency and patience are critical; reward generously for calm behavior."
+          ],
+          "completionCriteria": "Dog consistently walks calmly beside you on a loose leash for at least 10 consecutive steps, successfully in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-006",
+          "title": "Lesson 6: Wait at Doors and Gates",
+          "image": "mod3_l6",
+          "goal": "Encourage your dog to pause and wait politely at doors and gates until given permission to pass through safely.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Approach and Stop: Walk your dog on-leash toward a closed door or gate. Stop approximately 1–2 feet away.",
+            "Cue \"Wait\": Calmly give the command \"Wait\" while raising your hand as a visual signal.",
+            "Open Door Slowly: Gradually open the door or gate slightly. If your dog moves forward prematurely, gently close the door and repeat.",
+            "Release Command: When your dog waits calmly, give a clear release cue like \"Okay!\" or \"Let’s go!\" and proceed through together."
+          ],
+          "tips": [
+            "Consistency is crucial—practice at various doors and gates regularly.",
+            "Keep your demeanor calm to reinforce patient behavior."
+          ],
+          "completionCriteria": "Dog reliably waits at doors or gates until released 8 out of 10 times."
+        },
+        {
+          "id": "les-007",
+          "title": "Lesson 7: Leave It Command",
+          "image": "mod3_l7",
+          "goal": "Train your dog to reliably ignore or turn away from tempting but inappropriate items on command.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Present Temptation: Hold a treat or object in your closed fist, allowing your dog to sniff but not take it.",
+            "Cue \"Leave it\": Clearly and firmly say \"Leave it\" and wait until your dog stops trying to reach the object.",
+            "Reward Correct Behavior: Once your dog looks away or pauses, immediately reward from your other hand with praise and a different treat.",
+            "Increase Difficulty: Gradually practice with open-hand temptations and floor-level items."
+          ],
+          "tips": [
+            "Always reward promptly and generously when your dog successfully ignores the item.",
+            "Gradually increase distractions as your dog’s skills improve."
+          ],
+          "completionCriteria": "Dog consistently leaves tempting items when given the \"Leave it\" command in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-008",
+          "title": "Lesson 8: Drop Items on Cue",
+          "image": "mod3_l8",
+          "goal": "Develop reliable responses from your dog to release items gently and immediately upon command.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Initiate Play: Offer your dog a toy they enjoy holding or playing with.",
+            "Introduce Cue: Calmly and clearly say \"Drop it,\" simultaneously offering a high-value treat as an exchange.",
+            "Immediate Reward: Reward instantly with praise and the treat once your dog releases the object.",
+            "Practice Frequently: Regularly practice, eventually phasing out the food reward, using praise alone intermittently."
+          ],
+          "tips": [
+            "Never forcibly remove items; encourage voluntary release gently.",
+            "Ensure rewards are consistently motivating initially."
+          ],
+          "completionCriteria": "Dog willingly releases items promptly upon hearing \"Drop it\" in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-009",
+          "title": "Lesson 9: Polite Greetings",
+          "image": "mod3_l9",
+          "goal": "Teach your dog to greet people calmly without jumping or excessive excitement.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Set Up Controlled Greetings: Have a helper calmly approach your dog while the dog is leashed.",
+            "Encourage Calmness: Command your dog to sit as the helper approaches. Reward immediately for calm sitting behavior.",
+            "Discourage Jumping: If your dog jumps, have the helper calmly turn away and ignore until your dog sits or remains calm again.",
+            "Consistent Repetition: Regularly practice with multiple people and gradually increase excitement levels."
+          ],
+          "tips": [
+            "Always reward calm greetings immediately.",
+            "Avoid reinforcing jumping by ignoring excited greetings."
+          ],
+          "completionCriteria": "Dog consistently greets people calmly without jumping in 8 out of 10 encounters."
+        },
+        {
+          "id": "les-010",
+          "title": "Lesson 10: Place Command",
+          "image": "mod3_l10",
+          "goal": "Train your dog to relax calmly on a designated spot (such as a mat or bed) upon command.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Choose a Spot: Pick a comfortable mat or dog bed as the designated place.",
+            "Guide to Place: Use a treat to guide your dog onto the mat. Once all four paws are on, say clearly \"Place.\"",
+            "Reward Calmness: Encourage your dog to lie down calmly, immediately rewarding the calm position with praise and treats.",
+            "Extend Duration: Gradually increase the time your dog remains on their place before releasing them with a cue such as \"Free\" or \"Okay.\""
+          ],
+          "tips": [
+            "Keep the place spot consistent initially to reinforce understanding.",
+            "Reward generously and frequently at first, gradually reducing frequency over time."
+          ],
+          "completionCriteria": "Dog reliably goes to their designated place on cue and remains calmly for at least 30 seconds, 8 out of 10 attempts."
+        },
+        {
+          "id": "les-011",
+          "title": "Lesson 11: Handling and Grooming",
+          "image": "mod3_l11",
+          "goal": "Make grooming and physical handling stress-free and comfortable for your dog.",
+          "duration": "15–20 minutes per session",
+          "steps": [
+            "Introduce Tools: Let your dog calmly sniff grooming tools (brush, comb, nail clippers).",
+            "Gentle Touch: Briefly and gently touch paws, ears, and mouth areas, rewarding immediately for calm acceptance.",
+            "Positive Grooming: Slowly introduce gentle brushing or combing, pairing each action with treats and praise.",
+            "Build Duration: Gradually extend grooming time as your dog remains comfortable and calm."
+          ],
+          "tips": [
+            "Keep initial sessions short, positive, and frequent.",
+            "Stop immediately if your dog becomes stressed and resume later with shorter steps."
+          ],
+          "completionCriteria": "Dog calmly allows basic grooming and handling for at least 5 consecutive minutes without resistance."
+        },
+        {
+          "id": "les-012",
+          "title": "Lesson 12: Stay with Distractions",
+          "image": "mod3_l12",
+          "goal": "Strengthen your dog’s “stay” command even when faced with mild to moderate distractions.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Start Simple: Give the “stay” command in a familiar, quiet location initially.",
+            "Introduce Minor Distractions: Begin introducing mild distractions (e.g., gently tossing a toy nearby) while maintaining a stay.",
+            "Reward and Reinforce: Immediately reward calm staying behavior and gradually increase distraction levels.",
+            "Consistency: Regularly practice in various settings, increasing distractions slowly."
+          ],
+          "tips": [
+            "Gradually increase distraction intensity; ensure success before moving forward.",
+            "Use high-value rewards to reinforce staying despite distractions."
+          ],
+          "completionCriteria": "Dog consistently holds a stay for 20–30 seconds amidst moderate distractions in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-013",
+          "title": "Lesson 13: Controlled Play",
+          "image": "mod3_l13",
+          "goal": "Teach your dog to engage in safe, calm, and controlled play, preventing overly rough behaviors.",
+          "duration": "15–20 minutes per session",
+          "steps": [
+            "Choose Appropriate Toys: Select toys your dog enjoys and can easily handle calmly.",
+            "Initiate Gentle Play: Start play sessions calmly, immediately pausing and withdrawing if play becomes too rough.",
+            "Introduce Cues: Clearly say \"Easy\" or \"Gentle\" if play escalates, rewarding calmer interactions immediately.",
+            "Consistent Reinforcement: Regularly reward calm and appropriate play behaviors."
+          ],
+          "tips": [
+            "Always end play sessions on a calm, positive note.",
+            "Use brief play pauses to reinforce self-control."
+          ],
+          "completionCriteria": "Dog engages calmly in play sessions, responding promptly to calming cues in 8 out of 10 times."
+        },
+        {
+          "id": "les-014",
+          "title": "Lesson 14: Quiet Command",
+          "image": "mod3_l14",
+          "goal": "Teach your dog to reduce barking effectively and reliably respond to a “quiet” cue.",
+          "duration": "15–20 minutes per session",
+          "steps": [
+            "Trigger Controlled Barking: Use a mild trigger (doorbell knock) to prompt barking briefly.",
+            "Introduce Quiet Cue: Calmly but firmly say “Quiet,” rewarding immediately when your dog pauses barking.",
+            "Reward Silence: Provide consistent rewards during quiet moments, extending quiet durations progressively.",
+            "Increase Difficulty: Gradually practice with more challenging triggers or prolonged barking scenarios."
+          ],
+          "tips": [
+            "Avoid shouting or excessive reactions; remain calm.",
+            "Reward generously for quick and sustained responses to the quiet command."
+          ],
+          "completionCriteria": "Dog consistently stops barking promptly upon hearing the “Quiet” command in 8 out of 10 times."
+        },
+        {
+          "id": "les-015",
+          "title": "Lesson 15: Review and Graduation",
+          "image": "mod3_l15",
+          "goal": "Review and consolidate all obedience skills learned in previous lessons, confirming reliability and celebrating progress.",
+          "duration": "25–30 minutes",
+          "steps": [
+            "Conduct Skill Review: Systematically practice all previously learned commands (Sit, Down, Stay, Come, etc.).",
+            "Test Reliability: Practice each command in a variety of settings and with minor distractions.",
+            "Reward Successes: Generously reward each correctly executed command to reinforce learning.",
+            "Celebrate Achievements: Finish with positive interactions, games, and extra praise to mark graduation."
+          ],
+          "tips": [
+            "Be patient and supportive, especially with challenging commands.",
+            "Regularly revisit this review to maintain skills."
+          ],
+          "completionCriteria": "Dog confidently and reliably performs each learned command under moderate distraction, successfully completing at least 8 out of 10 command attempts."
+        }
+      ]
+    },
+    {
+      "id": "mod-004",
+      "title": "Intermediate Obedience",
+      "description": "Advance your dog's listening and attention.",
+      "level": "Intermediate",
+      "imageName": "mod4_l2",
+      "lessons": [
+        {
+          "id": "les-001",
+          "title": "Lesson 1: Extended Stay",
+          "image": "mod4_l1",
+          "goal": "Teach your dog to confidently hold a \"stay\" command for longer durations, even with mild distractions.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Start Simple: Give your dog a clear \"Stay\" command from a sitting or down position.",
+            "Gradual Duration Increase: Begin with short intervals (5–10 seconds) and gradually increase the time.",
+            "Introduce Distractions: Add minor distractions such as stepping sideways or clapping softly from a distance.",
+            "Reward Consistency: Reward generously whenever your dog successfully holds position, gradually increasing the stay duration."
+          ],
+          "tips": [
+            "Stay patient; increase distractions and duration slowly.",
+            "Regular short sessions yield the best progress."
+          ],
+          "completionCriteria": "Dog reliably holds stay command for at least 45–60 seconds with mild distractions in 8 out of 10 trials."
+        },
+        {
+          "id": "les-002",
+          "title": "Lesson 2: Reliable Recall at Distance",
+          "image": "mod4_l2",
+          "goal": "Build a reliable and immediate recall from your dog, even from greater distances.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Start Short: Call your dog using the recall cue (\"Come!\") from short distances (5–10 feet) and reward immediately.",
+            "Gradually Increase Distance: Slowly extend the recall distance incrementally (up to 20–30 feet).",
+            "Varied Environments: Practice recall in different settings with minimal distractions, increasing gradually.",
+            "Consistent Rewarding: Reward every successful recall immediately with treats, praise, or play."
+          ],
+          "tips": [
+            "Keep your recall tone cheerful and inviting.",
+            "Never use recall for negative experiences or corrections."
+          ],
+          "completionCriteria": "Dog consistently returns immediately when called from a distance of 20–30 feet, successfully completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-003",
+          "title": "Lesson 3: Heel Command Basics",
+          "image": "mod4_l3",
+          "goal": "Introduce your dog to the formal \"heel\" position, walking calmly at your left side.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Start from Standstill: Place your dog on your left side, leash loosely in your hand.",
+            "Use Clear Cue: Clearly say \"Heel,\" and begin walking forward slowly.",
+            "Guide Position: Use treats to guide your dog into proper heel position—head aligned with your leg.",
+            "Immediate Reinforcement: Consistently reward your dog whenever they stay in correct heel position."
+          ],
+          "tips": [
+            "Keep sessions short to maintain your dog’s focus and interest.",
+            "Gradually reduce guidance, transitioning from food lures to verbal praise."
+          ],
+          "completionCriteria": "Dog reliably maintains correct heel position for 10–15 consecutive steps in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-004",
+          "title": "Lesson 4: Attention Around Distractions",
+          "image": "mod4_l4",
+          "goal": "Maintain your dog’s focus and attention even in busy or distracting environments.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Basic Attention Cue: Start in a quiet area, call your dog’s name, rewarding eye contact immediately.",
+            "Introduce Mild Distractions: Gradually add distractions such as background noises, people, or mild movements.",
+            "Reward Focus: Consistently reward every instance your dog maintains or quickly regains attention.",
+            "Increase Difficulty: Slowly build toward busier environments or more intense distractions."
+          ],
+          "tips": [
+            "Frequent practice in varied locations builds reliability.",
+            "Keep sessions brief and positive, avoiding frustration."
+          ],
+          "completionCriteria": "Dog consistently maintains or quickly refocuses attention in mildly distracting situations 8 out of 10 times."
+        },
+        {
+          "id": "les-005",
+          "title": "Lesson 5: Stand-Stay Command",
+          "image": "mod4_l5",
+          "goal": "Teach your dog to hold a calm standing position (\"stand-stay\") on cue.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Position Dog in Stand: Guide your dog gently into a standing position, reward immediately.",
+            "Introduce \"Stay\": Clearly say \"Stay,\" with an open-hand gesture facing your dog.",
+            "Short Duration First: Initially practice short stays (3–5 seconds), gradually increasing duration.",
+            "Reward Stillness: Praise and reward your dog for holding a calm standing position consistently."
+          ],
+          "tips": [
+            "Maintain calmness and patience during practice.",
+            "Slowly increase the length and difficulty of stand-stays over time."
+          ],
+          "completionCriteria": "Dog reliably holds a calm stand-stay for at least 20–30 seconds upon command, 8 out of 10 trials."
+        },
+        {
+          "id": "les-006",
+          "title": "Lesson 6: Go to Bed Command",
+          "image": "mod4_l6",
+          "goal": "Teach your dog to calmly settle on a designated spot or bed upon command.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Select a Spot: Place a comfortable dog bed or mat in a consistent location.",
+            "Introduce the Cue: Guide your dog onto the bed using a treat, clearly saying \"Go to bed.\"",
+            "Reward Calmness: Once your dog lies down calmly, immediately praise and reward generously.",
+            "Gradually Increase Duration: Slowly extend the time your dog stays calmly on the bed before giving a release cue (\"Okay!\" or \"Free!\")."
+          ],
+          "tips": [
+            "Consistency in using the same spot helps your dog learn faster.",
+            "Initially, reward generously to reinforce the behavior."
+          ],
+          "completionCriteria": "Dog reliably settles calmly on their designated bed upon cue for at least 30–60 seconds, successfully completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-007",
+          "title": "Lesson 7: Emergency Stop",
+          "image": "mod4_l7",
+          "goal": "Train your dog to stop immediately and remain still when given an emergency stop cue, enhancing safety.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Begin in Controlled Area: Practice in a secure environment, initially with your dog close by.",
+            "Introduce Command: Clearly give a sharp and distinctive verbal cue, such as \"Stop!\" or \"Halt!\"",
+            "Immediate Pause: When your dog stops, instantly reward generously with praise and treats.",
+            "Extend Distance: Gradually practice from further away, reinforcing immediate response each time."
+          ],
+          "tips": [
+            "Use a distinctive, firm tone for clarity and quick response.",
+            "Regularly practice to maintain reliability."
+          ],
+          "completionCriteria": "Dog stops immediately and reliably upon hearing the emergency cue, 8 out of 10 times, even at a distance."
+        },
+        {
+          "id": "les-008",
+          "title": "Lesson 8: Off-Leash Obedience Introduction",
+          "image": "mod4_l8",
+          "goal": "Begin teaching your dog obedience commands confidently without relying on a leash.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Secure Environment: Start in a safe, enclosed area to ensure your dog’s safety.",
+            "Review Known Commands: Practice basic commands like \"Sit,\" \"Stay,\" and \"Come\" initially with a leash, then gradually without it.",
+            "Positive Reinforcement: Immediately reward your dog generously for obeying commands off-leash.",
+            "Increase Challenge: Gradually introduce mild distractions or slightly increased distances as reliability improves."
+          ],
+          "tips": [
+            "Consistency and high-value rewards build confidence and responsiveness.",
+            "Regular practice sessions maintain reliability."
+          ],
+          "completionCriteria": "Dog reliably performs basic commands off-leash successfully 8 out of 10 times."
+        },
+        {
+          "id": "les-009",
+          "title": "Lesson 9: Greeting People Calmly Outdoors",
+          "image": "mod4_l9",
+          "goal": "Train your dog to greet new people politely and calmly outdoors, without jumping or excessive excitement.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Initial Calmness: Begin with your dog in a sitting position at your side outdoors.",
+            "Controlled Approach: Allow another person to approach slowly. Reward your dog immediately for remaining seated and calm.",
+            "Manage Excitement: If your dog begins to jump or act excited, the approaching person should pause and step back briefly.",
+            "Reinforce Proper Greeting: Consistently reward calm behavior, gradually increasing excitement and number of people approaching."
+          ],
+          "tips": [
+            "Stay calm yourself to encourage calmness in your dog.",
+            "Regularly practice with different individuals to generalize the behavior."
+          ],
+          "completionCriteria": "Dog consistently greets people calmly outdoors, successfully demonstrating polite behavior 8 out of 10 times."
+        },
+        {
+          "id": "les-010",
+          "title": "Lesson 10: Ignoring Other Dogs",
+          "image": "mod4_l10",
+          "goal": "Develop your dog’s ability to calmly ignore or remain neutral toward other dogs during walks or outdoor activities.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Controlled Distance: Begin practicing at a safe, comfortable distance from other dogs.",
+            "Maintain Attention: Regularly reinforce eye contact and calm behavior with treats and praise when another dog appears.",
+            "Gradual Approach: Slowly decrease distance between your dog and others, continuously reinforcing calmness.",
+            "Redirect Attention: Quickly redirect your dog’s focus back to you using commands or treats if distracted."
+          ],
+          "tips": [
+            "Consistent positive reinforcement encourages calmness and focus.",
+            "Increase proximity to other dogs very gradually to ensure success."
+          ],
+          "completionCriteria": "Dog remains calm, neutral, and focused on you when encountering other dogs, successfully completing 8 out of 10 encounters."
+        },
+        {
+          "id": "les-011",
+          "title": "Lesson 11: Long-Distance Commands",
+          "image": "mod4_l11",
+          "goal": "Teach your dog to reliably respond to commands given from longer distances, enhancing control in various situations.",
+          "duration": "20–30 minutes",
+          "steps": [
+            "Begin Close: Practice basic commands (Sit, Down, Stay) at short distances first (3–5 feet).",
+            "Gradual Distance Increase: Slowly increase distance, clearly giving commands and rewarding immediately upon correct response.",
+            "Use Clear Signals: Pair verbal commands with consistent hand signals to reinforce understanding.",
+            "Regular Practice: Regularly practice at varying distances, gradually increasing up to 15–25 feet."
+          ],
+          "tips": [
+            "Ensure your voice is clear and loud enough for your dog to hear comfortably.",
+            "Always reward generously, reinforcing correct responses positively."
+          ],
+          "completionCriteria": "Dog reliably responds to basic obedience commands at distances of 15–25 feet, successfully completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-012",
+          "title": "Lesson 12: Intermediate Obedience Test",
+          "image": "mod4_l12",
+          "goal": "Assess your dog’s mastery of intermediate-level obedience skills and readiness for advanced training.",
+          "duration": "30 minutes",
+          "steps": [
+            "Sit-Stay (30–60 sec): Dog should hold a sit-stay reliably for at least 30–60 seconds, despite mild distractions.",
+            "Down-Stay (30–60 sec): Dog maintains a calm down-stay position for at least 30–60 seconds with mild distractions.",
+            "Reliable Recall: Dog responds immediately and promptly returns when recalled from 20–25 feet away.",
+            "Heel Command: Dog confidently walks at your side in a proper heel position for at least 15 steps.",
+            "Ignore Distractions: Dog remains focused and calm when exposed to moderate distractions.",
+            "Stand-Stay: Dog holds a stand-stay position reliably for at least 20 seconds."
+          ],
+          "tips": [
+            "Perform the test in a controlled environment to ensure clear evaluation.",
+            "Reward generously after each successful assessment criterion to reinforce positive experiences."
+          ],
+          "completionCriteria": "Dog successfully passes all assessment criteria, reliably completing each skill at least 8 out of 10 attempts."
+        }
+      ]
+    },
+    {
+      "id": "mod-005",
+      "title": "Reliable Recall",
+      "description": "Ensure your dog always returns, even with distractions.",
+      "level": "Advanced",
+      "imageName": "mod5_l10",
+      "lessons": [
+        {
+          "id": "les-001",
+          "title": "Lesson 1: Recall Foundation",
+          "goal": "Establish a clear and reliable recall command that your dog responds to immediately.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Choose a Cue Word: Pick a distinct recall cue like “Come!” or “Here!”",
+            "Short Distance Practice: Begin indoors or in a quiet area at close distances (3–5 feet). Say the cue enthusiastically.",
+            "Immediate Reward: Reward your dog immediately with treats and praise when they respond promptly.",
+            "Repeat Regularly: Consistently practice in short sessions, gradually building reliability."
+          ],
+          "tips": [
+            "Always use a happy and encouraging tone.",
+            "Ensure each recall ends positively, with praise or treats."
+          ],
+          "completionCriteria": "Dog reliably comes immediately when called from short distances, successfully completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-002",
+          "title": "Lesson 2: Recall with Minor Distractions",
+          "goal": "Improve recall reliability when your dog faces mild distractions.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Establish Calm Environment: Start recall practice indoors or in a quiet outdoor area.",
+            "Introduce Mild Distractions: Place mild distractions nearby, such as toys or familiar people.",
+            "Recall Command: Clearly call your dog using your established recall cue.",
+            "Reward Immediate Response: Generously praise and reward your dog when they return quickly, even with distractions nearby."
+          ],
+          "tips": [
+            "Slowly increase the difficulty level of distractions.",
+            "Always reward immediately to reinforce prompt responses."
+          ],
+          "completionCriteria": "Dog consistently responds promptly despite mild distractions, achieving success in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-003",
+          "title": "Lesson 3: Emergency Recall Word",
+          "goal": "Teach your dog a distinct and highly reliable emergency recall command for urgent situations.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Select Unique Cue: Choose a unique word or phrase (e.g., “Now!” or “Emergency!”) distinct from everyday commands.",
+            "High-Value Rewards: Use exceptionally high-value rewards reserved solely for this cue.",
+            "Immediate Response Training: Practice at short distances without distractions, rewarding instantly every time your dog responds.",
+            "Increase Difficulty: Gradually increase the distance and introduce minor distractions while consistently rewarding prompt responses."
+          ],
+          "tips": [
+            "Keep this cue highly positive and rewarding.",
+            "Practice regularly but sparingly to maintain its special significance."
+          ],
+          "completionCriteria": "Dog immediately returns upon hearing the emergency recall word, even with moderate distractions, in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-004",
+          "title": "Lesson 4: Long-Leash Recall Training",
+          "goal": "Safely practice and enhance recall reliability at extended distances using a long leash.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Long-Leash Setup: Use a 15–30-foot leash in a safe, open environment.",
+            "Distance Recall: Clearly call your dog using your standard recall cue from progressively greater distances.",
+            "Consistent Rewarding: Reward your dog generously upon return each time to reinforce behavior.",
+            "Practice Regularly: Gradually vary environments and distances for increased reliability."
+          ],
+          "tips": [
+            "Keep sessions positive and short, reinforcing success consistently.",
+            "Gradually phase out leash reliance once reliability improves."
+          ],
+          "completionCriteria": "Dog reliably returns promptly from longer distances (20–30 feet) in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-005",
+          "title": "Lesson 5: Recall During Play",
+          "goal": "Train your dog to reliably return to you even during active play sessions.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Start Play Session: Engage your dog in their favorite game or playful activity.",
+            "Introduce Recall Cue: Call your dog clearly using your recall cue during moments of moderate excitement.",
+            "Reward Generously: Provide immediate high-value rewards and praise when your dog returns quickly.",
+            "Gradually Increase Play Intensity: Slowly practice recall at more intense moments of play."
+          ],
+          "tips": [
+            "Initially call your dog during slight pauses in play.",
+            "Always allow play to resume after successful recall, keeping it enjoyable."
+          ],
+          "completionCriteria": "Dog consistently recalls promptly during play, responding reliably in 8 out of 10 times."
+        },
+        {
+          "id": "les-006",
+          "title": "Lesson 6: Food & Toy Distraction Recall",
+          "goal": "Achieve reliable recall responses even when your dog faces highly tempting distractions like food or toys.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Controlled Setup: Place high-value distractions (favorite toys or treats) in controlled areas.",
+            "Recall Training: Clearly call your dog away from the distraction using your standard recall cue.",
+            "Immediate Reward: Reward immediately with something equally or more valuable to reinforce returning.",
+            "Gradually Increase Difficulty: Intensify distractions progressively while maintaining prompt recall."
+          ],
+          "tips": [
+            "Initially use distractions that are slightly less appealing to ensure success.",
+            "Always reward your dog immediately upon returning, reinforcing correct behavior strongly."
+          ],
+          "completionCriteria": "Dog consistently returns promptly despite strong distractions, successfully responding in 8 out of 10 times."
+        },
+        {
+          "id": "les-007",
+          "title": "Lesson 7: Recall Around Other Dogs",
+          "goal": "Train your dog to reliably come when called, even when other dogs are present.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Controlled Environment: Begin practice at a safe, comfortable distance from other calm dogs.",
+            "Recall Command: Clearly call your dog using your established recall cue.",
+            "Reward Focus: Immediately praise and reward your dog when they promptly return, ignoring other dogs.",
+            "Gradually Increase Proximity: Slowly practice recall closer to other dogs, ensuring consistent success before moving closer."
+          ],
+          "tips": [
+            "Use high-value treats or toys to reinforce correct responses.",
+            "Regular short sessions help your dog maintain focus and responsiveness."
+          ],
+          "completionCriteria": "Dog reliably recalls despite the presence of other dogs, successfully completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-008",
+          "title": "Lesson 8: Outdoor Recall in Open Spaces",
+          "goal": "Achieve consistent and prompt recall responses in open outdoor environments.",
+          "duration": "20–30 minutes",
+          "steps": [
+            "Long-Line Safety: Initially practice recall using a long leash (20–30 feet) in an open, secure area.",
+            "Clear Command: Clearly call your dog using your recall cue.",
+            "Immediate Reward: Generously praise and reward upon successful return.",
+            "Gradual Freedom: Progress to practicing recall off-leash in safe, fenced-in open spaces, maintaining consistent rewards."
+          ],
+          "tips": [
+            "Ensure high-value rewards to encourage enthusiastic returns.",
+            "Keep sessions brief and positive."
+          ],
+          "completionCriteria": "Dog consistently recalls promptly in open outdoor areas in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-009",
+          "title": "Lesson 9: Immediate Stop and Recall",
+          "goal": "Teach your dog to quickly stop any current action and promptly return upon hearing combined commands.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Introduce Stop Cue: First, practice the \"Stop\" or \"Wait\" command separately at short distances.",
+            "Combine Commands: Once your dog reliably stops, immediately give your recall cue (“Come!”).",
+            "Reward Immediate Response: Reward generously when your dog stops and returns immediately.",
+            "Gradual Progression: Gradually increase distance and distractions, reinforcing consistent responses."
+          ],
+          "tips": [
+            "Use a clear, firm tone for the stop command, and cheerful encouragement for recall.",
+            "Regular, brief sessions improve reliability."
+          ],
+          "completionCriteria": "Dog reliably stops and immediately returns upon command in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-010",
+          "title": "Lesson 10: Hidden Handler Recall",
+          "goal": "Train your dog to confidently find and return to you when you are briefly out of sight.",
+          "duration": "20–30 minutes",
+          "steps": [
+            "Start with Partial Visibility: Initially hide partially behind an object or corner, calling your dog clearly.",
+            "Reward Prompt Returns: Immediately reward your dog upon finding you.",
+            "Increase Difficulty Gradually: Slowly increase your hiding distance and fully conceal yourself, consistently rewarding upon return.",
+            "Regular Practice: Vary hiding places to generalize recall success."
+          ],
+          "tips": [
+            "Begin in familiar environments to boost your dog's confidence.",
+            "Maintain excitement and rewards high to encourage enthusiasm."
+          ],
+          "completionCriteria": "Dog consistently locates and returns to you when hidden, succeeding in 8 out of 10 trials."
+        },
+        {
+          "id": "les-011",
+          "title": "Lesson 11: Proofing Your Recall",
+          "goal": "Test and reinforce your dog’s recall reliability under varied conditions and higher-level distractions.",
+          "duration": "25–30 minutes",
+          "steps": [
+            "Varied Environments: Practice recall in different locations (parks, yards, indoors, etc.).",
+            "Increase Distraction Levels: Gradually introduce higher-level distractions like unfamiliar people, toys, or food.",
+            "Consistent Rewards: Generously reward prompt returns, especially under difficult circumstances.",
+            "Evaluate and Reinforce: Regularly evaluate and reinforce any weaker recall responses to ensure consistency."
+          ],
+          "tips": [
+            "Practice recall frequently but briefly to maintain enthusiasm.",
+            "Immediately address inconsistencies with extra practice sessions."
+          ],
+          "completionCriteria": "Dog reliably returns immediately despite varied distractions, achieving success in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-012",
+          "title": "Lesson 12: Reliable Recall Graduation",
+          "goal": "Perform a final evaluation demonstrating your dog’s mastery of the recall command under multiple challenging scenarios.",
+          "duration": "30–35 minutes",
+          "steps": [
+            "Distance Recall (30–40 ft.): Dog must promptly return when called from long distances.",
+            "Recall with High-Level Distractions: Successfully respond despite attractive distractions such as food, toys, or dogs.",
+            "Hidden Handler Recall: Locate handler swiftly when handler is hidden.",
+            "Combined Commands (Stop & Recall): Dog immediately stops current activity and returns when commanded."
+          ],
+          "tips": [
+            "Ensure each scenario is clearly controlled for safety and accurate evaluation.",
+            "Reward generously during and after evaluation to reinforce mastery positively."
+          ],
+          "completionCriteria": "Dog consistently demonstrates reliable recall mastery in all evaluation scenarios, successfully completing at least 8 out of 10 attempts in each scenario."
+        }
+      ]
+    },
+    {
+      "id": "mod-006",
+      "title": "Loose-Leash Walking",
+      "description": "Relaxed walking routines outdoors.",
+      "level": "Intermediate",
+      "imageName": "mod6_l6",
+      "lessons": [
+        {
+          "id": "les-001",
+          "title": "Lesson 1: Leash Introduction",
+          "goal": "Help your dog become comfortable and calm wearing a leash.",
+          "duration": "10–15 minutes",
+          "steps": [
+            "Positive Association: Allow your dog to sniff and explore the leash; reward with praise and treats.",
+            "Gentle Attachment: Attach leash gently to your dog’s collar/harness for brief periods, immediately rewarding calm behavior.",
+            "Short Practice: Let your dog briefly wear the leash indoors, encouraging relaxed behavior through consistent rewards.",
+            "Frequent Sessions: Regularly practice brief leash-wearing sessions, gradually increasing the duration."
+          ],
+          "tips": [
+            "Ensure sessions remain short, calm, and positive.",
+            "Avoid forcing the leash on if your dog seems stressed; slow down and reward often."
+          ],
+          "completionCriteria": "Dog remains calm and comfortable wearing the leash consistently over several sessions."
+        },
+        {
+          "id": "les-002",
+          "title": "Lesson 2: Basic Leash Manners",
+          "goal": "Teach your dog foundational manners to walk gently without pulling.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Short Sessions: Begin leash training indoors or in a quiet, familiar outdoor area.",
+            "Gentle Guidance: Walk slowly, rewarding your dog immediately whenever the leash remains loose and relaxed.",
+            "Stop When Pulled: If your dog pulls, calmly stop and wait until the leash slackens before resuming movement.",
+            "Consistent Reinforcement: Regularly reinforce calm and gentle walking behavior with praise and treats."
+          ],
+          "tips": [
+            "Maintain patience, consistently rewarding calm behavior.",
+            "Short, frequent training sessions enhance success."
+          ],
+          "completionCriteria": "Dog consistently maintains relaxed leash manners, avoiding pulling in 8 out of 10 walking attempts."
+        },
+        {
+          "id": "les-003",
+          "title": "Lesson 3: Stop-and-Go Technique",
+          "goal": "Effectively teach your dog to avoid leash pulling using the stop-and-go method.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Begin Walking: Start walking slowly with your dog on-leash.",
+            "Immediate Stop: As soon as your dog begins to pull, immediately stop and calmly stand still.",
+            "Wait for Relaxation: Wait patiently until your dog relaxes and returns attention to you.",
+            "Reward and Resume: Once the leash loosens, reward your dog and gently resume walking forward."
+          ],
+          "tips": [
+            "Consistency is key; repeat each time your dog pulls.",
+            "Practice frequently to build reliable habits."
+          ],
+          "completionCriteria": "Dog consistently responds to the stop-and-go technique, maintaining a loose leash during 8 out of 10 walks."
+        },
+        {
+          "id": "les-004",
+          "title": "Lesson 4: Changing Directions",
+          "goal": "Improve your dog’s leash manners and attentiveness by frequently changing walking directions.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Controlled Walk: Start walking slowly with your dog on a loose leash.",
+            "Sudden Direction Changes: Gently and frequently change direction, encouraging your dog to pay attention and follow.",
+            "Reward Attention: Immediately reward your dog whenever they quickly adjust to your directional changes.",
+            "Practice Regularly: Regularly integrate directional changes during leash walks, reinforcing attentiveness."
+          ],
+          "tips": [
+            "Keep your movements gentle and calm.",
+            "Regular positive reinforcement strengthens attention."
+          ],
+          "completionCriteria": "Dog reliably adjusts to directional changes, consistently maintaining a loose leash 8 out of 10 attempts."
+        },
+        {
+          "id": "les-005",
+          "title": "Lesson 5: Maintaining a Loose Leash",
+          "goal": "Consistently practice leash walking to maintain tension-free walks over extended periods.",
+          "duration": "25–30 minutes",
+          "steps": [
+            "Set Clear Expectations: Begin walking calmly with a clear verbal cue such as “Let’s walk.”",
+            "Consistent Pace: Maintain a calm, steady pace and immediately reward your dog for consistent loose-leash behavior.",
+            "Immediate Correction: Calmly stop or redirect your dog gently if leash tension occurs, rewarding promptly upon relaxation.",
+            "Extend Practice: Gradually extend practice sessions, consistently reinforcing relaxed walking behavior."
+          ],
+          "tips": [
+            "Use calm, consistent praise and rewards.",
+            "Short, frequent practice sessions reinforce reliability."
+          ],
+          "completionCriteria": "Dog consistently maintains a loose leash for extended periods (5–10 minutes), successfully demonstrating this 8 out of 10 times."
+        },
+        {
+          "id": "les-006",
+          "title": "Lesson 6: Ignoring Distractions",
+          "goal": "Teach your dog to walk calmly on a loose leash despite minor distractions in the environment.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Controlled Environment: Begin in a quiet area, gradually introducing minor distractions (e.g., toys, gentle sounds).",
+            "Gentle Walking: Start walking, encouraging your dog to stay near you with a relaxed leash.",
+            "Reward Focus: Immediately reward your dog for maintaining attention and ignoring distractions.",
+            "Gradually Increase Difficulty: Slowly introduce additional distractions or noises while reinforcing calmness consistently."
+          ],
+          "tips": [
+            "Keep rewards frequent and high-value initially.",
+            "Maintain patience, ensuring gradual introduction of distractions."
+          ],
+          "completionCriteria": "Dog reliably walks calmly and maintains focus despite minor distractions in 8 out of 10 attempts."
+        },
+        {
+          "id": "les-007",
+          "title": "Lesson 7: Heeling Basics",
+          "goal": "Introduce your dog to formal heel positioning, walking calmly beside you on a loose leash.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Start in Position: Guide your dog into heel position at your left side, head aligned with your leg.",
+            "Begin Walking Slowly: Clearly give the cue “Heel,” then start walking slowly forward.",
+            "Immediate Reward: Consistently reward your dog immediately for maintaining correct position.",
+            "Practice Regularly: Frequently repeat short sessions, gradually extending heel walking duration."
+          ],
+          "tips": [
+            "Use clear, consistent commands and visual cues.",
+            "Brief, frequent training sessions enhance skill retention."
+          ],
+          "completionCriteria": "Dog reliably maintains correct heel position for at least 15 consecutive steps, succeeding 8 out of 10 attempts."
+        },
+        {
+          "id": "les-008",
+          "title": "Lesson 8: Walking with Pace Changes",
+          "goal": "Teach your dog to adjust smoothly and effortlessly to changes in your walking pace.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Normal Pace: Begin walking at a comfortable, steady pace, maintaining a loose leash.",
+            "Introduce Pace Changes: Gradually increase and decrease your walking speed, rewarding your dog for smoothly adjusting their pace.",
+            "Immediate Reinforcement: Consistently reward your dog promptly for maintaining attention and leash manners during pace transitions.",
+            "Regular Practice: Incorporate varied pacing regularly to reinforce responsiveness."
+          ],
+          "tips": [
+            "Keep initial pace changes gentle, gradually increasing difficulty.",
+            "Frequent rewards strengthen your dog’s responsiveness."
+          ],
+          "completionCriteria": "Dog consistently and smoothly adjusts pace in response to changes during walks, succeeding 8 out of 10 attempts."
+        },
+        {
+          "id": "les-009",
+          "title": "Lesson 9: Walking in Busy Areas",
+          "goal": "Master calm and controlled leash walking in crowded, noisy, or busy environments.",
+          "duration": "25–30 minutes",
+          "steps": [
+            "Controlled Exposure: Initially practice in moderately busy settings, gradually increasing crowd density.",
+            "Maintain Calmness: Use frequent treats and calm praise to reinforce your dog’s focus and relaxed leash walking.",
+            "Regular Rewards: Immediately reward your dog whenever they stay calm despite surrounding activity.",
+            "Consistent Practice: Gradually expose your dog to busier environments, reinforcing consistent calm behavior."
+          ],
+          "tips": [
+            "Keep sessions brief and positive to avoid stress.",
+            "Gradual introduction of busy environments builds confidence."
+          ],
+          "completionCriteria": "Dog reliably maintains calm, loose-leash walking behavior in busy areas, successfully demonstrating this 8 out of 10 times."
+        },
+        {
+          "id": "les-010",
+          "title": "Lesson 10: Loose-Leash Mastery Test",
+          "goal": "Evaluate and confirm your dog’s mastery of calm, controlled, loose-leash walking in various realistic scenarios.",
+          "duration": "30 minutes",
+          "steps": [
+            "Consistent Loose Leash: Dog maintains relaxed leash tension throughout the test.",
+            "Heel Positioning: Demonstrate reliable heel walking for extended distances.",
+            "Pace Adjustments: Smoothly adjust walking pace without tension or pulling.",
+            "Ignoring Distractions: Remain calm and attentive despite varied distractions.",
+            "Busy Environment: Demonstrate calm walking in busy, crowded settings."
+          ],
+          "tips": [
+            "Ensure high-value rewards to reinforce successful completion of each criterion.",
+            "Conduct test in multiple environments to confirm comprehensive mastery."
+          ],
+          "completionCriteria": "Dog successfully demonstrates loose-leash mastery across all criteria, reliably completing each scenario 8 out of 10 times."
+        }
+      ]
+    },
+    {
+      "id": "mod-007",
+      "title": "Fun Beginner Tricks",
+      "description": "Simple and fun tricks to engage your dog.",
+      "level": "Intermediate",
+      "imageName": "mod7_l6",
+      "lessons": [
+        {
+          "id": "les-001",
+          "title": "Lesson 1: Shake Hands",
+          "goal": "Teach your dog to politely offer their paw for a friendly handshake.",
+          "duration": "10–15 minutes",
+          "steps": [
+            "Sit Position: Begin with your dog sitting calmly.",
+            "Introduce the Cue: Hold a treat in a closed fist near your dog's paw. Say \"Shake.\"",
+            "Gentle Prompt: Your dog will naturally paw at your hand. When they do, gently grasp their paw, praise, and immediately reward.",
+            "Consistent Practice: Repeat frequently, gradually reducing the use of treats and relying more on praise."
+          ],
+          "tips": [
+            "Be gentle and patient, rewarding each small success.",
+            "Short sessions keep your dog’s interest and enthusiasm high."
+          ],
+          "completionCriteria": "Dog reliably offers paw upon hearing the cue “Shake,” succeeding 8 out of 10 attempts."
+        },
+        {
+          "id": "les-002",
+          "title": "Lesson 2: Spin in a Circle",
+          "goal": "Train your dog to make a simple, enthusiastic spin on command.",
+          "duration": "10–15 minutes",
+          "steps": [
+            "Lure Technique: Use a treat to gently lure your dog into spinning in a full circle.",
+            "Introduce Verbal Cue: Clearly say \"Spin\" as your dog completes the motion.",
+            "Immediate Reward: Reward your dog immediately upon completing the circle, using praise and treats.",
+            "Repeat Regularly: Practice repeatedly until your dog reliably performs the spin on verbal cue alone."
+          ],
+          "tips": [
+            "Keep movements smooth and gentle.",
+            "Gradually fade out treats, transitioning to verbal praise."
+          ],
+          "completionCriteria": "Dog consistently spins in a circle upon hearing “Spin,” completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-003",
+          "title": "Lesson 3: High Five",
+          "goal": "Teach your dog to enthusiastically give a \"high five\" upon request.",
+          "duration": "10–15 minutes",
+          "steps": [
+            "Start with Sit: Have your dog sit comfortably in front of you.",
+            "Prompt Paw Lift: Place your open hand near their paw at chest height and say clearly “High Five.”",
+            "Immediate Reward: Reward immediately when their paw touches your open palm, pairing it with enthusiastic praise.",
+            "Consistent Practice: Gradually raise your hand position slightly higher, reinforcing consistent and enthusiastic paw lifts."
+          ],
+          "tips": [
+            "Use upbeat, encouraging tones to enhance enthusiasm.",
+            "Practice briefly and frequently for the best results."
+          ],
+          "completionCriteria": "Dog consistently performs an enthusiastic “High Five” in response to the cue, successfully completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-004",
+          "title": "Lesson 4: Roll Over",
+          "goal": "Train your dog to roll over playfully on command.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Lie Down Position: Begin with your dog lying down comfortably.",
+            "Use a Treat to Guide: Hold a treat near your dog’s nose, gently guiding their head toward their shoulder, prompting a roll onto their side.",
+            "Complete the Roll: Continue the lure gently to encourage a complete roll, rewarding immediately once achieved.",
+            "Practice Regularly: Repeat consistently, pairing with the verbal cue “Roll Over,” gradually fading the lure."
+          ],
+          "tips": [
+            "Keep the process gentle and patient; do not force the motion.",
+            "Short, frequent sessions ensure quick learning."
+          ],
+          "completionCriteria": "Dog reliably completes a playful rollover on command, succeeding 8 out of 10 times."
+        },
+        {
+          "id": "les-005",
+          "title": "Lesson 5: Speak on Command",
+          "goal": "Encourage your dog to bark gently on cue when prompted.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Prompt Barking Naturally: Initially identify a situation that naturally triggers a bark (e.g., holding a toy or treat just out of reach).",
+            "Introduce Cue Word: Clearly say “Speak!” when your dog barks, then immediately reward with praise and treats.",
+            "Repeat and Reinforce: Consistently practice and reward gentle barking when prompted by the “Speak” cue.",
+            "Encourage Control: Reinforce gentle, controlled barking rather than excessive noise."
+          ],
+          "tips": [
+            "Keep sessions short to avoid excessive barking.",
+            "Reward gentle barks immediately to reinforce desired volume."
+          ],
+          "completionCriteria": "Dog reliably performs a gentle bark upon hearing “Speak,” succeeding 8 out of 10 attempts."
+        },
+        {
+          "id": "les-006",
+          "title": "Lesson 6: Play Dead",
+          "goal": "Teach your dog to lie completely still on their side as a fun, dramatic trick.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Down Position: Start by instructing your dog to lie down.",
+            "Lure into Side Position: Using a treat, gently guide your dog’s head towards their shoulder, encouraging them to lie flat on their side.",
+            "Introduce Cue: Clearly say \"Play dead\" or \"Bang!\" as your dog settles into position.",
+            "Reward Stillness: Immediately reward and praise enthusiastically when your dog remains still for a moment."
+          ],
+          "tips": [
+            "Stay patient, as lying completely still might initially be unfamiliar.",
+            "Practice consistently, keeping sessions positive and short."
+          ],
+          "completionCriteria": "Dog reliably performs the “Play dead” trick on command, successfully completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-007",
+          "title": "Lesson 7: Crawl",
+          "goal": "Train your dog to crawl forward while staying low on their belly.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Start from Down Position: Have your dog begin lying down comfortably.",
+            "Treat Luring: Place a treat near your dog’s nose, slowly moving it forward along the ground, encouraging gentle forward crawling.",
+            "Introduce Verbal Cue: Clearly say “Crawl” as your dog moves forward on their belly.",
+            "Reward Progress: Reward and praise every small forward movement, gradually extending the crawling distance."
+          ],
+          "tips": [
+            "Keep your movements gentle and encouraging.",
+            "Short and frequent sessions are best."
+          ],
+          "completionCriteria": "Dog reliably crawls forward several feet upon hearing the cue “Crawl,” successfully completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-008",
+          "title": "Lesson 8: Take a Bow",
+          "goal": "Teach your dog to gracefully bow down, lowering their front half while keeping their hindquarters elevated.",
+          "duration": "15–20 minutes",
+          "steps": [
+            "Stand Position: Start with your dog standing calmly.",
+            "Front-End Lowering: Guide a treat downward from your dog’s nose to between their front paws, encouraging a bow position.",
+            "Introduce Cue: Clearly say \"Bow\" as your dog lowers their front half.",
+            "Immediate Reward: Quickly reward your dog’s bow position to reinforce the trick."
+          ],
+          "tips": [
+            "Reward quick, short bows at first, then gradually increase duration.",
+            "Maintain an enthusiastic and playful tone to encourage participation."
+          ],
+          "completionCriteria": "Dog consistently performs a graceful bow on cue, successfully completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-009",
+          "title": "Lesson 9: Jump Through a Hoop",
+          "goal": "Introduce your dog to safely and confidently jumping through a hoop.",
+          "duration": "20–25 minutes",
+          "steps": [
+            "Hoop Introduction: Allow your dog to calmly sniff and become familiar with the hoop.",
+            "Initial Jumping: Hold the hoop low to the ground, using a treat to gently guide your dog through.",
+            "Cue Word: Clearly say \"Jump\" or \"Through\" as your dog passes through the hoop.",
+            "Gradual Height Increase: Slowly raise the hoop, ensuring comfortable jumping height for your dog, rewarding each success generously."
+          ],
+          "tips": [
+            "Always keep safety in mind; ensure jumps are gentle and stress-free.",
+            "Regular brief sessions build confidence."
+          ],
+          "completionCriteria": "Dog reliably jumps through the hoop at a comfortable height on cue, completing 8 out of 10 attempts."
+        },
+        {
+          "id": "les-010",
+          "title": "Lesson 10: Fun Tricks Showcase",
+          "goal": "Combine all previously learned beginner tricks into a short, engaging routine.",
+          "duration": "25–30 minutes",
+          "steps": [
+            "Sequence of Tricks: Create a simple routine combining 3–5 tricks (e.g., Shake, Spin, Play Dead, High Five, Crawl).",
+            "Smooth Transitions: Practice transitioning smoothly from one trick to the next.",
+            "Consistent Rewards: Immediately reward your dog after each trick during initial practice, gradually rewarding after sequences.",
+            "Performance Practice: Regularly practice the routine until your dog confidently performs tricks in sequence."
+          ],
+          "tips": [
+            "Keep sessions short and enjoyable to maintain enthusiasm.",
+            "Use high-value rewards to motivate performance."
+          ],
+          "completionCriteria": "Dog consistently performs a short sequence of beginner tricks smoothly and reliably, successfully demonstrating mastery 8 out of 10 times."
+        }
+      ]
+    }
+  ]
+}
