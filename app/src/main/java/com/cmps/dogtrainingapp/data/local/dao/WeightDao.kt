@@ -12,8 +12,8 @@ interface WeightDao {
     suspend fun insert(entry: WeightEntryEntity): Long
 
     @Query("SELECT * FROM weight_entries WHERE petId = :pid ORDER BY date ASC")
-    suspend fun getAllForPet(pid: Long): Flow<List<WeightEntryEntity>>
+    fun getAllForPet(pid: Long): Flow<List<WeightEntryEntity>>
 
     @Query("""SELECT * FROM weight_entries WHERE petId = :pid ORDER BY id DESC LIMIT 1 """)
-    suspend fun getLatestForPet(pid: Long): Flow<WeightEntryEntity?>
+    fun getLatestForPet(pid: Long): Flow<WeightEntryEntity?>
 }
