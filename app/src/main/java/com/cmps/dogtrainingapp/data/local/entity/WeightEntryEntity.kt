@@ -22,6 +22,6 @@ import java.time.LocalDate
 data class WeightEntryEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0L,
     val petId: Long,
-    val date: LocalDate,
+    val date: String,
     val weightKg: Float
 )
