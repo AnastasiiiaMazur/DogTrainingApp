@@ -7,5 +7,6 @@ data class ProfileUiState(
     val currentPet: PetEntity? = null,
     val currentPetWeight: WeightEntryEntity? = null,
     val allPets: List<PetEntity> = emptyList(),
-    val isLoading: Boolean = true
+    val isLoading: Boolean = true,
+    val isEditing: Boolean = false
 )

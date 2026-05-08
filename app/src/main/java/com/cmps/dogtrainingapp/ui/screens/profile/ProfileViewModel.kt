@@ -43,4 +43,14 @@ class ProfileViewModel(private val petRepo: PetRepository) : ViewModel() {
             }
         }
     }
+
+    fun onSaveClicked() {
+
+    }
+
+    fun onEditClicked() {
+        uiState = uiState.copy(
+            isEditing = true
+        )
+    }
 }

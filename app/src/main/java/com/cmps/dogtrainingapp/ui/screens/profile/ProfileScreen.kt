@@ -2,6 +2,7 @@ package com.cmps.dogtrainingapp.ui.screens.profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -35,6 +36,7 @@ import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.data.local.entity.Gender
 import com.cmps.dogtrainingapp.data.local.entity.PetEntity
 import com.cmps.dogtrainingapp.data.local.entity.WeightEntryEntity
+import com.cmps.dogtrainingapp.ui.components.BasicButton
 import com.cmps.dogtrainingapp.ui.components.ProfileInfoField
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
@@ -48,12 +50,18 @@ fun ProfileRoute(viewModel: ProfileViewModel) {
     val state =viewModel.uiState
 
     ProfileScreen(
-        state = state
+        state = state,
+        onEditClicked = { viewModel.onEditClicked() },
+        onSaveClicked = { viewModel.onSaveClicked() }
     )
 }
 
 @Composable
-fun ProfileScreen(state: ProfileUiState) {
+fun ProfileScreen(
+    state: ProfileUiState,
+    onEditClicked: () -> Unit,
+    onSaveClicked: () -> Unit
+) {
 
     Column (
         modifier = Modifier
@@ -113,34 +121,50 @@ fun ProfileScreen(state: ProfileUiState) {
                 imageVector = ImageVector.vectorResource(id = R.drawable.edit_button),
                 contentDescription = "Edit button",
                 tint = DarkGray,
-                modifier = Modifier.size(20.dp)
+                modifier = Modifier
+                    .size(20.dp)
+                    .clickable(
+                        true,
+                        onClick = { onEditClicked() })
             )
         }
 
         ProfileInfoField(
             value = state.currentPet?.name ?: "",
-            placeholder = "Enter pet's name"
+            placeholder = "Enter pet's name",
+            enabled = state.isEditing
         )
 
         ProfileInfoField(
             value = state.currentPet?.breed ?: "",
-            placeholder = "Enter pet's breed"
+            placeholder = "Enter pet's breed",
+            enabled = state.isEditing
         )
 
         ProfileInfoField(
             value = state.currentPet?.dateOfBirth ?: "",
-            placeholder = "Enter date of birth"
+            placeholder = "Enter date of birth",
+            enabled = state.isEditing
         )
 
         ProfileInfoField(
             value = state.currentPetWeight?.let { "${it.weightKg} kg" } ?: "",
-            placeholder = "Enter pet's weight"
+            placeholder = "Enter pet's weight",
+            enabled = state.isEditing
         )
 
         ProfileInfoField(
             value = state.currentPet?.gender?.displayName ?: "",
-            placeholder = "Other"
+            placeholder = "Other",
+            enabled = state.isEditing
         )
+
+        if (state.isEditing) {
+            BasicButton(
+                buttonText = "Save",
+                onClick = onSaveClicked
+            )
+        }
 
         Row (
             modifier = Modifier
@@ -206,7 +230,10 @@ fun ProfileScreenPreview() {
             currentPet = samplePet,
             currentPetWeight = sampleWeight,
             allPets = listOf(samplePet),
-            isLoading = false
-        )
+            isLoading = false,
+            isEditing = false
+        ),
+        onEditClicked = {},
+        onSaveClicked = {}
     )
 }
