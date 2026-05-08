@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cmps.dogtrainingapp.data.local.entity.Gender
 import com.cmps.dogtrainingapp.data.local.entity.PetEntity
 import com.cmps.dogtrainingapp.data.repository.PetRepository
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
@@ -20,6 +21,9 @@ class ProfileViewModel(private val petRepo: PetRepository) : ViewModel() {
     init {
         loadPets()
         loadCurrentPet()
+        viewModelScope.launch {
+            petRepo.initializeDefaultPetIfNeeded()
+        }
     }
 
     private fun loadPets() {
@@ -45,12 +49,63 @@ class ProfileViewModel(private val petRepo: PetRepository) : ViewModel() {
     }
 
     fun onSaveClicked() {
+        val currentPet = uiState.currentPet ?: return
+        uiState = uiState.copy( nameOrBreedError = null )
 
+        if (uiState.editedName.isBlank() || uiState.editedBreed.isBlank()) {
+            uiState = uiState.copy(
+                nameOrBreedError = "Name and Breed fields cannot be empty!"
+            )
+            return
+        }
+
+        val pet = currentPet.copy(
+            name = uiState.editedName.trim(),
+            breed = uiState.editedBreed.trim(),
+            dateOfBirth = uiState.editedDateOfBirth,
+            gender = uiState.editedGender
+        )
+
+        viewModelScope.launch {
+            petRepo.updatePet(pet)
+
+            uiState = uiState.copy( isEditing = false )
+        }
     }
 
     fun onEditClicked() {
         uiState = uiState.copy(
-            isEditing = true
+            isEditing = true,
+            editedName = uiState.currentPet?.name ?: "",
+            editedBreed = uiState.currentPet?.breed ?: "",
+            editedWeight = uiState.currentPetWeight?.weightKg?.toString() ?: "",
+            editedGender = uiState.currentPet?.gender ?: Gender.OTHER,
+            editedDateOfBirth = uiState.currentPet?.dateOfBirth ?: "",
+            nameOrBreedError = null
+        )
+    }
+
+    fun onNameChanged(newName: String) {
+        uiState = uiState.copy(
+            editedName = newName
+        )
+    }
+
+    fun onBreedChanged(newBreed: String) {
+        uiState = uiState.copy(
+            editedBreed = newBreed
+        )
+    }
+
+    fun onWeightChanged(newWeight: String) {
+        uiState = uiState.copy(
+            editedWeight = newWeight
+        )
+    }
+
+    fun onGenderChanged(gender: Gender) {
+        uiState = uiState.copy(
+            editedGender = gender
         )
     }
 }

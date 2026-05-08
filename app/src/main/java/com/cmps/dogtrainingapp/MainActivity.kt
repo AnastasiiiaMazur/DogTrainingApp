@@ -4,44 +4,34 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.viewModels
+import com.cmps.dogtrainingapp.data.local.AppDatabase
+import com.cmps.dogtrainingapp.data.local.dao.PetDao
+import com.cmps.dogtrainingapp.data.repository.PetRepository
+import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
+import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
+import com.cmps.dogtrainingapp.ui.screens.profile.ProfileScreen
+import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModel
+import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModelFactory
 import com.cmps.dogtrainingapp.ui.theme.DogTrainingAppTheme
 
 class MainActivity : ComponentActivity() {
+
+    private val db by lazy { AppDatabase.getInstance(applicationContext) }
+    private val petDao by lazy { db.petDao() }
+    private val petPrefs by lazy { SelectedPetPreferences(applicationContext) }
+    private val profileRepo by lazy { PetRepository(petDao, petPrefs) }
+    private val profileViewModel: ProfileViewModel by viewModels {
+        ProfileViewModelFactory(profileRepo)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             DogTrainingAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                ProfileRoute(profileViewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DogTrainingAppTheme {
-        Greeting("Android")
     }
 }

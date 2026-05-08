@@ -31,7 +31,7 @@ fun BasicButton(
     Button(
         onClick = {
             dismissKeyboard(focusManager, keyboardController)
-             },
+             onClick()},
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 15.dp),

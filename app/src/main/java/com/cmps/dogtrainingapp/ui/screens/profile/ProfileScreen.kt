@@ -3,6 +3,7 @@ package com.cmps.dogtrainingapp.ui.screens.profile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,13 +11,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -52,7 +61,11 @@ fun ProfileRoute(viewModel: ProfileViewModel) {
     ProfileScreen(
         state = state,
         onEditClicked = { viewModel.onEditClicked() },
-        onSaveClicked = { viewModel.onSaveClicked() }
+        onSaveClicked = { viewModel.onSaveClicked() },
+        onNameChanged = { viewModel.onNameChanged(it) },
+        onBreedChanged = { viewModel.onBreedChanged(it) },
+        onWeightChanged = { viewModel.onWeightChanged(it) },
+        onGenderChanged = { viewModel.onGenderChanged(it) }
     )
 }
 
@@ -60,14 +73,21 @@ fun ProfileRoute(viewModel: ProfileViewModel) {
 fun ProfileScreen(
     state: ProfileUiState,
     onEditClicked: () -> Unit,
-    onSaveClicked: () -> Unit
+    onSaveClicked: () -> Unit,
+    onNameChanged: (String) -> Unit,
+    onBreedChanged: (String) -> Unit,
+    onWeightChanged: (String) -> Unit,
+    onGenderChanged: (Gender) -> Unit
 ) {
+
+    var genderExpanded by remember { mutableStateOf(false) }
 
     Column (
         modifier = Modifier
             .fillMaxSize()
             .background(LightGray1)
             .padding(start = 20.dp, top = 50.dp, end = 20.dp)
+            .verticalScroll(rememberScrollState())
     ) {
         Text(
             text = "Pet Profile",
@@ -123,41 +143,80 @@ fun ProfileScreen(
                 tint = DarkGray,
                 modifier = Modifier
                     .size(20.dp)
-                    .clickable(
-                        true,
-                        onClick = { onEditClicked() })
+                    .clickable(onClick = { onEditClicked() })
             )
         }
 
         ProfileInfoField(
-            value = state.currentPet?.name ?: "",
+            value =
+                if (state.isEditing) state.editedName
+                else state.currentPet?.name ?: "",
             placeholder = "Enter pet's name",
-            enabled = state.isEditing
+            enabled = state.isEditing,
+            onValueChange = onNameChanged
         )
 
         ProfileInfoField(
-            value = state.currentPet?.breed ?: "",
+            value =
+                if (state.isEditing) state.editedBreed
+                else state.currentPet?.breed ?: "",
             placeholder = "Enter pet's breed",
-            enabled = state.isEditing
+            enabled = state.isEditing,
+            onValueChange = onBreedChanged
         )
 
-        ProfileInfoField(
-            value = state.currentPet?.dateOfBirth ?: "",
-            placeholder = "Enter date of birth",
-            enabled = state.isEditing
-        )
+//        ProfileInfoField(
+//            value =
+//                if (state.isEditing) state.editedDateOfBirth
+//                else state.currentPet?.dateOfBirth ?: "",
+//            placeholder = "Enter date of birth",
+//            enabled = state.isEditing,
+//            readOnly = true,
+//            onClick = openCalendar
+//        )
 
         ProfileInfoField(
-            value = state.currentPetWeight?.let { "${it.weightKg} kg" } ?: "",
+            value =
+                if (state.isEditing) state.editedWeight
+                else state.currentPetWeight?.let { "${it.weightKg} kg" } ?: "",
             placeholder = "Enter pet's weight",
-            enabled = state.isEditing
+            enabled = state.isEditing,
+            onValueChange = onWeightChanged
         )
 
-        ProfileInfoField(
-            value = state.currentPet?.gender?.displayName ?: "",
-            placeholder = "Other",
-            enabled = state.isEditing
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            ProfileInfoField(
+                value =
+                    if (state.isEditing) state.editedGender.displayName
+                    else state.currentPet?.gender?.displayName ?: "Other",
+                placeholder = "Other",
+                enabled = true,
+                readOnly = true,
+                onClick = { if (state.isEditing) genderExpanded = true },
+                onValueChange = {}
+            )
+
+            DropdownMenu(
+                expanded = genderExpanded,
+                onDismissRequest = { genderExpanded = false },
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+
+                Gender.entries.forEach { gender ->
+                    DropdownMenuItem(
+                        text = { Text(gender.displayName) },
+                        onClick = {
+                            onGenderChanged(gender)
+                            genderExpanded = false
+                        }
+                    )
+                }
+            }
+        }
 
         if (state.isEditing) {
             BasicButton(
@@ -231,9 +290,18 @@ fun ProfileScreenPreview() {
             currentPetWeight = sampleWeight,
             allPets = listOf(samplePet),
             isLoading = false,
-            isEditing = false
+            isEditing = false,
+            editedName = "",
+            editedBreed = "",
+            editedDateOfBirth = "",
+            editedWeight = "",
+            editedGender = Gender.MALE
         ),
         onEditClicked = {},
-        onSaveClicked = {}
+        onSaveClicked = {},
+        onNameChanged = {},
+        onBreedChanged = {},
+        onWeightChanged = {},
+        onGenderChanged = {}
     )
 }

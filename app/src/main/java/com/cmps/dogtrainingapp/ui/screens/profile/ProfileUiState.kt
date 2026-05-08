@@ -1,5 +1,6 @@
 package com.cmps.dogtrainingapp.ui.screens.profile
 
+import com.cmps.dogtrainingapp.data.local.entity.Gender
 import com.cmps.dogtrainingapp.data.local.entity.PetEntity
 import com.cmps.dogtrainingapp.data.local.entity.WeightEntryEntity
 
@@ -8,5 +9,11 @@ data class ProfileUiState(
     val currentPetWeight: WeightEntryEntity? = null,
     val allPets: List<PetEntity> = emptyList(),
     val isLoading: Boolean = true,
-    val isEditing: Boolean = false
+    val isEditing: Boolean = false,
+    val editedName: String = "",
+    val editedBreed: String = "",
+    val editedDateOfBirth: String? = "",
+    val editedWeight: String = "",
+    val editedGender: Gender = Gender.OTHER,
+    val nameOrBreedError: String? = null
 )
