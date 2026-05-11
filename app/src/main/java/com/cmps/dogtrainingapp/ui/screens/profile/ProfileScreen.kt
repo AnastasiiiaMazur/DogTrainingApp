@@ -1,7 +1,9 @@
 package com.cmps.dogtrainingapp.ui.screens.profile
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -19,8 +22,8 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,7 +33,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Outline
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.LightGray
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -49,6 +54,7 @@ import com.cmps.dogtrainingapp.ui.components.BasicButton
 import com.cmps.dogtrainingapp.ui.components.ProfileInfoField
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
+import com.cmps.dogtrainingapp.ui.theme.Gray
 import com.cmps.dogtrainingapp.ui.theme.LightGray1
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
 import com.cmps.dogtrainingapp.ui.theme.White
@@ -175,6 +181,25 @@ fun ProfileScreen(
 //            onClick = openCalendar
 //        )
 
+        Text(
+            text =
+                if (state.isEditing) state.editedDateOfBirth ?: ""
+                else state.currentPet?.dateOfBirth ?: "Enter date of birth",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 10.dp)
+                .border(
+                    shape = RoundedCornerShape(10.dp),
+                    width = 1.dp,
+                    color = if (state.isEditing) Black else LightGray)
+                .padding(top = 16.dp, bottom = 16.dp, start = 12.dp)
+                .clickable { },
+            color = if (state.isEditing) Black else DarkGray,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Normal,
+            fontFamily = MyFontFamily
+        )
+
         ProfileInfoField(
             value =
                 if (state.isEditing) state.editedWeight
@@ -188,27 +213,44 @@ fun ProfileScreen(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            ProfileInfoField(
-                value =
+            Text(
+                text =
                     if (state.isEditing) state.editedGender.displayName
                     else state.currentPet?.gender?.displayName ?: "Other",
-                placeholder = "Other",
-                enabled = true,
-                readOnly = true,
-                onClick = { if (state.isEditing) genderExpanded = true },
-                onValueChange = {}
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp)
+                    .border(
+                        shape = RoundedCornerShape(10.dp),
+                        width = 1.dp,
+                        color = if (state.isEditing) Black else LightGray)
+                    .padding(top = 16.dp, bottom = 16.dp, start = 12.dp)
+                    .clickable {
+                        if (state.isEditing) {
+                            genderExpanded = true}
+                },
+                color = if (state.isEditing) Black else DarkGray,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Normal,
+                fontFamily = MyFontFamily
             )
 
             DropdownMenu(
                 expanded = genderExpanded,
                 onDismissRequest = { genderExpanded = false },
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .background(White)
+                    .clip(RoundedCornerShape(10.dp))
             ) {
 
                 Gender.entries.forEach { gender ->
                     DropdownMenuItem(
-                        text = { Text(gender.displayName) },
+                        text = { Text(
+                            text = gender.displayName,
+                            fontSize = 16.sp,
+                            color = Black,
+                            fontFamily = MyFontFamily,
+                            fontWeight = FontWeight.Normal) },
                         onClick = {
                             onGenderChanged(gender)
                             genderExpanded = false

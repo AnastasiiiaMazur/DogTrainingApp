@@ -108,4 +108,8 @@ class ProfileViewModel(private val petRepo: PetRepository) : ViewModel() {
             editedGender = gender
         )
     }
+
+    fun openCalendar() {
+
+    }
 }
