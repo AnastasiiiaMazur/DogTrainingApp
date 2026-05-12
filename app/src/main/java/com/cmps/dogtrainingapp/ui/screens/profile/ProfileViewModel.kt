@@ -1,5 +1,7 @@
 package com.cmps.dogtrainingapp.ui.screens.profile
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -7,13 +9,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cmps.dogtrainingapp.data.local.entity.Gender
 import com.cmps.dogtrainingapp.data.local.entity.PetEntity
+import com.cmps.dogtrainingapp.data.local.entity.WeightEntryEntity
 import com.cmps.dogtrainingapp.data.repository.PetRepository
+import com.cmps.dogtrainingapp.data.repository.WeightRepository
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
-class ProfileViewModel(private val petRepo: PetRepository) : ViewModel() {
+class ProfileViewModel(
+    private val petRepo: PetRepository,
+    private val weightRepo: WeightRepository
+) : ViewModel() {
 
     var uiState by mutableStateOf(ProfileUiState())
         private set
@@ -38,6 +46,7 @@ class ProfileViewModel(private val petRepo: PetRepository) : ViewModel() {
     }
 
     private fun loadCurrentPet() {
+
         viewModelScope.launch {
             petRepo.getCurrentPet().collect { pet ->
                 uiState = uiState.copy(
@@ -46,11 +55,23 @@ class ProfileViewModel(private val petRepo: PetRepository) : ViewModel() {
                 )
             }
         }
+
+        viewModelScope.launch {
+            weightRepo.getLatestWeight().collect { weight ->
+                uiState = uiState.copy(
+                    currentPetWeight = weight
+                )
+            }
+        }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun onSaveClicked() {
         val currentPet = uiState.currentPet ?: return
-        uiState = uiState.copy( nameOrBreedError = null )
+
+        uiState = uiState.copy(
+            nameOrBreedError = null
+        )
 
         if (uiState.editedName.isBlank() || uiState.editedBreed.isBlank()) {
             uiState = uiState.copy(
@@ -66,10 +87,47 @@ class ProfileViewModel(private val petRepo: PetRepository) : ViewModel() {
             gender = uiState.editedGender
         )
 
+        val currentWeight = uiState.currentPetWeight?.weightKg
+
+        val editedWeightFloat = if (uiState.editedWeight.isBlank()) {
+            null
+        } else {
+            uiState.editedWeight.toFloatOrNull()
+        }
+
+        if (uiState.editedWeight.isNotBlank() && editedWeightFloat == null) {
+            uiState = uiState.copy(
+                nameOrBreedError = "Weight must be a valid number!"
+            )
+            return
+        }
+
+        if (editedWeightFloat != null && editedWeightFloat <= 0f) {
+            uiState = uiState.copy(
+                nameOrBreedError = "Weight must be greater than 0!"
+            )
+            return
+        }
+
         viewModelScope.launch {
             petRepo.updatePet(pet)
 
-            uiState = uiState.copy( isEditing = false )
+            if (
+                editedWeightFloat != null &&
+                (currentWeight == null || currentWeight != editedWeightFloat)
+            ) {
+                val newWeight = WeightEntryEntity(
+                    petId = currentPet.id,
+                    date = LocalDate.now(),
+                    weightKg = editedWeightFloat
+                )
+
+                weightRepo.addNewWeightEntry(newWeight)
+            }
+
+            uiState = uiState.copy(
+                isEditing = false
+            )
         }
     }
 

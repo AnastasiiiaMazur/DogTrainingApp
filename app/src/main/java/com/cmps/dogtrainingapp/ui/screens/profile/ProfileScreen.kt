@@ -60,9 +60,11 @@ import com.cmps.dogtrainingapp.ui.theme.LightGray1
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
 import com.cmps.dogtrainingapp.ui.theme.White
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.Calendar
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ProfileRoute(viewModel: ProfileViewModel) {
     val state =viewModel.uiState
@@ -191,7 +193,7 @@ fun ProfileScreen(
         ProfileInfoField(
             value =
                 if (state.isEditing) state.editedBreed
-                else state.currentPet?.breed ?: "",
+                else state.currentPet?.breed ?: "Enter pet's breed",
             placeholder = "Enter pet's breed",
             enabled = state.isEditing,
             onValueChange = onBreedChanged
@@ -323,6 +325,7 @@ fun ProfileScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun ProfileScreenPreview() {
@@ -338,7 +341,7 @@ fun ProfileScreenPreview() {
     val sampleWeight = WeightEntryEntity(
         id = 1,
         petId = 1,
-        date = "01.01.2025",
+        date = LocalDate.of(2025, 4, 17),
         weightKg = 3.5f
     )
 

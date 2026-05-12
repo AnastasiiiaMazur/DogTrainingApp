@@ -22,7 +22,7 @@ import com.cmps.dogtrainingapp.data.local.entity.WeightEntryEntity
         WalkEventEntity::class,
         LessonProgressEntity::class,
         WeightEntryEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
