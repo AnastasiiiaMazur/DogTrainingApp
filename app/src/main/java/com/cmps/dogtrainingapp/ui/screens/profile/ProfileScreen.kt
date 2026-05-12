@@ -1,6 +1,9 @@
 package com.cmps.dogtrainingapp.ui.screens.profile
 
-import android.util.Log
+import android.app.DatePickerDialog
+import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -11,19 +14,20 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,14 +37,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.LightGray
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -54,10 +56,11 @@ import com.cmps.dogtrainingapp.ui.components.BasicButton
 import com.cmps.dogtrainingapp.ui.components.ProfileInfoField
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
-import com.cmps.dogtrainingapp.ui.theme.Gray
 import com.cmps.dogtrainingapp.ui.theme.LightGray1
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
 import com.cmps.dogtrainingapp.ui.theme.White
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 
 @Composable
@@ -71,7 +74,8 @@ fun ProfileRoute(viewModel: ProfileViewModel) {
         onNameChanged = { viewModel.onNameChanged(it) },
         onBreedChanged = { viewModel.onBreedChanged(it) },
         onWeightChanged = { viewModel.onWeightChanged(it) },
-        onGenderChanged = { viewModel.onGenderChanged(it) }
+        onGenderChanged = { viewModel.onGenderChanged(it) },
+        onDateOfBirthChanged = {viewModel.onDateOfBirthChanged(it)}
     )
 }
 
@@ -83,10 +87,32 @@ fun ProfileScreen(
     onNameChanged: (String) -> Unit,
     onBreedChanged: (String) -> Unit,
     onWeightChanged: (String) -> Unit,
-    onGenderChanged: (Gender) -> Unit
+    onGenderChanged: (Gender) -> Unit,
+    onDateOfBirthChanged: (String) -> Unit
 ) {
 
     var genderExpanded by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+
+    fun openCalendar(context: Context) {
+        val today = Calendar.getInstance()
+
+        DatePickerDialog(
+            context,
+            R.style.MyDatePickerTheme,
+            { _, year, month, day ->
+                val formatted = String.format(
+                    java.util.Locale.getDefault(),
+                    "%02d/%02d/%04d",
+                    day, month+1, year)
+                onDateOfBirthChanged(formatted)
+            },
+            today.get(Calendar.YEAR),
+            today.get(Calendar.MONTH),
+            today.get(Calendar.DAY_OF_MONTH)
+        ).show()
+
+    }
 
     Column (
         modifier = Modifier
@@ -171,16 +197,6 @@ fun ProfileScreen(
             onValueChange = onBreedChanged
         )
 
-//        ProfileInfoField(
-//            value =
-//                if (state.isEditing) state.editedDateOfBirth
-//                else state.currentPet?.dateOfBirth ?: "",
-//            placeholder = "Enter date of birth",
-//            enabled = state.isEditing,
-//            readOnly = true,
-//            onClick = openCalendar
-//        )
-
         Text(
             text =
                 if (state.isEditing) state.editedDateOfBirth ?: ""
@@ -193,7 +209,7 @@ fun ProfileScreen(
                     width = 1.dp,
                     color = if (state.isEditing) Black else LightGray)
                 .padding(top = 16.dp, bottom = 16.dp, start = 12.dp)
-                .clickable { },
+                .clickable { if (state.isEditing) openCalendar(context) },
             color = if (state.isEditing) Black else DarkGray,
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal,
@@ -344,6 +360,7 @@ fun ProfileScreenPreview() {
         onNameChanged = {},
         onBreedChanged = {},
         onWeightChanged = {},
-        onGenderChanged = {}
+        onGenderChanged = {},
+        onDateOfBirthChanged = {}
     )
 }

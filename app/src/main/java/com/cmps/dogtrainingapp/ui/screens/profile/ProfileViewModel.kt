@@ -109,7 +109,9 @@ class ProfileViewModel(private val petRepo: PetRepository) : ViewModel() {
         )
     }
 
-    fun openCalendar() {
-
+    fun onDateOfBirthChanged(dateOfBirth: String) {
+        uiState = uiState.copy(
+            editedDateOfBirth = dateOfBirth
+        )
     }
 }

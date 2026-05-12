@@ -2,4 +2,10 @@
 <resources>
 
     <style name="Theme.DogTrainingApp" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="MyDatePickerTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/orange</item>
+        <item name="android:colorPrimary">@color/orange</item>
+        <item name="android:colorControlActivated">@color/orange</item>
+    </style>
 </resources>
