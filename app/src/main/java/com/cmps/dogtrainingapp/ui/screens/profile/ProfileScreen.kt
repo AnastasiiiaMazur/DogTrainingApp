@@ -58,6 +58,7 @@ import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
 import com.cmps.dogtrainingapp.ui.theme.LightGray1
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
+import com.cmps.dogtrainingapp.ui.theme.Red
 import com.cmps.dogtrainingapp.ui.theme.White
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -171,13 +172,28 @@ fun ProfileScreen(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Icon(
-                imageVector = ImageVector.vectorResource(id = R.drawable.edit_button),
-                contentDescription = "Edit button",
-                tint = DarkGray,
+            if (!state.isEditing) {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.edit_button),
+                    contentDescription = "Edit button",
+                    tint = DarkGray,
+                    modifier = Modifier
+                        .size(20.dp)
+                        .clickable(onClick = { onEditClicked() })
+                )
+            }
+        }
+
+        if (state.isEditing) {
+            Text(
+                text = "* press on image to upload a new one",
                 modifier = Modifier
-                    .size(20.dp)
-                    .clickable(onClick = { onEditClicked() })
+                    .fillMaxWidth()
+                    .padding(top = 10.dp),
+                color = Black,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Normal,
+                fontFamily = MyFontFamily
             )
         }
 
@@ -276,6 +292,19 @@ fun ProfileScreen(
                     )
                 }
             }
+        }
+
+        if (state.errorMessage != null) {
+            Text(
+                text = state.errorMessage,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp),
+                color = Red,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Normal,
+                fontFamily = MyFontFamily
+            )
         }
 
         if (state.isEditing) {

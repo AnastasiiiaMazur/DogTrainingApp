@@ -15,5 +15,5 @@ data class ProfileUiState(
     val editedDateOfBirth: String? = "",
     val editedWeight: String = "",
     val editedGender: Gender = Gender.OTHER,
-    val nameOrBreedError: String? = null
+    val errorMessage: String? = null
 )

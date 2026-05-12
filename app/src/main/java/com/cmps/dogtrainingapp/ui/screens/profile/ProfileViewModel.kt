@@ -70,12 +70,12 @@ class ProfileViewModel(
         val currentPet = uiState.currentPet ?: return
 
         uiState = uiState.copy(
-            nameOrBreedError = null
+            errorMessage = null
         )
 
         if (uiState.editedName.isBlank() || uiState.editedBreed.isBlank()) {
             uiState = uiState.copy(
-                nameOrBreedError = "Name and Breed fields cannot be empty!"
+                errorMessage = "Name and Breed fields cannot be empty!"
             )
             return
         }
@@ -97,14 +97,14 @@ class ProfileViewModel(
 
         if (uiState.editedWeight.isNotBlank() && editedWeightFloat == null) {
             uiState = uiState.copy(
-                nameOrBreedError = "Weight must be a valid number!"
+                errorMessage = "Weight must be a valid number!"
             )
             return
         }
 
         if (editedWeightFloat != null && editedWeightFloat <= 0f) {
             uiState = uiState.copy(
-                nameOrBreedError = "Weight must be greater than 0!"
+                errorMessage = "Weight must be greater than 0!"
             )
             return
         }
@@ -139,7 +139,7 @@ class ProfileViewModel(
             editedWeight = uiState.currentPetWeight?.weightKg?.toString() ?: "",
             editedGender = uiState.currentPet?.gender ?: Gender.OTHER,
             editedDateOfBirth = uiState.currentPet?.dateOfBirth ?: "",
-            nameOrBreedError = null
+            errorMessage = null
         )
     }
 
