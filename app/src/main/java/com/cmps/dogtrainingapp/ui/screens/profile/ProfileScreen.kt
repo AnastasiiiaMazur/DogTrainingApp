@@ -2,7 +2,11 @@ package com.cmps.dogtrainingapp.ui.screens.profile
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.net.Uri
 import android.os.Build
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,14 +24,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -48,6 +48,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.data.local.entity.Gender
 import com.cmps.dogtrainingapp.data.local.entity.PetEntity
@@ -60,7 +62,7 @@ import com.cmps.dogtrainingapp.ui.theme.LightGray1
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
 import com.cmps.dogtrainingapp.ui.theme.Red
 import com.cmps.dogtrainingapp.ui.theme.White
-import java.text.SimpleDateFormat
+import java.io.File
 import java.time.LocalDate
 import java.util.Calendar
 
@@ -78,7 +80,8 @@ fun ProfileRoute(viewModel: ProfileViewModel) {
         onBreedChanged = { viewModel.onBreedChanged(it) },
         onWeightChanged = { viewModel.onWeightChanged(it) },
         onGenderChanged = { viewModel.onGenderChanged(it) },
-        onDateOfBirthChanged = {viewModel.onDateOfBirthChanged(it)}
+        onDateOfBirthChanged = { viewModel.onDateOfBirthChanged(it) },
+        onImageChanged = { viewModel.onImageChanged(it) }
     )
 }
 
@@ -91,7 +94,8 @@ fun ProfileScreen(
     onBreedChanged: (String) -> Unit,
     onWeightChanged: (String) -> Unit,
     onGenderChanged: (Gender) -> Unit,
-    onDateOfBirthChanged: (String) -> Unit
+    onDateOfBirthChanged: (String) -> Unit,
+    onImageChanged: (String) -> Unit
 ) {
 
     var genderExpanded by remember { mutableStateOf(false) }
@@ -115,6 +119,30 @@ fun ProfileScreen(
             today.get(Calendar.DAY_OF_MONTH)
         ).show()
 
+    }
+
+    val imagePickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        try {
+            val petId = state.currentPet?.id
+
+            if (uri != null && petId != null) {
+                val file = File(context.cacheDir, "pet_${petId}.jpg")
+
+                if (file.exists()) { file.delete() }
+
+                context.contentResolver.openInputStream(uri)?.use { input ->
+                    file.outputStream().use { output ->
+                        input.copyTo(output)
+                    }
+                }
+
+                onImageChanged(file.absolutePath)
+            }
+        } catch (e: Exception) {
+            Log.e("Error", "Failed copying image", e)
+        }
     }
 
     Column (
@@ -150,15 +178,37 @@ fun ProfileScreen(
                 .padding(top = 10.dp, bottom = 10.dp, start = 20.dp, end = 20.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            val imagePath = if (state.isEditing) { state.editedImageUri }
+            else { state.currentPet?.imageUri }
 
-            Image(
-                painter = painterResource(id = R.drawable.dog_default),
-                contentDescription = "",
+            val imageFile = imagePath
+                ?.takeIf { it.isNotBlank() }
+                ?.let { File(it) }
+                ?.takeIf { it.exists() }
+
+            val imageModel = if (imageFile != null) {
+                ImageRequest.Builder(context)
+                    .data(imageFile)
+                    .memoryCacheKey("${imageFile.absolutePath}_${imageFile.lastModified()}")
+                    .diskCacheKey("${imageFile.absolutePath}_${imageFile.lastModified()}")
+                    .build()
+            } else {
+                R.drawable.dog_default
+            }
+
+            AsyncImage(
+                model = imageModel,
+                contentDescription = "Pet image",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .padding(end = 10.dp)
                     .size(45.dp)
                     .clip(CircleShape)
+                    .clickable{
+                        if (state.isEditing) {
+                            imagePickerLauncher.launch("image/*")
+                        }
+                    }
             )
 
             Text(
@@ -393,6 +443,7 @@ fun ProfileScreenPreview() {
         onBreedChanged = {},
         onWeightChanged = {},
         onGenderChanged = {},
-        onDateOfBirthChanged = {}
+        onDateOfBirthChanged = {},
+        onImageChanged = {}
     )
 }

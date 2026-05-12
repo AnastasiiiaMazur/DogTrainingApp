@@ -84,7 +84,8 @@ class ProfileViewModel(
             name = uiState.editedName.trim(),
             breed = uiState.editedBreed.trim(),
             dateOfBirth = uiState.editedDateOfBirth,
-            gender = uiState.editedGender
+            gender = uiState.editedGender,
+            imageUri = uiState.editedImageUri
         )
 
         val currentWeight = uiState.currentPetWeight?.weightKg
@@ -139,6 +140,7 @@ class ProfileViewModel(
             editedWeight = uiState.currentPetWeight?.weightKg?.toString() ?: "",
             editedGender = uiState.currentPet?.gender ?: Gender.OTHER,
             editedDateOfBirth = uiState.currentPet?.dateOfBirth ?: "",
+            editedImageUri = uiState.currentPet?.imageUri ?: "",
             errorMessage = null
         )
     }
@@ -170,6 +172,12 @@ class ProfileViewModel(
     fun onDateOfBirthChanged(dateOfBirth: String) {
         uiState = uiState.copy(
             editedDateOfBirth = dateOfBirth
+        )
+    }
+
+    fun onImageChanged(path: String) {
+        uiState = uiState.copy(
+            editedImageUri = path
         )
     }
 }

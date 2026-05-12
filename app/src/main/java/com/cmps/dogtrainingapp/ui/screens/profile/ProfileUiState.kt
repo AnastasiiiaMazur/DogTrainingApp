@@ -8,12 +8,16 @@ data class ProfileUiState(
     val currentPet: PetEntity? = null,
     val currentPetWeight: WeightEntryEntity? = null,
     val allPets: List<PetEntity> = emptyList(),
+
     val isLoading: Boolean = true,
     val isEditing: Boolean = false,
+
     val editedName: String = "",
     val editedBreed: String = "",
     val editedDateOfBirth: String? = "",
     val editedWeight: String = "",
     val editedGender: Gender = Gender.OTHER,
+    val editedImageUri: String = "",
+
     val errorMessage: String? = null
 )
