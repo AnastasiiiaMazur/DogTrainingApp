@@ -65,6 +65,7 @@ import com.cmps.dogtrainingapp.ui.theme.White
 import java.io.File
 import java.time.LocalDate
 import java.util.Calendar
+import androidx.core.net.toUri
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -121,29 +122,39 @@ fun ProfileScreen(
 
     }
 
-    val imagePickerLauncher = rememberLauncherForActivityResult(
+    var selectedImageUri by remember {
+        mutableStateOf<Uri?>(null)
+    }
+
+    val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
+        selectedImageUri = uri
+
         try {
-            val petId = state.currentPet?.id
-
-            if (uri != null && petId != null) {
-                val file = File(context.cacheDir, "pet_${petId}.jpg")
-
-                if (file.exists()) { file.delete() }
-
-                context.contentResolver.openInputStream(uri)?.use { input ->
-                    file.outputStream().use { output ->
-                        input.copyTo(output)
-                    }
+            uri ?: return@rememberLauncherForActivityResult
+            state.currentPet?.imageUri?.let { oldUriStr ->
+                val oldUri = oldUriStr.toUri()
+                if (oldUri.scheme == "file") {
+                    File(oldUri.path ?: "").takeIf { it.exists() }?.delete()
                 }
-
-                onImageChanged(file.absolutePath)
             }
+
+            val file = File(context.filesDir, "pet_image_\${System.currentTimeMillis()}.jpg")
+
+            context.contentResolver.openInputStream(uri)?.use { input ->
+                file.outputStream().use { output ->
+                    input.copyTo(output)
+                }
+            }
+
+            onImageChanged(file.absolutePath)
         } catch (e: Exception) {
             Log.e("Error", "Failed copying image", e)
         }
     }
+
+
 
     Column (
         modifier = Modifier
@@ -178,22 +189,20 @@ fun ProfileScreen(
                 .padding(top = 10.dp, bottom = 10.dp, start = 20.dp, end = 20.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val imagePath = if (state.isEditing) { state.editedImageUri }
-            else { state.currentPet?.imageUri }
 
-            val imageFile = imagePath
-                ?.takeIf { it.isNotBlank() }
-                ?.let { File(it) }
-                ?.takeIf { it.exists() }
+            val imageModel: Any = when {
+                state.isEditing && selectedImageUri != null -> {
+                    selectedImageUri!!
+                }
 
-            val imageModel = if (imageFile != null) {
-                ImageRequest.Builder(context)
-                    .data(imageFile)
-                    .memoryCacheKey("${imageFile.absolutePath}_${imageFile.lastModified()}")
-                    .diskCacheKey("${imageFile.absolutePath}_${imageFile.lastModified()}")
-                    .build()
-            } else {
-                R.drawable.dog_default
+                !state.currentPet?.imageUri.isNullOrBlank() &&
+                        File(state.currentPet?.imageUri!!).exists() -> {
+                    Uri.fromFile(File(state.currentPet!!.imageUri!!))
+                }
+
+                else -> {
+                    R.drawable.dog_default
+                }
             }
 
             AsyncImage(
@@ -206,7 +215,7 @@ fun ProfileScreen(
                     .clip(CircleShape)
                     .clickable{
                         if (state.isEditing) {
-                            imagePickerLauncher.launch("image/*")
+                            launcher.launch("image/*")
                         }
                     }
             )

@@ -16,6 +16,7 @@ import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.io.File
 import java.time.LocalDate
 
 class ProfileViewModel(
@@ -127,7 +128,8 @@ class ProfileViewModel(
             }
 
             uiState = uiState.copy(
-                isEditing = false
+                isEditing = false,
+                editedImageUri = pet.imageUri
             )
         }
     }
