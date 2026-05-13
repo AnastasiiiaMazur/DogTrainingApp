@@ -100,6 +100,7 @@ fun ProfileScreen(
 ) {
 
     var genderExpanded by remember { mutableStateOf(false) }
+    var petListExpanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
     fun openCalendar(context: Context) {
@@ -213,7 +214,7 @@ fun ProfileScreen(
                     .padding(end = 10.dp)
                     .size(45.dp)
                     .clip(CircleShape)
-                    .clickable{
+                    .clickable {
                         if (state.isEditing) {
                             launcher.launch("image/*")
                         }
@@ -284,7 +285,8 @@ fun ProfileScreen(
                 .border(
                     shape = RoundedCornerShape(10.dp),
                     width = 1.dp,
-                    color = if (state.isEditing) Black else LightGray)
+                    color = if (state.isEditing) Black else LightGray
+                )
                 .padding(top = 16.dp, bottom = 16.dp, start = 12.dp)
                 .clickable { if (state.isEditing) openCalendar(context) },
             color = if (state.isEditing) Black else DarkGray,
@@ -316,12 +318,14 @@ fun ProfileScreen(
                     .border(
                         shape = RoundedCornerShape(10.dp),
                         width = 1.dp,
-                        color = if (state.isEditing) Black else LightGray)
+                        color = if (state.isEditing) Black else LightGray
+                    )
                     .padding(top = 16.dp, bottom = 16.dp, start = 12.dp)
                     .clickable {
                         if (state.isEditing) {
-                            genderExpanded = true}
-                },
+                            genderExpanded = true
+                        }
+                    },
                 color = if (state.isEditing) Black else DarkGray,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Normal,
@@ -403,12 +407,56 @@ fun ProfileScreen(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Icon(
-                imageVector = ImageVector.vectorResource(id = R.drawable.arrow),
-                contentDescription = "Show list button",
-                tint = Black,
-                modifier = Modifier.rotate(270f)
-            )
+            Box {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.arrow),
+                    contentDescription = "Show list button",
+                    tint = Black,
+                    modifier = Modifier
+                        .rotate(
+                            if (petListExpanded) 90f else 270f
+                        )
+                        .clickable { petListExpanded = true }
+                )
+
+                DropdownMenu(
+                    expanded = petListExpanded,
+                    onDismissRequest = { petListExpanded = false },
+                    modifier = Modifier
+                        .background(White)
+                        .clip(RoundedCornerShape(10.dp))
+                ) {
+
+                    Gender.entries.forEach { gender ->
+                        DropdownMenuItem(
+                            text = { Text(
+                                text = gender.displayName,
+                                fontSize = 16.sp,
+                                color = Black,
+                                fontFamily = MyFontFamily,
+                                fontWeight = FontWeight.Normal) },
+                            onClick = {
+                                onGenderChanged(gender)
+                                petListExpanded = false
+                            }
+                        )
+                    }
+
+                    DropdownMenuItem(
+                        text = { Text(
+                            text = "Add a new pet",
+                            fontSize = 16.sp,
+                            color = Black,
+                            fontFamily = MyFontFamily,
+                            fontWeight = FontWeight.Normal) },
+                        onClick = {
+                            //onGenderChanged(gender)
+                            petListExpanded = false
+                        }
+                    )
+                }
+            }
+
         }
     }
 }
