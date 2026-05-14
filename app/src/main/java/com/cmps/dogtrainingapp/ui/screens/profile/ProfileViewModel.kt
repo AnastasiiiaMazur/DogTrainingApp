@@ -182,4 +182,22 @@ class ProfileViewModel(
             editedImageUri = path
         )
     }
+
+    fun onPetChanged(pet: PetEntity) {
+        petRepo.selectPet(pet.id)
+
+        uiState = uiState.copy(
+            currentPet = pet,
+            currentPetWeight = null,
+            editedWeight = ""
+        )
+
+        loadCurrentPet()
+    }
+
+    fun onAddNewPetClicked() {
+        viewModelScope.launch {
+            petRepo.addDefaultPet()
+        }
+    }
 }

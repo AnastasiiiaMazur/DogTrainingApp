@@ -26,6 +26,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -66,6 +67,7 @@ import java.io.File
 import java.time.LocalDate
 import java.util.Calendar
 import androidx.core.net.toUri
+import coil.compose.rememberAsyncImagePainter
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -82,7 +84,9 @@ fun ProfileRoute(viewModel: ProfileViewModel) {
         onWeightChanged = { viewModel.onWeightChanged(it) },
         onGenderChanged = { viewModel.onGenderChanged(it) },
         onDateOfBirthChanged = { viewModel.onDateOfBirthChanged(it) },
-        onImageChanged = { viewModel.onImageChanged(it) }
+        onImageChanged = { viewModel.onImageChanged(it) },
+        onPetChanged = { viewModel.onPetChanged(it) },
+        onAddNewPetClicked = { viewModel.onAddNewPetClicked() }
     )
 }
 
@@ -96,7 +100,9 @@ fun ProfileScreen(
     onWeightChanged: (String) -> Unit,
     onGenderChanged: (Gender) -> Unit,
     onDateOfBirthChanged: (String) -> Unit,
-    onImageChanged: (String) -> Unit
+    onImageChanged: (String) -> Unit,
+    onPetChanged: (PetEntity) -> Unit,
+    onAddNewPetClicked: () -> Unit
 ) {
 
     var genderExpanded by remember { mutableStateOf(false) }
@@ -141,7 +147,7 @@ fun ProfileScreen(
                 }
             }
 
-            val file = File(context.filesDir, "pet_image_\${System.currentTimeMillis()}.jpg")
+            val file = File(context.filesDir, "pet_image_${System.currentTimeMillis()}.jpg")
 
             context.contentResolver.openInputStream(uri)?.use { input ->
                 file.outputStream().use { output ->
@@ -427,30 +433,53 @@ fun ProfileScreen(
                         .clip(RoundedCornerShape(10.dp))
                 ) {
 
-                    Gender.entries.forEach { gender ->
+                    state.allPets.forEach { pet ->
                         DropdownMenuItem(
                             text = { Text(
-                                text = gender.displayName,
+                                text = pet.name,
                                 fontSize = 16.sp,
                                 color = Black,
                                 fontFamily = MyFontFamily,
                                 fontWeight = FontWeight.Normal) },
+                            leadingIcon = {
+                                val petImageModel: Any = if (
+                                    !pet.imageUri.isNullOrBlank() &&
+                                    File(pet.imageUri).exists()
+                                ) {
+                                    Uri.fromFile(File(pet.imageUri))
+                                } else {
+                                    R.drawable.dog_default
+                                }
+
+                                AsyncImage(
+                                    model = petImageModel,
+                                    contentDescription = "Pet image",
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier
+                                        .padding(end = 10.dp)
+                                        .size(35.dp)
+                                        .clip(CircleShape)
+                                )
+                            },
                             onClick = {
-                                onGenderChanged(gender)
+                                onPetChanged(pet)
                                 petListExpanded = false
                             }
                         )
+                        Spacer(modifier = Modifier.padding(2.dp))
+                        HorizontalDivider()
+                        Spacer(modifier = Modifier.padding(2.dp))
                     }
 
                     DropdownMenuItem(
                         text = { Text(
-                            text = "Add a new pet",
+                            text = "+ Add a new pet",
                             fontSize = 16.sp,
                             color = Black,
                             fontFamily = MyFontFamily,
                             fontWeight = FontWeight.Normal) },
                         onClick = {
-                            //onGenderChanged(gender)
+                            onAddNewPetClicked()
                             petListExpanded = false
                         }
                     )
@@ -501,6 +530,8 @@ fun ProfileScreenPreview() {
         onWeightChanged = {},
         onGenderChanged = {},
         onDateOfBirthChanged = {},
-        onImageChanged = {}
+        onImageChanged = {},
+        onPetChanged = {},
+        onAddNewPetClicked = {}
     )
 }

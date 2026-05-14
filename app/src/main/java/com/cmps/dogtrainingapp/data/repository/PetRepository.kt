@@ -47,8 +47,8 @@ class PetRepository(
         if (countPets() == 0) {
             val defaultPet = PetEntity(
                 name = "My Pet",
-                breed = "-",
-                dateOfBirth = "-",
+                breed = "",
+                dateOfBirth = "",
                 gender = Gender.OTHER,
                 imageUri = "dog_default"
             )
@@ -57,4 +57,20 @@ class PetRepository(
             petPrefs.saveSelectedPetId(newPetId)
         }
     }
+
+    suspend fun addDefaultPet(): Long {
+        val newPet = PetEntity(
+            name = "My Pet",
+            breed = "",
+            dateOfBirth = "",
+            gender = Gender.OTHER,
+            imageUri = null
+        )
+
+        val newPetId = petDao.insert(newPet)
+        petPrefs.saveSelectedPetId(newPetId)
+
+        return newPetId
+    }
+
 }
