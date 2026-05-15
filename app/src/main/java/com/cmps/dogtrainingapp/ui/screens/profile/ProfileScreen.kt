@@ -42,6 +42,8 @@ import androidx.compose.ui.graphics.Color.Companion.LightGray
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -68,6 +70,8 @@ import java.time.LocalDate
 import java.util.Calendar
 import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
+import com.cmps.dogtrainingapp.utils.dismissKeyboard
+import com.cmps.dogtrainingapp.utils.hideKeyboardOnTap
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -109,6 +113,11 @@ fun ProfileScreen(
     var petListExpanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
+    var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
+
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     fun openCalendar(context: Context) {
         val today = Calendar.getInstance()
 
@@ -127,10 +136,6 @@ fun ProfileScreen(
             today.get(Calendar.DAY_OF_MONTH)
         ).show()
 
-    }
-
-    var selectedImageUri by remember {
-        mutableStateOf<Uri?>(null)
     }
 
     val launcher = rememberLauncherForActivityResult(
@@ -162,13 +167,13 @@ fun ProfileScreen(
     }
 
 
-
     Column (
         modifier = Modifier
             .fillMaxSize()
             .background(LightGray1)
             .padding(start = 20.dp, top = 50.dp, end = 20.dp)
             .verticalScroll(rememberScrollState())
+            .hideKeyboardOnTap()
     ) {
         Text(
             text = "Pet Profile",
@@ -379,7 +384,9 @@ fun ProfileScreen(
         if (state.isEditing) {
             BasicButton(
                 buttonText = "Save",
-                onClick = onSaveClicked
+                onClick = {
+                    dismissKeyboard(focusManager, keyboardController)
+                    onSaveClicked() }
             )
         }
 

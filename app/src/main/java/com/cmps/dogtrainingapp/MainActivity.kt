@@ -17,6 +17,7 @@ import com.cmps.dogtrainingapp.ui.screens.profile.ProfileScreen
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModel
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModelFactory
 import com.cmps.dogtrainingapp.ui.theme.DogTrainingAppTheme
+import com.cmps.dogtrainingapp.utils.applyFullscreen
 
 class MainActivity : ComponentActivity() {
 
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        applyFullscreen()
         setContent {
             DogTrainingAppTheme {
                 ProfileRoute(profileViewModel)
