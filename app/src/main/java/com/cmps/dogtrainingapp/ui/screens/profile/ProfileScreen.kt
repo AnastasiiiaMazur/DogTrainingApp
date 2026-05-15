@@ -178,7 +178,7 @@ fun ProfileScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .background(LightGray1)
+//            .background(LightGray1)
             .padding(start = 20.dp, top = 50.dp, end = 20.dp)
             .verticalScroll(rememberScrollState())
             .hideKeyboardOnTap()
