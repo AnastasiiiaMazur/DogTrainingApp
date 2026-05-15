@@ -24,11 +24,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -70,6 +72,8 @@ import java.time.LocalDate
 import java.util.Calendar
 import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
+import com.cmps.dogtrainingapp.ui.theme.Gray
+import com.cmps.dogtrainingapp.ui.theme.Orange
 import com.cmps.dogtrainingapp.utils.dismissKeyboard
 import com.cmps.dogtrainingapp.utils.hideKeyboardOnTap
 
@@ -90,7 +94,8 @@ fun ProfileRoute(viewModel: ProfileViewModel) {
         onDateOfBirthChanged = { viewModel.onDateOfBirthChanged(it) },
         onImageChanged = { viewModel.onImageChanged(it) },
         onPetChanged = { viewModel.onPetChanged(it) },
-        onAddNewPetClicked = { viewModel.onAddNewPetClicked() }
+        onAddNewPetClicked = { viewModel.onAddNewPetClicked() },
+        onDeleteClicked = { viewModel.onDeleteClicked(it) }
     )
 }
 
@@ -106,14 +111,16 @@ fun ProfileScreen(
     onDateOfBirthChanged: (String) -> Unit,
     onImageChanged: (String) -> Unit,
     onPetChanged: (PetEntity) -> Unit,
-    onAddNewPetClicked: () -> Unit
+    onAddNewPetClicked: () -> Unit,
+    onDeleteClicked: (PetEntity) -> Unit
 ) {
 
     var genderExpanded by remember { mutableStateOf(false) }
     var petListExpanded by remember { mutableStateOf(false) }
-    val context = LocalContext.current
-
+    var showDeleteDialog by remember { mutableStateOf(false) }
     var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
+
+    val context = LocalContext.current
 
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -168,6 +175,7 @@ fun ProfileScreen(
 
 
     Column (
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
             .background(LightGray1)
@@ -382,6 +390,58 @@ fun ProfileScreen(
         }
 
         if (state.isEditing) {
+            Text(
+                text = "Delete Pet",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp)
+                    .clickable{ showDeleteDialog = true },
+                textAlign = TextAlign.Center,
+                color = Orange,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.SemiBold,
+                fontFamily = MyFontFamily
+            )
+        }
+
+        if (showDeleteDialog) {
+            AlertDialog(
+                onDismissRequest = {
+                    showDeleteDialog = false
+                },
+                text = {
+                    Text(
+                        text = "Are you sure you want to delete ${state.currentPet?.name}?",
+                        textAlign = TextAlign.Center,
+                        color = Black,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        fontFamily = MyFontFamily)
+                },
+                confirmButton = {
+                    BasicButton(
+                        buttonText = "Yes",
+                        onClick = {
+                            state.currentPet?.let { pet ->
+                                onDeleteClicked(pet)
+                            }
+                            showDeleteDialog = false
+                        },
+                        paddingTop = 6
+                    )
+                },
+                dismissButton = {
+                    BasicButton(
+                        buttonText = "No",
+                        onClick = { showDeleteDialog = false },
+                        buttonColor = Gray,
+                        paddingTop = 2
+                    )
+                }
+            )
+        }
+
+        if (state.isEditing) {
             BasicButton(
                 buttonText = "Save",
                 onClick = {
@@ -539,6 +599,7 @@ fun ProfileScreenPreview() {
         onDateOfBirthChanged = {},
         onImageChanged = {},
         onPetChanged = {},
-        onAddNewPetClicked = {}
+        onAddNewPetClicked = {},
+        onDeleteClicked = {}
     )
 }

@@ -9,6 +9,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
@@ -23,7 +24,10 @@ import com.cmps.dogtrainingapp.utils.dismissKeyboard
 @Composable
 fun BasicButton(
     buttonText: String = "",
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    buttonColor: Color = Orange,
+    textColor: Color = White,
+    paddingTop: Int = 10
 ) {
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -34,12 +38,12 @@ fun BasicButton(
              onClick()},
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 15.dp),
+            .padding(top = paddingTop.dp),
         enabled = true,
         shape = RoundedCornerShape(50.dp),
         colors = ButtonDefaults.buttonColors(
-            contentColor = White,
-            containerColor = Orange
+            contentColor = textColor,
+            containerColor = buttonColor
         ),
         elevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp),
         contentPadding = PaddingValues(

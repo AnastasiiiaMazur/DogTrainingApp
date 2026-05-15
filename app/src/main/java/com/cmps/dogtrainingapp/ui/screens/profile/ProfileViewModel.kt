@@ -15,6 +15,7 @@ import com.cmps.dogtrainingapp.data.repository.WeightRepository
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.launch
 import java.io.File
 import java.time.LocalDate
@@ -145,6 +146,25 @@ class ProfileViewModel(
             editedImageUri = uiState.currentPet?.imageUri ?: "",
             errorMessage = null
         )
+    }
+
+    fun onDeleteClicked(pet: PetEntity) {
+        viewModelScope.launch {
+            if (uiState.allPets.size <= 1) {
+                petRepo.deletePet(pet)
+                petRepo.addDefaultPet()
+            } else {
+                petRepo.deletePet(pet)
+
+                if (uiState.currentPet?.id == pet.id) {
+                    uiState.allPets.firstOrNull { it.id != pet.id }?.let { nextPet ->
+                        petRepo.selectPet(nextPet.id)
+                    }
+                }
+            }
+            uiState = uiState.copy( isEditing = false )
+            loadCurrentPet()
+        }
     }
 
     fun onNameChanged(newName: String) {
