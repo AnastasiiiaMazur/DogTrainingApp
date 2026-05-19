@@ -63,4 +63,6 @@ dependencies {
     implementation("androidx.room:room-ktx:2.8.4")
     ksp("androidx.room:room-compiler:2.8.4")
     implementation("io.coil-kt:coil-compose:2.7.0")
+
+    implementation("com.google.code.gson:gson:2.14.0")
 }

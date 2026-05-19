@@ -1,11 +1,8 @@
 package com.cmps.dogtrainingapp.ui.screens.profile
 
-import android.net.Uri
-import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.data.local.entity.Gender
 import com.cmps.dogtrainingapp.data.local.entity.PetEntity
 import com.cmps.dogtrainingapp.data.local.entity.WeightEntryEntity
-import java.io.File
 
 data class ProfileUiState(
     val currentPet: PetEntity? = null,
