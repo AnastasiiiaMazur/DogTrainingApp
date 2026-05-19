@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.ui.components.BottomNavIcon
 import com.cmps.dogtrainingapp.ui.theme.Gray
@@ -21,8 +22,8 @@ import com.cmps.dogtrainingapp.ui.theme.White
 
 @Composable
 fun CustomBottomNav (
-    selectedTab: BottomNavItem,
-    onTabSelected: (BottomNavItem) -> Unit
+    currentRoute: String?,
+    navController: NavHostController
 ) {
     Box(
         modifier = Modifier
@@ -39,49 +40,39 @@ fun CustomBottomNav (
         ) {
 
             BottomNavIcon(
-                selected = selectedTab == BottomNavItem.DASHBOARD,
+                selected = currentRoute == Routes.DASHBOARD,
                 activeIcon = R.drawable.dashboard2,
                 inactiveIcon = R.drawable.dashboard,
-                onClick = { onTabSelected(BottomNavItem.DASHBOARD) }
+                onClick = { navController.navigate(Routes.DASHBOARD) }
             )
 
             BottomNavIcon(
-                selected = selectedTab == BottomNavItem.TRAINING_HUB,
+                selected = currentRoute == Routes.TRAINING_HUB,
                 activeIcon = R.drawable.training_hub2,
                 inactiveIcon = R.drawable.training_hub,
-                onClick = { onTabSelected(BottomNavItem.TRAINING_HUB) }
+                onClick = { navController.navigate(Routes.TRAINING_HUB) }
             )
 
             BottomNavIcon(
-                selected = selectedTab == BottomNavItem.PROFILE,
+                selected = currentRoute == Routes.PROFILE,
                 activeIcon = R.drawable.pet_profile2,
                 inactiveIcon = R.drawable.pet_profile,
-                onClick = { onTabSelected(BottomNavItem.PROFILE) }
+                onClick = { navController.navigate(Routes.PROFILE) }
             )
 
             BottomNavIcon(
-                selected = selectedTab == BottomNavItem.HEALTH_HUB,
+                selected = currentRoute == Routes.HEALTH_HUB,
                 activeIcon = R.drawable.health_hub2,
                 inactiveIcon = R.drawable.health_hub,
-                onClick = { onTabSelected(BottomNavItem.HEALTH_HUB) }
+                onClick = { navController.navigate(Routes.HEALTH_HUB) }
             )
 
             BottomNavIcon(
-                selected = selectedTab == BottomNavItem.WALK_TRACKER,
+                selected = currentRoute == Routes.WALK_TRACKER,
                 activeIcon = R.drawable.walk_tracker2,
                 inactiveIcon = R.drawable.walk_tracker,
-                onClick = { onTabSelected(BottomNavItem.WALK_TRACKER) }
+                onClick = { navController.navigate(Routes.WALK_TRACKER) }
             )
         }
     }
-}
-
-
-@Composable
-@Preview
-fun PreviewBottomNav() {
-    CustomBottomNav(
-        selectedTab = BottomNavItem.TRAINING_HUB,
-        onTabSelected = {}
-    )
 }

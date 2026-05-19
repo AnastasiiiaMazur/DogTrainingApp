@@ -16,12 +16,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.data.local.AppDatabase
 import com.cmps.dogtrainingapp.data.local.dao.PetDao
 import com.cmps.dogtrainingapp.data.repository.PetRepository
 import com.cmps.dogtrainingapp.data.repository.WeightRepository
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
-import com.cmps.dogtrainingapp.ui.navigation.BottomNavItem
+import com.cmps.dogtrainingapp.ui.navigation.AppNavGraph
 import com.cmps.dogtrainingapp.ui.navigation.CustomBottomNav
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileScreen
@@ -43,16 +45,22 @@ class MainActivity : ComponentActivity() {
         ProfileViewModelFactory(profileRepo, weightRepo)
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         applyFullscreen()
 
+
         setContent {
             DogTrainingAppTheme {
 
-                var selectedTab by remember { mutableStateOf(BottomNavItem.PROFILE) }
+                val navController = rememberNavController()
+
+                val currentBackStackEntry by navController.currentBackStackEntryAsState()
+
+                val currentRoute = currentBackStackEntry?.destination?.route
 
                 Column(
                     modifier = Modifier
@@ -64,33 +72,15 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.weight(1f)
                     ) {
 
-                        when (selectedTab) {
-
-                            BottomNavItem.DASHBOARD -> {
-                                Box(modifier = Modifier.fillMaxSize())
-                            }
-
-                            BottomNavItem.TRAINING_HUB -> {
-                                Box(modifier = Modifier.fillMaxSize())
-                            }
-
-                            BottomNavItem.PROFILE -> {
-                                ProfileRoute(profileViewModel)
-                            }
-
-                            BottomNavItem.HEALTH_HUB -> {
-                                Box(modifier = Modifier.fillMaxSize())
-                            }
-
-                            BottomNavItem.WALK_TRACKER -> {
-                                Box(modifier = Modifier.fillMaxSize())
-                            }
-                        }
+                        AppNavGraph(
+                            navController = navController,
+                            profileViewModel = profileViewModel
+                        )
                     }
 
                     CustomBottomNav(
-                        selectedTab = selectedTab,
-                        onTabSelected = { selectedTab = it }
+                        currentRoute = currentRoute,
+                        navController = navController
                     )
                 }
             }
