@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WalkDao {
-    @Query("SELECT * FROM walk_events WHERE petId = :petId ORDER BY date DESC")
+    @Query("SELECT * FROM walk_events WHERE petId = :petId ORDER BY date DESC, time DESC")
     fun getWalksForPet(petId: Long): Flow<List<WalkEventEntity>>
 
     @Update
@@ -20,5 +20,5 @@ interface WalkDao {
     suspend fun deleteByIdWalk(eventId: Long)
 
     @Insert
-    suspend fun insertWalk(walk: WalkEventEntity)
+    suspend fun insertWalk(walk: WalkEventEntity): Long
 }
