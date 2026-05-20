@@ -81,7 +81,7 @@ import com.cmps.dogtrainingapp.utils.hideKeyboardOnTap
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ProfileRoute(viewModel: ProfileViewModel) {
-    val state =viewModel.uiState
+    val state = viewModel.uiState
 
     ProfileScreen(
         state = state,
@@ -175,10 +175,8 @@ fun ProfileScreen(
 
 
     Column (
-        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-//            .background(LightGray1)
             .padding(start = 20.dp, top = 50.dp, end = 20.dp)
             .verticalScroll(rememberScrollState())
             .hideKeyboardOnTap()

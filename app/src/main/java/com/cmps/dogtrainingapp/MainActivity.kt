@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.data.local.AppDatabase
 import com.cmps.dogtrainingapp.data.local.dao.PetDao
 import com.cmps.dogtrainingapp.data.repository.PetRepository
+import com.cmps.dogtrainingapp.data.repository.WalkHubRepository
 import com.cmps.dogtrainingapp.data.repository.WeightRepository
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
 import com.cmps.dogtrainingapp.ui.navigation.AppNavGraph
@@ -29,6 +30,8 @@ import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileScreen
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModel
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModelFactory
+import com.cmps.dogtrainingapp.ui.screens.walk.WalkViewModel
+import com.cmps.dogtrainingapp.ui.screens.walk.WalkViewModelFactory
 import com.cmps.dogtrainingapp.ui.theme.DogTrainingAppTheme
 import com.cmps.dogtrainingapp.ui.theme.LightGray1
 import com.cmps.dogtrainingapp.utils.applyFullscreen
@@ -37,12 +40,17 @@ class MainActivity : ComponentActivity() {
 
     private val db by lazy { AppDatabase.getInstance(applicationContext) }
     private val petDao by lazy { db.petDao() }
+    private val walkDao by lazy { db.walkEventDao() }
     private val weightDao by lazy { db.weightEntryDao() }
     private val petPrefs by lazy { SelectedPetPreferences(applicationContext) }
     private val profileRepo by lazy { PetRepository(petDao, petPrefs) }
+    private val walkRepo by lazy { WalkHubRepository(walkDao, petPrefs) }
     private val weightRepo by lazy { WeightRepository(weightDao, petPrefs) }
     private val profileViewModel: ProfileViewModel by viewModels {
         ProfileViewModelFactory(profileRepo, weightRepo)
+    }
+    private val walkViewModel: WalkViewModel by viewModels {
+        WalkViewModelFactory(walkRepo)
     }
 
 
@@ -74,7 +82,8 @@ class MainActivity : ComponentActivity() {
 
                         AppNavGraph(
                             navController = navController,
-                            profileViewModel = profileViewModel
+                            profileViewModel = profileViewModel,
+                            walkViewModel = walkViewModel
                         )
                     }
 

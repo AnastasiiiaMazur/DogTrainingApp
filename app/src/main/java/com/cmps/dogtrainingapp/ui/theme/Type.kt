@@ -10,6 +10,7 @@ import com.cmps.dogtrainingapp.R
 
 val MyFontFamily = FontFamily(
     Font(R.font.montserrat_regular, FontWeight.Normal),
+    Font(R.font.montserrat_semibold, FontWeight.SemiBold),
     Font(R.font.montserrat_bold, FontWeight.Bold)
 )
 
