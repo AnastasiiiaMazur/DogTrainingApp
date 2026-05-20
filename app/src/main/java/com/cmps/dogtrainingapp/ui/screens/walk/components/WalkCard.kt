@@ -31,13 +31,13 @@ fun WalkCard(
     dateText: String = "",
     timeText: String = "",
     durationText: String = "",
-    noteText: String = ""
+    noteText: String? = ""
 ) {
     Box(
         modifier = Modifier
+            .padding(top = 10.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(White)
-            .padding(top = 10.dp)
             .padding(horizontal = 15.dp, vertical = 7.dp)
     ) {
         Column {
@@ -59,13 +59,16 @@ fun WalkCard(
                 )
             }
 
-            Text(
-                text = noteText,
-                fontWeight = FontWeight.Normal,
-                fontFamily = MyFontFamily,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(top = 7.dp)
-            )
+            if (noteText != null) {
+                Text(
+                    text = noteText,
+                    fontWeight = FontWeight.Normal,
+                    fontFamily = MyFontFamily,
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(top = 7.dp)
+                )
+            }
+
 
             Row(
                 modifier = Modifier
