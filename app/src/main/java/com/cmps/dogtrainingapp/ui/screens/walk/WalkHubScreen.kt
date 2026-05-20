@@ -1,6 +1,7 @@
 package com.cmps.dogtrainingapp.ui.screens.walk
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -47,6 +48,10 @@ import java.time.LocalDate
 import java.time.LocalTime
 import androidx.compose.foundation.lazy.items
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import com.cmps.dogtrainingapp.ui.theme.Red
+import com.cmps.dogtrainingapp.utils.dismissKeyboard
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
@@ -61,7 +66,8 @@ fun WalkHubRoute(viewModel: WalkViewModel) {
         onSaveClicked = { viewModel.onSaveClicked() },
         onNotesChanged = { viewModel.onNotesChanged(it) },
         onDurationChanged = { viewModel.onDurationChanged(it) },
-        onDateChanged = { viewModel.onDateChanged(it) }
+        onDateChanged = { viewModel.onDateChanged(it) },
+        onTimeChanged = { viewModel.onTimeChanged(it) }
     )
 }
 
@@ -72,10 +78,14 @@ fun WalkHubScreen(
     onSaveClicked: () -> Unit,
     onNotesChanged: (String) -> Unit,
     onDurationChanged: (String) -> Unit,
-    onDateChanged: (LocalDate) -> Unit
+    onDateChanged: (LocalDate) -> Unit,
+    onTimeChanged: (LocalTime) -> Unit
 ) {
 
     val context = LocalContext.current
+
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     fun openCalendar(context: Context) {
         val today = Calendar.getInstance()
@@ -84,10 +94,6 @@ fun WalkHubScreen(
             context,
             R.style.MyDatePickerTheme,
             { _, year, month, day ->
-                val formatted = String.format(
-                    java.util.Locale.getDefault(),
-                    "%02d/%02d/%04d",
-                    day, month+1, year)
                 onDateChanged(LocalDate.of(year, month + 1, day))
             },
             today.get(Calendar.YEAR),
@@ -95,6 +101,22 @@ fun WalkHubScreen(
             today.get(Calendar.DAY_OF_MONTH)
         ).show()
 
+    }
+
+    fun openTimePicker(context: Context) {
+
+        val now = Calendar.getInstance()
+
+        TimePickerDialog(
+            context,
+            { _, hour, minute ->
+
+                onTimeChanged( LocalTime.of(hour, minute) )
+            },
+            now.get(Calendar.HOUR_OF_DAY),
+            now.get(Calendar.MINUTE),
+            true
+        ).show()
     }
 
     LazyColumn (
@@ -137,7 +159,7 @@ fun WalkHubScreen(
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .clickable{ }
+                        .clickable{ openTimePicker(context) }
                 ) {
                     Image(
                         painter = painterResource(R.drawable.time_icon),
@@ -148,7 +170,8 @@ fun WalkHubScreen(
                     )
 
                     Text(
-                        text = "Time",
+                        text = state.selectedTime.format(
+                            DateTimeFormatter.ofPattern("HH:mm") ),
                         fontFamily = MyFontFamily,
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 15.sp
@@ -258,6 +281,17 @@ fun WalkHubScreen(
                     }
                 )
 
+                if (state.errorMessage != null) {
+                    Text(
+                        text = state.errorMessage,
+                        fontFamily = MyFontFamily,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 14.sp,
+                        color = Red,
+                        modifier = Modifier.padding(horizontal = 8.dp)
+                    )
+                }
+
                 HorizontalDivider(
                     modifier = Modifier.padding(top = 7.dp, bottom = 7.dp),
                     thickness = 1.dp
@@ -275,7 +309,9 @@ fun WalkHubScreen(
                         fontSize = 18.sp,
                         color = Orange,
                         modifier = Modifier
-                            .clickable{ onSaveClicked() }
+                            .clickable{
+                                dismissKeyboard(focusManager, keyboardController)
+                                onSaveClicked() }
                     )
                 }
             }
@@ -366,11 +402,13 @@ fun PreviewScreen() {
 
             totalWalks = 2,
             averageDuration = 37.5f,
-            totalWalkTime = 75
+            totalWalkTime = 75,
+            errorMessage = "error"
         ),
         onSaveClicked = {},
         onNotesChanged = {},
         onDurationChanged = {},
-        onDateChanged = {}
+        onDateChanged = {},
+        onTimeChanged = {}
     )
 }

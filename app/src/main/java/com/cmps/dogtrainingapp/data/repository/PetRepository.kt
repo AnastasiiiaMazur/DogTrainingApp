@@ -5,6 +5,7 @@ import com.cmps.dogtrainingapp.data.local.entity.Gender
 import com.cmps.dogtrainingapp.data.local.entity.PetEntity
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapLatest
 
 class PetRepository(
     private val petDao: PetDao,
@@ -36,7 +37,11 @@ class PetRepository(
     }
 
     fun getCurrentPet(): Flow<PetEntity?> {
-        return petDao.getByIdFlow(getSelectedPetId())
+        return petPrefs.selectedPetIdFlow
+            .flatMapLatest { petId ->
+
+                petDao.getByIdFlow(petId)
+            }
     }
 
     suspend fun countPets(): Int {

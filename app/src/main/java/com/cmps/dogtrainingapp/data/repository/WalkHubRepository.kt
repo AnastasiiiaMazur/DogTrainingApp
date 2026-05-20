@@ -4,13 +4,19 @@ import com.cmps.dogtrainingapp.data.local.dao.WalkDao
 import com.cmps.dogtrainingapp.data.local.entity.WalkEventEntity
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapLatest
 
 class WalkHubRepository(
     private val walkDao: WalkDao,
     private val petPrefs: SelectedPetPreferences
 ) {
     fun getAllWalks(): Flow<List<WalkEventEntity>> {
-        return walkDao.getWalksForPet(petPrefs.getSelectedPetId())
+
+        return petPrefs.selectedPetIdFlow
+            .flatMapLatest { petId ->
+
+                walkDao.getWalksForPet(petId)
+            }
     }
 
     suspend fun addWalk(walk: WalkEventEntity): Long {

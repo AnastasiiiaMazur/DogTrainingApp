@@ -68,16 +68,22 @@ class WalkViewModel(
 
     fun onSaveClicked() {
 
-        val duration = uiState.durationText.toIntOrNull()
-        val safeDuration = duration ?: return
-
         uiState = uiState.copy(
             errorMessage = null
         )
 
         if (uiState.durationText.isBlank()) {
             uiState = uiState.copy(
-                errorMessage = "Duration field cannot be empty!"
+                errorMessage = "* Duration field cannot be empty!"
+            )
+            return
+        }
+
+        val duration = uiState.durationText.toIntOrNull()
+
+        if (duration == null || duration <= 0) {
+            uiState = uiState.copy(
+                errorMessage = "* Duration must be a valid number!"
             )
             return
         }
@@ -87,7 +93,7 @@ class WalkViewModel(
             val walk = WalkEventEntity(
                 date = uiState.selectedDate,
                 time = uiState.selectedTime,
-                durationMinutes = safeDuration,
+                durationMinutes = duration,
                 notes = uiState.notes,
                 petId = walkRepo.getSelectedPetId()
             )
