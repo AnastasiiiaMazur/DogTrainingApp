@@ -72,6 +72,7 @@ import java.time.LocalDate
 import java.util.Calendar
 import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
+import com.cmps.dogtrainingapp.ui.components.ConfirmationDialog
 import com.cmps.dogtrainingapp.ui.theme.Gray
 import com.cmps.dogtrainingapp.ui.theme.Orange
 import com.cmps.dogtrainingapp.utils.dismissKeyboard
@@ -403,38 +404,18 @@ fun ProfileScreen(
         }
 
         if (showDeleteDialog) {
-            AlertDialog(
-                onDismissRequest = {
+            ConfirmationDialog(
+                message = "Are you sure you want to delete ${state.currentPet?.name}?",
+
+                onConfirm = {
+                    state.currentPet?.let { pet ->
+                        onDeleteClicked(pet)
+                    }
                     showDeleteDialog = false
                 },
-                text = {
-                    Text(
-                        text = "Are you sure you want to delete ${state.currentPet?.name}?",
-                        textAlign = TextAlign.Center,
-                        color = Black,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        fontFamily = MyFontFamily)
-                },
-                confirmButton = {
-                    BasicButton(
-                        buttonText = "Yes",
-                        onClick = {
-                            state.currentPet?.let { pet ->
-                                onDeleteClicked(pet)
-                            }
-                            showDeleteDialog = false
-                        },
-                        paddingTop = 6
-                    )
-                },
-                dismissButton = {
-                    BasicButton(
-                        buttonText = "No",
-                        onClick = { showDeleteDialog = false },
-                        buttonColor = Gray,
-                        paddingTop = 2
-                    )
+
+                onDismiss = {
+                    showDeleteDialog = false
                 }
             )
         }

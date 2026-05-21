@@ -47,9 +47,14 @@ import com.cmps.dogtrainingapp.utils.hideKeyboardOnTap
 import java.time.LocalDate
 import java.time.LocalTime
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import com.cmps.dogtrainingapp.ui.components.ConfirmationDialog
 import com.cmps.dogtrainingapp.ui.theme.Red
 import com.cmps.dogtrainingapp.utils.dismissKeyboard
 import java.time.format.DateTimeFormatter
@@ -90,6 +95,8 @@ fun WalkHubScreen(
 
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
+
+    var showDeleteDialog by remember { mutableStateOf(false) }
 
     fun openCalendar(context: Context) {
         val today = Calendar.getInstance()
@@ -322,16 +329,33 @@ fun WalkHubScreen(
         }
 
         items(state.walks) { walk ->
+
+            var showDeleteDialog by remember { mutableStateOf(false) }
+
             WalkCard(
                 dateText = walk.date.format(
                     DateTimeFormatter.ofPattern("dd/MM/yyyy") ),
                 timeText = walk.time.format(
-                        DateTimeFormatter.ofPattern("HH:mm") ),
+                    DateTimeFormatter.ofPattern("HH:mm") ),
                 durationText = walk.durationMinutes.toString(),
                 noteText = walk.notes,
-                onDeleteClicked = { onDeleteClicked(walk.id) },
+                onDeleteClicked = { showDeleteDialog = true },
                 onEditClicked = { onEditClicked(walk) }
             )
+
+            if (showDeleteDialog) {
+
+                ConfirmationDialog(
+                    message = "Are you sure you want to delete this walk?",
+                    onConfirm = {
+                        onDeleteClicked(walk.id)
+                        showDeleteDialog = false
+                    },
+                    onDismiss = {
+                        showDeleteDialog = false
+                    }
+                )
+            }
         }
 
         item {
