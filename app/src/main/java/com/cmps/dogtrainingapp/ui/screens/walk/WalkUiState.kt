@@ -21,5 +21,6 @@ data class WalkUiState(
     val totalWalkTime: Int = 0,
 
     val isEditing: Boolean = false,
+    val editingWalkId: Long? = null,
     val errorMessage: String? = null
 )

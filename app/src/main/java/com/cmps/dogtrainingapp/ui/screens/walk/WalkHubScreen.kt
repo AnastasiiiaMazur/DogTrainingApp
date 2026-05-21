@@ -67,7 +67,9 @@ fun WalkHubRoute(viewModel: WalkViewModel) {
         onNotesChanged = { viewModel.onNotesChanged(it) },
         onDurationChanged = { viewModel.onDurationChanged(it) },
         onDateChanged = { viewModel.onDateChanged(it) },
-        onTimeChanged = { viewModel.onTimeChanged(it) }
+        onTimeChanged = { viewModel.onTimeChanged(it) },
+        onDeleteClicked = { viewModel.onDeleteClicked(it) },
+        onEditClicked = { viewModel.onEditClicked(it) }
     )
 }
 
@@ -79,7 +81,9 @@ fun WalkHubScreen(
     onNotesChanged: (String) -> Unit,
     onDurationChanged: (String) -> Unit,
     onDateChanged: (LocalDate) -> Unit,
-    onTimeChanged: (LocalTime) -> Unit
+    onTimeChanged: (LocalTime) -> Unit,
+    onDeleteClicked: (Long) -> Unit,
+    onEditClicked: (WalkEventEntity) -> Unit
 ) {
 
     val context = LocalContext.current
@@ -324,7 +328,9 @@ fun WalkHubScreen(
                 timeText = walk.time.format(
                         DateTimeFormatter.ofPattern("HH:mm") ),
                 durationText = walk.durationMinutes.toString(),
-                noteText = walk.notes
+                noteText = walk.notes,
+                onDeleteClicked = { onDeleteClicked(walk.id) },
+                onEditClicked = { onEditClicked(walk) }
             )
         }
 
@@ -409,6 +415,8 @@ fun PreviewScreen() {
         onNotesChanged = {},
         onDurationChanged = {},
         onDateChanged = {},
-        onTimeChanged = {}
+        onTimeChanged = {},
+        onEditClicked = {},
+        onDeleteClicked = {}
     )
 }

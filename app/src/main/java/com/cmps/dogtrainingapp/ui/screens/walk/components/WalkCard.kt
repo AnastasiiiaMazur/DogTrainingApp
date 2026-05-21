@@ -1,6 +1,7 @@
 package com.cmps.dogtrainingapp.ui.screens.walk.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,7 +32,9 @@ fun WalkCard(
     dateText: String = "",
     timeText: String = "",
     durationText: String = "",
-    noteText: String? = ""
+    noteText: String? = "",
+    onEditClicked: () -> Unit,
+    onDeleteClicked: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -82,6 +85,7 @@ fun WalkCard(
                     tint = DarkGray,
                     modifier = Modifier
                         .size(25.dp)
+                        .clickable{ onEditClicked() }
                 )
 
                 Spacer(modifier = Modifier.padding(end = 7.dp))
@@ -92,21 +96,10 @@ fun WalkCard(
                     tint = DarkGray,
                     modifier = Modifier
                         .size(25.dp)
+                        .clickable{ onDeleteClicked() }
                 )
             }
         }
 
     }
-}
-
-
-@Composable
-@Preview
-fun PreviewCard() {
-    WalkCard(
-        dateText = "04/04/2025",
-        timeText = "14:30",
-        durationText = "40",
-        noteText = "Visited dog park"
-    )
 }

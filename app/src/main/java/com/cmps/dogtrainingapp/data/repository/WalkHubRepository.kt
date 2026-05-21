@@ -30,4 +30,8 @@ class WalkHubRepository(
     fun getSelectedPetId(): Long {
         return petPrefs.getSelectedPetId()
     }
+
+    suspend fun updateWalk(walk: WalkEventEntity) {
+        return walkDao.updateWalk(walk)
+    }
 }

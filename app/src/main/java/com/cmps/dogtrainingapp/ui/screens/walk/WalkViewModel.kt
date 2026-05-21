@@ -88,9 +88,12 @@ class WalkViewModel(
             return
         }
 
+        val editingId = uiState.editingWalkId
+
         viewModelScope.launch {
 
             val walk = WalkEventEntity(
+                id = editingId ?: 0L,
                 date = uiState.selectedDate,
                 time = uiState.selectedTime,
                 durationMinutes = duration,
@@ -98,18 +101,35 @@ class WalkViewModel(
                 petId = walkRepo.getSelectedPetId()
             )
 
-            walkRepo.addWalk(walk)
+            if (editingId == null) {
+                walkRepo.addWalk(walk)
+            } else {
+                walkRepo.updateWalk(walk)
+            }
 
             uiState = uiState.copy(
                 durationText = "",
                 notes = "",
-                errorMessage = null
+                errorMessage = null,
+                editingWalkId = null
             )
         }
     }
 
-    fun onEditClicked() {
+    fun onDeleteClicked(id: Long) {
+
+        viewModelScope.launch {
+            walkRepo.deleteWalk(id)
+        }
+    }
+
+    fun onEditClicked(walk: WalkEventEntity) {
         uiState = uiState.copy(
+            selectedDate = walk.date,
+            selectedTime = walk.time,
+            notes = walk.notes ?: "",
+            durationText = walk.durationMinutes.toString(),
+            editingWalkId = walk.id
         )
     }
 }
