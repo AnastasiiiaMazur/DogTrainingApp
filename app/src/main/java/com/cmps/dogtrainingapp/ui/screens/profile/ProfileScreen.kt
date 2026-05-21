@@ -73,10 +73,12 @@ import java.util.Calendar
 import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
 import com.cmps.dogtrainingapp.ui.components.ConfirmationDialog
+import com.cmps.dogtrainingapp.ui.components.openDatePicker
 import com.cmps.dogtrainingapp.ui.theme.Gray
 import com.cmps.dogtrainingapp.ui.theme.Orange
 import com.cmps.dogtrainingapp.utils.dismissKeyboard
 import com.cmps.dogtrainingapp.utils.hideKeyboardOnTap
+import java.time.format.DateTimeFormatter
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -100,6 +102,7 @@ fun ProfileRoute(viewModel: ProfileViewModel) {
     )
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ProfileScreen(
     state: ProfileUiState,
@@ -125,26 +128,6 @@ fun ProfileScreen(
 
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
-
-    fun openCalendar(context: Context) {
-        val today = Calendar.getInstance()
-
-        DatePickerDialog(
-            context,
-            R.style.MyDatePickerTheme,
-            { _, year, month, day ->
-                val formatted = String.format(
-                    java.util.Locale.getDefault(),
-                    "%02d/%02d/%04d",
-                    day, month+1, year)
-                onDateOfBirthChanged(formatted)
-            },
-            today.get(Calendar.YEAR),
-            today.get(Calendar.MONTH),
-            today.get(Calendar.DAY_OF_MONTH)
-        ).show()
-
-    }
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
@@ -306,7 +289,18 @@ fun ProfileScreen(
                     color = if (state.isEditing) Black else LightGray
                 )
                 .padding(top = 16.dp, bottom = 16.dp, start = 12.dp)
-                .clickable { if (state.isEditing) openCalendar(context) },
+                .clickable {
+                    if (state.isEditing) {
+                        openDatePicker(
+                            context = context,
+                            onDateSelected = { date ->
+                                onDateOfBirthChanged(
+                                    date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                                )
+                            }
+                        )
+                    }
+                },
             color = if (state.isEditing) Black else DarkGray,
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal,

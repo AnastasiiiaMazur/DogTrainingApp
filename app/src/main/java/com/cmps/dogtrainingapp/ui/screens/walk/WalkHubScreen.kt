@@ -55,6 +55,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import com.cmps.dogtrainingapp.ui.components.ConfirmationDialog
+import com.cmps.dogtrainingapp.ui.components.openDatePicker
 import com.cmps.dogtrainingapp.ui.theme.Red
 import com.cmps.dogtrainingapp.utils.dismissKeyboard
 import java.time.format.DateTimeFormatter
@@ -95,24 +96,6 @@ fun WalkHubScreen(
 
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
-
-    var showDeleteDialog by remember { mutableStateOf(false) }
-
-    fun openCalendar(context: Context) {
-        val today = Calendar.getInstance()
-
-        DatePickerDialog(
-            context,
-            R.style.MyDatePickerTheme,
-            { _, year, month, day ->
-                onDateChanged(LocalDate.of(year, month + 1, day))
-            },
-            today.get(Calendar.YEAR),
-            today.get(Calendar.MONTH),
-            today.get(Calendar.DAY_OF_MONTH)
-        ).show()
-
-    }
 
     fun openTimePicker(context: Context) {
 
@@ -198,7 +181,11 @@ fun WalkHubScreen(
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .clickable{ openCalendar(context) }
+                        .clickable{ openDatePicker(
+                                context = context,
+                                onDateSelected = onDateChanged
+                            )
+                        }
                 ) {
                     Image(
                         painter = painterResource(R.drawable.calendar_icon),
