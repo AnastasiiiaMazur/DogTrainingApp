@@ -1,7 +1,5 @@
 package com.cmps.dogtrainingapp.ui.screens.profile
 
-import android.app.DatePickerDialog
-import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.util.Log
@@ -24,13 +22,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -54,7 +50,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.data.local.entity.Gender
 import com.cmps.dogtrainingapp.data.local.entity.PetEntity
@@ -63,18 +58,14 @@ import com.cmps.dogtrainingapp.ui.components.BasicButton
 import com.cmps.dogtrainingapp.ui.components.ProfileInfoField
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
-import com.cmps.dogtrainingapp.ui.theme.LightGray1
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
 import com.cmps.dogtrainingapp.ui.theme.Red
 import com.cmps.dogtrainingapp.ui.theme.White
 import java.io.File
 import java.time.LocalDate
-import java.util.Calendar
 import androidx.core.net.toUri
-import coil.compose.rememberAsyncImagePainter
 import com.cmps.dogtrainingapp.ui.components.ConfirmationDialog
 import com.cmps.dogtrainingapp.ui.components.openDatePicker
-import com.cmps.dogtrainingapp.ui.theme.Gray
 import com.cmps.dogtrainingapp.ui.theme.Orange
 import com.cmps.dogtrainingapp.utils.dismissKeyboard
 import com.cmps.dogtrainingapp.utils.hideKeyboardOnTap

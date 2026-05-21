@@ -1,6 +1,5 @@
 package com.cmps.dogtrainingapp.ui.screens.walk
 
-import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Build
@@ -383,51 +382,4 @@ fun WalkHubScreen(
             )
         }
     }
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-@Composable
-@Preview
-fun PreviewScreen() {
-
-    val sampleWalks = listOf(
-        WalkEventEntity(
-            id = 1,
-            date = LocalDate.now(),
-            time = LocalTime.of(14, 30),
-            durationMinutes = 45,
-            notes = "Evening walk",
-            petId = 1
-        ),
-        WalkEventEntity(
-            id = 2,
-            date = LocalDate.now().minusDays(1),
-            time = LocalTime.of(10, 15),
-            durationMinutes = 30,
-            notes = "Morning park walk",
-            petId = 1
-        )
-    )
-
-    WalkHubScreen(
-        state = WalkUiState(
-            walks = sampleWalks,
-            selectedDate = LocalDate.now(),
-            selectedTime = LocalTime.now(),
-            durationText = "45",
-            notes = "Walk around the park",
-
-            totalWalks = 2,
-            averageDuration = 37.5f,
-            totalWalkTime = 75,
-            errorMessage = "error"
-        ),
-        onSaveClicked = {},
-        onNotesChanged = {},
-        onDurationChanged = {},
-        onDateChanged = {},
-        onTimeChanged = {},
-        onEditClicked = {},
-        onDeleteClicked = {}
-    )
 }
