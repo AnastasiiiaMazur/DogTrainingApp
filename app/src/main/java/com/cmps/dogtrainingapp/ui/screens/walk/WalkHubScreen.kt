@@ -332,7 +332,9 @@ fun WalkHubScreen(
             if (showDeleteDialog) {
 
                 ConfirmationDialog(
-                    message = "Are you sure you want to delete this walk?",
+                    message = "Are you sure you want to delete " +
+                            "the walk on ${walk.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))}" +
+                            " at ${walk.time.format(DateTimeFormatter.ofPattern("HH:mm"))}",
                     onConfirm = {
                         onDeleteClicked(walk.id)
                         showDeleteDialog = false
