@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface HealthEventDao {
     @Query("""SELECT * FROM health_events 
                 WHERE petId = :petId 
-                ORDER BY date, time""")
+                ORDER BY isCompleted ASC, date ASC, time ASC""")
     fun getEventsForPet(petId: Long): Flow<List<HealthEventEntity>>
 
     @Insert

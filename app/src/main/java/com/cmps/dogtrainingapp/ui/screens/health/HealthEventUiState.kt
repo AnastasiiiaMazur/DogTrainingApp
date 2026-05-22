@@ -16,7 +16,6 @@ data class HealthEventUiState(
     val upcomingEvents: Int = 0,
     val overdueEvents: Int = 0,
 
-    val isEditing: Boolean = false,
     val editingEventId: Long? = null,
 
     val selectedTitle: String = "",

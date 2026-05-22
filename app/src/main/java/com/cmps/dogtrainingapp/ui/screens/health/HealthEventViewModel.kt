@@ -13,6 +13,7 @@ import com.cmps.dogtrainingapp.data.local.entity.RepeatInterval
 import com.cmps.dogtrainingapp.data.repository.HealthEventRepository
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -30,8 +31,25 @@ class HealthEventViewModel(
     private fun loadEvents() {
         viewModelScope.launch {
             healthRepo.getEventsForPet().collect { events ->
+
+                val now = LocalDateTime.now()
+
+                val overdue = events.count {
+                    !it.isCompleted &&
+                            LocalDateTime.of(it.date, it.time).isBefore(now)
+                }
+
+                val upcoming = events.count {
+                    !it.isCompleted &&
+                            LocalDateTime.of(it.date, it.time).isAfter(now)
+                }
+
                 uiState = uiState.copy(
-                    healthEvents = events
+                    healthEvents = events,
+
+                    totalEvents = events.size,
+                    upcomingEvents = upcoming,
+                    overdueEvents = overdue
                 )
             }
         }
@@ -71,7 +89,13 @@ class HealthEventViewModel(
 
             uiState = uiState.copy(
                 errorMessage = null,
-                editingEventId = null
+                editingEventId = null,
+                selectedTitle = "",
+                selectedNotes = "",
+                selectedDate = LocalDate.now(),
+                selectedTime = LocalTime.now(),
+                selectedType = HealthEventType.OTHER,
+                selectedInterval = RepeatInterval.NEVER
             )
         }
     }
@@ -127,6 +151,13 @@ class HealthEventViewModel(
     fun onRepeatChanged(newRepeat: RepeatInterval) {
         uiState = uiState.copy(
             selectedInterval = newRepeat
+        )
+    }
+
+    fun onCompleteClicked(event: HealthEventEntity) {
+        event.copy(
+            isCompleted = true,
+            completedOn = LocalDateTime.now()
         )
     }
 }
