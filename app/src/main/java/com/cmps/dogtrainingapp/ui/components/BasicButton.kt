@@ -1,11 +1,14 @@
 package com.cmps.dogtrainingapp.ui.components
 
+import android.widget.Button
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
 import com.cmps.dogtrainingapp.ui.theme.Orange
 import com.cmps.dogtrainingapp.ui.theme.White
@@ -27,12 +31,13 @@ fun BasicButton(
     onClick: () -> Unit,
     buttonColor: Color = Orange,
     textColor: Color = White,
+    borderColor: Color = Orange,
     paddingTop: Int = 10
 ) {
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    Button(
+    Button (
         onClick = {
             dismissKeyboard(focusManager, keyboardController)
              onClick()},
@@ -40,12 +45,13 @@ fun BasicButton(
             .fillMaxWidth()
             .padding(top = paddingTop.dp),
         enabled = true,
+        border = BorderStroke(1.dp,borderColor),
         shape = RoundedCornerShape(50.dp),
         colors = ButtonDefaults.buttonColors(
             contentColor = textColor,
             containerColor = buttonColor
         ),
-        elevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp),
+        //elevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp),
         contentPadding = PaddingValues(
             start = 20.dp,
             top = 12.dp,
