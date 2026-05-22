@@ -6,6 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.cmps.dogtrainingapp.ui.screens.health.HealthEventRoute
+import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModel
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModel
 import com.cmps.dogtrainingapp.ui.screens.walk.WalkHubRoute
@@ -16,7 +18,8 @@ import com.cmps.dogtrainingapp.ui.screens.walk.WalkViewModel
 fun AppNavGraph(
     navController: NavHostController,
     profileViewModel: ProfileViewModel,
-    walkViewModel: WalkViewModel
+    walkViewModel: WalkViewModel,
+    healthViewModel: HealthEventViewModel
 ) {
     NavHost(
         navController = navController,
@@ -35,7 +38,7 @@ fun AppNavGraph(
         }
 
         composable(Routes.HEALTH_HUB) {
-
+            HealthEventRoute(healthViewModel)
         }
 
         composable(Routes.WALK_TRACKER) {
