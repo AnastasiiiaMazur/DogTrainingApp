@@ -22,9 +22,11 @@ import com.cmps.dogtrainingapp.data.local.AppDatabase
 import com.cmps.dogtrainingapp.data.local.dao.PetDao
 import com.cmps.dogtrainingapp.data.repository.HealthEventRepository
 import com.cmps.dogtrainingapp.data.repository.PetRepository
+import com.cmps.dogtrainingapp.data.repository.TrainingRepository
 import com.cmps.dogtrainingapp.data.repository.WalkHubRepository
 import com.cmps.dogtrainingapp.data.repository.WeightRepository
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
+import com.cmps.dogtrainingapp.data.source.json.TrainingJsonSource
 import com.cmps.dogtrainingapp.ui.navigation.AppNavGraph
 import com.cmps.dogtrainingapp.ui.navigation.CustomBottomNav
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModel
@@ -33,6 +35,8 @@ import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileScreen
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModel
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModelFactory
+import com.cmps.dogtrainingapp.ui.screens.training.TrainingViewModel
+import com.cmps.dogtrainingapp.ui.screens.training.TrainingViewModelFactory
 import com.cmps.dogtrainingapp.ui.screens.walk.WalkViewModel
 import com.cmps.dogtrainingapp.ui.screens.walk.WalkViewModelFactory
 import com.cmps.dogtrainingapp.ui.theme.DogTrainingAppTheme
@@ -50,11 +54,13 @@ class MainActivity : ComponentActivity() {
     private val lessonDao by lazy { db.lessonProgressDao() }
 
     private val petPrefs by lazy { SelectedPetPreferences(applicationContext) }
+    private val trainingJsonSource by lazy { TrainingJsonSource(applicationContext) }
 
     private val profileRepo by lazy { PetRepository(petDao, petPrefs) }
     private val walkRepo by lazy { WalkHubRepository(walkDao, petPrefs) }
     private val weightRepo by lazy { WeightRepository(weightDao, petPrefs) }
     private val healthRepo by lazy { HealthEventRepository(healthDao, petPrefs) }
+    private val trainingRepo by lazy { TrainingRepository(trainingJsonSource) }
 
     private val profileViewModel: ProfileViewModel by viewModels {
         ProfileViewModelFactory(profileRepo, weightRepo) }
@@ -62,6 +68,8 @@ class MainActivity : ComponentActivity() {
         WalkViewModelFactory(walkRepo) }
     private val healthViewModel: HealthEventViewModel by viewModels {
         HealthEventViewModelFactory(healthRepo) }
+    private val trainingViewModel: TrainingViewModel by viewModels {
+        TrainingViewModelFactory(trainingRepo) }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -94,7 +102,8 @@ class MainActivity : ComponentActivity() {
                             navController = navController,
                             profileViewModel = profileViewModel,
                             walkViewModel = walkViewModel,
-                            healthViewModel = healthViewModel
+                            healthViewModel = healthViewModel,
+                            trainingViewModel = trainingViewModel
                         )
                     }
 

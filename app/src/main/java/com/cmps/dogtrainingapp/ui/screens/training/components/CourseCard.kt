@@ -2,7 +2,9 @@ package com.cmps.dogtrainingapp.ui.screens.training.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +22,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -63,6 +66,7 @@ fun CourseCard(
             .clip(RoundedCornerShape(12.dp))
             .fillMaxWidth()
             .height(200.dp)
+            .clickable{ onClick() }
     ) {
 
         Image(
@@ -78,33 +82,74 @@ fun CourseCard(
                 .background(Black.copy(alpha = 0.25f))
         )
 
-        Row(
+        Column (
             modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 7.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .fillMaxSize()
+                .padding(horizontal = 10.dp, vertical = 10.dp)
         ) {
-            Text(
-                text = course.title,
-                color = White,
-                fontFamily = MyFontFamily,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.SemiBold
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Start Course",
+                    color = White,
+                    fontFamily = MyFontFamily,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                GradientDot(colors = colors)
+
+                Spacer(modifier = Modifier.width(5.dp))
+
+                Text(
+                    text = course.level,
+                    color = White,
+                    fontFamily = MyFontFamily,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
 
             Spacer(modifier = Modifier.weight(1f))
 
-            GradientDot(colors = colors)
+            Row {
 
-            Spacer(modifier = Modifier.width(5.dp))
+                Column(
+                    modifier = Modifier
+                        .weight(0.7f)
+                ) {
+                    Text(
+                        text = course.title,
+                        color = White,
+                        fontFamily = MyFontFamily,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
 
-            Text(
-                text = course.level,
-                color = White,
-                fontFamily = MyFontFamily,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.SemiBold
-            )
+                    Text(
+                        text = course.description,
+                        color = White,
+                        fontFamily = MyFontFamily,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Normal
+                    )
+                }
 
+                Text(
+                    text = "${ course.lessons.size } lessons",
+                    color = White,
+                    fontFamily = MyFontFamily,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier
+                        .weight(0.3f)
+                        .fillMaxWidth()
+                )
+            }
         }
     }
 }

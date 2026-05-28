@@ -10,6 +10,8 @@ import com.cmps.dogtrainingapp.ui.screens.health.HealthEventRoute
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModel
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModel
+import com.cmps.dogtrainingapp.ui.screens.training.TrainingRoute
+import com.cmps.dogtrainingapp.ui.screens.training.TrainingViewModel
 import com.cmps.dogtrainingapp.ui.screens.walk.WalkHubRoute
 import com.cmps.dogtrainingapp.ui.screens.walk.WalkViewModel
 
@@ -19,7 +21,8 @@ fun AppNavGraph(
     navController: NavHostController,
     profileViewModel: ProfileViewModel,
     walkViewModel: WalkViewModel,
-    healthViewModel: HealthEventViewModel
+    healthViewModel: HealthEventViewModel,
+    trainingViewModel: TrainingViewModel
 ) {
     NavHost(
         navController = navController,
@@ -30,7 +33,7 @@ fun AppNavGraph(
         }
 
         composable(Routes.TRAINING_HUB) {
-
+            TrainingRoute(trainingViewModel)
         }
 
         composable(Routes.PROFILE) {
