@@ -31,7 +31,13 @@ import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.data.local.entity.HealthEventEntity
 import com.cmps.dogtrainingapp.data.local.entity.HealthEventType
 import com.cmps.dogtrainingapp.data.local.entity.RepeatInterval
+import com.cmps.dogtrainingapp.ui.components.GradientDot
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
+import com.cmps.dogtrainingapp.ui.theme.Gray
+import com.cmps.dogtrainingapp.ui.theme.Green
+import com.cmps.dogtrainingapp.ui.theme.LightGray2
+import com.cmps.dogtrainingapp.ui.theme.LightGreen
+import com.cmps.dogtrainingapp.ui.theme.LightRed
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
 import com.cmps.dogtrainingapp.ui.theme.Red
 import com.cmps.dogtrainingapp.ui.theme.White
@@ -74,6 +80,12 @@ fun HealthEventCard(
         EventStatus.UPCOMING -> "Upcoming"
         EventStatus.OVERDUE -> "Overdue"
         EventStatus.COMPLETED -> "Completed"
+    }
+
+    val colors = when(status) {
+        EventStatus.OVERDUE -> listOf(Red, LightRed)
+        EventStatus.UPCOMING -> listOf(Green, LightGreen)
+        EventStatus.COMPLETED -> listOf(Gray, LightGray2)
     }
 
     val dateText = event.date.format(
@@ -149,7 +161,7 @@ fun HealthEventCard(
             modifier = Modifier.padding(top = 5.dp, bottom = 5.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            StatusDot(status = status)
+            GradientDot(colors = colors)
 
             Spacer(modifier = Modifier.width(7.dp))
 

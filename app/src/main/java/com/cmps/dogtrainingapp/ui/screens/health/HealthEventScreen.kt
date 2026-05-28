@@ -25,7 +25,6 @@ fun HealthEventRoute(viewModel: HealthEventViewModel) {
 fun HealthEventScreen(
     state: HealthEventUiState
 ) {
-
     Column(
         modifier = Modifier
             .fillMaxSize()
