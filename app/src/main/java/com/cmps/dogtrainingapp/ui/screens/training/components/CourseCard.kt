@@ -27,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cmps.dogtrainingapp.data.model.Course
+import com.cmps.dogtrainingapp.data.model.CourseLevel
 import com.cmps.dogtrainingapp.ui.components.GradientDot
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.Green
@@ -53,8 +54,8 @@ fun CourseCard(
     )
 
     val colors = when(course.level) {
-        "Beginner" -> listOf(Green, LightGreen)
-        "Intermediate" -> listOf(Yellow, LightYellow)
+        CourseLevel.BEGINNER -> listOf(Green, LightGreen)
+        CourseLevel.INTERMEDIATE -> listOf(Yellow, LightYellow)
         else -> listOf(Red, LightRed)
     }
 
@@ -105,7 +106,7 @@ fun CourseCard(
                 Spacer(modifier = Modifier.width(5.dp))
 
                 Text(
-                    text = course.level,
+                    text = course.level.displayName,
                     color = White,
                     fontFamily = MyFontFamily,
                     fontSize = 14.sp,
@@ -162,7 +163,7 @@ fun CourseCardPreview() {
         id = "1",
         title = "Essential Commands",
         description = "Teach fundamental commands every puppy needs.",
-        level = "Beginner",
+        level = CourseLevel.INTERMEDIATE,
         imageName = "mod1_l1",
         lessons = emptyList()
     )

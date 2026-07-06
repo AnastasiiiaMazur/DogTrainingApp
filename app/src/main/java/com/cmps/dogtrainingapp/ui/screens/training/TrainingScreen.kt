@@ -24,6 +24,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.data.model.Course
+import com.cmps.dogtrainingapp.data.model.CourseLevel
 import com.cmps.dogtrainingapp.ui.navigation.navigateHome
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
@@ -113,7 +114,7 @@ fun TrainingScreenPreview() {
                 id = "1",
                 title = "Essential Commands",
                 description = "Teach fundamental commands every puppy needs.",
-                level = "Beginner",
+                level = CourseLevel.INTERMEDIATE,
                 imageName = "mod1_l1",
                 lessons = emptyList()
             ),
@@ -121,7 +122,7 @@ fun TrainingScreenPreview() {
                 id = "2",
                 title = "Potty Training",
                 description = "Quick methods to house-train your puppy.",
-                level = "Beginner",
+                level = CourseLevel.INTERMEDIATE,
                 imageName = "mod2_l1",
                 lessons = emptyList()
             )
