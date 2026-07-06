@@ -860,6 +860,7 @@
         {
           "id": "les-001",
           "title": "Lesson 1: Recall Foundation",
+          "image": "mod5_l1",
           "goal": "Establish a clear and reliable recall command that your dog responds to immediately.",
           "duration": "15–20 minutes",
           "steps": [
@@ -877,6 +878,7 @@
         {
           "id": "les-002",
           "title": "Lesson 2: Recall with Minor Distractions",
+          "image": "mod5_l2",
           "goal": "Improve recall reliability when your dog faces mild distractions.",
           "duration": "15–20 minutes",
           "steps": [
@@ -894,6 +896,7 @@
         {
           "id": "les-003",
           "title": "Lesson 3: Emergency Recall Word",
+          "image": "mod5_l3",
           "goal": "Teach your dog a distinct and highly reliable emergency recall command for urgent situations.",
           "duration": "20–25 minutes",
           "steps": [
@@ -911,6 +914,7 @@
         {
           "id": "les-004",
           "title": "Lesson 4: Long-Leash Recall Training",
+          "image": "mod5_l4",
           "goal": "Safely practice and enhance recall reliability at extended distances using a long leash.",
           "duration": "20–25 minutes",
           "steps": [
@@ -928,6 +932,7 @@
         {
           "id": "les-005",
           "title": "Lesson 5: Recall During Play",
+          "image": "mod5_l5",
           "goal": "Train your dog to reliably return to you even during active play sessions.",
           "duration": "15–20 minutes",
           "steps": [
@@ -945,6 +950,7 @@
         {
           "id": "les-006",
           "title": "Lesson 6: Food & Toy Distraction Recall",
+          "image": "mod5_l6",
           "goal": "Achieve reliable recall responses even when your dog faces highly tempting distractions like food or toys.",
           "duration": "20–25 minutes",
           "steps": [
@@ -962,6 +968,7 @@
         {
           "id": "les-007",
           "title": "Lesson 7: Recall Around Other Dogs",
+          "image": "mod5_l7",
           "goal": "Train your dog to reliably come when called, even when other dogs are present.",
           "duration": "20–25 minutes",
           "steps": [
@@ -979,6 +986,7 @@
         {
           "id": "les-008",
           "title": "Lesson 8: Outdoor Recall in Open Spaces",
+          "image": "mod5_l8",
           "goal": "Achieve consistent and prompt recall responses in open outdoor environments.",
           "duration": "20–30 minutes",
           "steps": [
@@ -996,6 +1004,7 @@
         {
           "id": "les-009",
           "title": "Lesson 9: Immediate Stop and Recall",
+          "image": "mod5_l9",
           "goal": "Teach your dog to quickly stop any current action and promptly return upon hearing combined commands.",
           "duration": "20–25 minutes",
           "steps": [
@@ -1013,6 +1022,7 @@
         {
           "id": "les-010",
           "title": "Lesson 10: Hidden Handler Recall",
+          "image": "mod5_l10",
           "goal": "Train your dog to confidently find and return to you when you are briefly out of sight.",
           "duration": "20–30 minutes",
           "steps": [
@@ -1030,6 +1040,7 @@
         {
           "id": "les-011",
           "title": "Lesson 11: Proofing Your Recall",
+          "image": "mod5_l11",
           "goal": "Test and reinforce your dog’s recall reliability under varied conditions and higher-level distractions.",
           "duration": "25–30 minutes",
           "steps": [
@@ -1047,6 +1058,7 @@
         {
           "id": "les-012",
           "title": "Lesson 12: Reliable Recall Graduation",
+          "image": "mod5_l12",
           "goal": "Perform a final evaluation demonstrating your dog’s mastery of the recall command under multiple challenging scenarios.",
           "duration": "30–35 minutes",
           "steps": [
@@ -1068,11 +1080,12 @@
       "title": "Loose-Leash Walking",
       "description": "Relaxed walking routines outdoors.",
       "level": "Intermediate",
-      "imageName": "mod6_l6",
+      "imageName": "mod6_l1",
       "lessons": [
         {
           "id": "les-001",
           "title": "Lesson 1: Leash Introduction",
+          "image": "mod6_l1",
           "goal": "Help your dog become comfortable and calm wearing a leash.",
           "duration": "10–15 minutes",
           "steps": [
@@ -1090,6 +1103,7 @@
         {
           "id": "les-002",
           "title": "Lesson 2: Basic Leash Manners",
+          "image": "mod6_l2",
           "goal": "Teach your dog foundational manners to walk gently without pulling.",
           "duration": "15–20 minutes",
           "steps": [
@@ -1107,6 +1121,7 @@
         {
           "id": "les-003",
           "title": "Lesson 3: Stop-and-Go Technique",
+          "image": "mod6_l3",
           "goal": "Effectively teach your dog to avoid leash pulling using the stop-and-go method.",
           "duration": "20–25 minutes",
           "steps": [
@@ -1124,6 +1139,7 @@
         {
           "id": "les-004",
           "title": "Lesson 4: Changing Directions",
+          "image": "mod6_l4",
           "goal": "Improve your dog’s leash manners and attentiveness by frequently changing walking directions.",
           "duration": "20–25 minutes",
           "steps": [
@@ -1141,6 +1157,7 @@
         {
           "id": "les-005",
           "title": "Lesson 5: Maintaining a Loose Leash",
+          "image": "mod6_l5",
           "goal": "Consistently practice leash walking to maintain tension-free walks over extended periods.",
           "duration": "25–30 minutes",
           "steps": [
@@ -1158,6 +1175,7 @@
         {
           "id": "les-006",
           "title": "Lesson 6: Ignoring Distractions",
+          "image": "mod6_l6",
           "goal": "Teach your dog to walk calmly on a loose leash despite minor distractions in the environment.",
           "duration": "20–25 minutes",
           "steps": [
@@ -1175,6 +1193,7 @@
         {
           "id": "les-007",
           "title": "Lesson 7: Heeling Basics",
+          "image": "mod6_l7",
           "goal": "Introduce your dog to formal heel positioning, walking calmly beside you on a loose leash.",
           "duration": "20–25 minutes",
           "steps": [
@@ -1192,6 +1211,7 @@
         {
           "id": "les-008",
           "title": "Lesson 8: Walking with Pace Changes",
+          "image": "mod6_l8",
           "goal": "Teach your dog to adjust smoothly and effortlessly to changes in your walking pace.",
           "duration": "20–25 minutes",
           "steps": [
@@ -1209,6 +1229,7 @@
         {
           "id": "les-009",
           "title": "Lesson 9: Walking in Busy Areas",
+          "image": "mod6_l9",
           "goal": "Master calm and controlled leash walking in crowded, noisy, or busy environments.",
           "duration": "25–30 minutes",
           "steps": [
@@ -1226,6 +1247,7 @@
         {
           "id": "les-010",
           "title": "Lesson 10: Loose-Leash Mastery Test",
+          "image": "mod6_l10",
           "goal": "Evaluate and confirm your dog’s mastery of calm, controlled, loose-leash walking in various realistic scenarios.",
           "duration": "30 minutes",
           "steps": [
@@ -1253,6 +1275,7 @@
         {
           "id": "les-001",
           "title": "Lesson 1: Shake Hands",
+          "image": "mod7_l1",
           "goal": "Teach your dog to politely offer their paw for a friendly handshake.",
           "duration": "10–15 minutes",
           "steps": [
@@ -1270,6 +1293,7 @@
         {
           "id": "les-002",
           "title": "Lesson 2: Spin in a Circle",
+          "image": "mod7_l2",
           "goal": "Train your dog to make a simple, enthusiastic spin on command.",
           "duration": "10–15 minutes",
           "steps": [
@@ -1287,6 +1311,7 @@
         {
           "id": "les-003",
           "title": "Lesson 3: High Five",
+          "image": "mod7_l3",
           "goal": "Teach your dog to enthusiastically give a \"high five\" upon request.",
           "duration": "10–15 minutes",
           "steps": [
@@ -1304,6 +1329,7 @@
         {
           "id": "les-004",
           "title": "Lesson 4: Roll Over",
+          "image": "mod7_l4",
           "goal": "Train your dog to roll over playfully on command.",
           "duration": "15–20 minutes",
           "steps": [
@@ -1321,6 +1347,7 @@
         {
           "id": "les-005",
           "title": "Lesson 5: Speak on Command",
+          "image": "mod7_l5",
           "goal": "Encourage your dog to bark gently on cue when prompted.",
           "duration": "15–20 minutes",
           "steps": [
@@ -1338,6 +1365,7 @@
         {
           "id": "les-006",
           "title": "Lesson 6: Play Dead",
+          "image": "mod7_l6",
           "goal": "Teach your dog to lie completely still on their side as a fun, dramatic trick.",
           "duration": "15–20 minutes",
           "steps": [
@@ -1355,6 +1383,7 @@
         {
           "id": "les-007",
           "title": "Lesson 7: Crawl",
+          "image": "mod7_l7",
           "goal": "Train your dog to crawl forward while staying low on their belly.",
           "duration": "15–20 minutes",
           "steps": [
@@ -1372,6 +1401,7 @@
         {
           "id": "les-008",
           "title": "Lesson 8: Take a Bow",
+          "image": "mod7_l8",
           "goal": "Teach your dog to gracefully bow down, lowering their front half while keeping their hindquarters elevated.",
           "duration": "15–20 minutes",
           "steps": [
@@ -1389,6 +1419,7 @@
         {
           "id": "les-009",
           "title": "Lesson 9: Jump Through a Hoop",
+          "image": "mod7_l9",
           "goal": "Introduce your dog to safely and confidently jumping through a hoop.",
           "duration": "20–25 minutes",
           "steps": [
@@ -1406,6 +1437,7 @@
         {
           "id": "les-010",
           "title": "Lesson 10: Fun Tricks Showcase",
+          "image": "mod7_l10",
           "goal": "Combine all previously learned beginner tricks into a short, engaging routine.",
           "duration": "25–30 minutes",
           "steps": [

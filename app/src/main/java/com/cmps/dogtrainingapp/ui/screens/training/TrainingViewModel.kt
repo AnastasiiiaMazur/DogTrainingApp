@@ -23,4 +23,8 @@ class TrainingViewModel(
         )
     }
 
+    fun onCourseClicked() {
+
+    }
+
 }
