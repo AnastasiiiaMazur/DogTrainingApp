@@ -64,8 +64,11 @@ import com.cmps.dogtrainingapp.ui.theme.White
 import java.io.File
 import java.time.LocalDate
 import androidx.core.net.toUri
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.ui.components.ConfirmationDialog
 import com.cmps.dogtrainingapp.ui.components.openDatePicker
+import com.cmps.dogtrainingapp.ui.navigation.navigateHome
 import com.cmps.dogtrainingapp.ui.theme.Orange
 import com.cmps.dogtrainingapp.utils.dismissKeyboard
 import com.cmps.dogtrainingapp.utils.hideKeyboardOnTap
@@ -74,7 +77,10 @@ import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun ProfileRoute(viewModel: ProfileViewModel) {
+fun ProfileRoute(
+    viewModel: ProfileViewModel,
+    navController: NavHostController) {
+
     val state = viewModel.uiState
 
     ProfileScreen(
@@ -89,7 +95,8 @@ fun ProfileRoute(viewModel: ProfileViewModel) {
         onImageChanged = { viewModel.onImageChanged(it) },
         onPetChanged = { viewModel.onPetChanged(it) },
         onAddNewPetClicked = { viewModel.onAddNewPetClicked() },
-        onDeleteClicked = { viewModel.onDeleteClicked(it) }
+        onDeleteClicked = { viewModel.onDeleteClicked(it) },
+        navController = navController
     )
 }
 
@@ -107,7 +114,8 @@ fun ProfileScreen(
     onImageChanged: (String) -> Unit,
     onPetChanged: (PetEntity) -> Unit,
     onAddNewPetClicked: () -> Unit,
-    onDeleteClicked: (PetEntity) -> Unit
+    onDeleteClicked: (PetEntity) -> Unit,
+    navController: NavHostController
 ) {
 
     var genderExpanded by remember { mutableStateOf(false) }
@@ -171,6 +179,7 @@ fun ProfileScreen(
             modifier = Modifier
                 .padding(top = 15.dp)
                 .size(25.dp)
+                .clickable{ navController.navigateHome() }
         )
 
         Row (
@@ -564,6 +573,7 @@ fun ProfileScreenPreview() {
         onImageChanged = {},
         onPetChanged = {},
         onAddNewPetClicked = {},
-        onDeleteClicked = {}
+        onDeleteClicked = {},
+        navController = rememberNavController()
     )
 }

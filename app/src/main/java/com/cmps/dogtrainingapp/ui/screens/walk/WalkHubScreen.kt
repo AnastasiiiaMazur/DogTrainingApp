@@ -52,8 +52,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.navigation.NavHostController
 import com.cmps.dogtrainingapp.ui.components.ConfirmationDialog
 import com.cmps.dogtrainingapp.ui.components.openDatePicker
+import com.cmps.dogtrainingapp.ui.navigation.navigateHome
 import com.cmps.dogtrainingapp.ui.theme.Red
 import com.cmps.dogtrainingapp.utils.dismissKeyboard
 import java.time.format.DateTimeFormatter
@@ -62,7 +64,10 @@ import java.util.Calendar
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun WalkHubRoute(viewModel: WalkViewModel) {
+fun WalkHubRoute(
+    viewModel: WalkViewModel,
+    navController: NavHostController
+) {
     val state = viewModel.uiState
 
     WalkHubScreen(
@@ -73,7 +78,8 @@ fun WalkHubRoute(viewModel: WalkViewModel) {
         onDateChanged = { viewModel.onDateChanged(it) },
         onTimeChanged = { viewModel.onTimeChanged(it) },
         onDeleteClicked = { viewModel.onDeleteClicked(it) },
-        onEditClicked = { viewModel.onEditClicked(it) }
+        onEditClicked = { viewModel.onEditClicked(it) },
+        navController = navController
     )
 }
 
@@ -87,7 +93,8 @@ fun WalkHubScreen(
     onDateChanged: (LocalDate) -> Unit,
     onTimeChanged: (LocalTime) -> Unit,
     onDeleteClicked: (Long) -> Unit,
-    onEditClicked: (WalkEventEntity) -> Unit
+    onEditClicked: (WalkEventEntity) -> Unit,
+    navController: NavHostController
 ) {
 
     val context = LocalContext.current
@@ -138,6 +145,7 @@ fun WalkHubScreen(
                 modifier = Modifier
                     .padding(top = 15.dp)
                     .size(25.dp)
+                    .clickable{ navController.navigateHome() }
             )
 
             Column (

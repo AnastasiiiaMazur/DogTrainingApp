@@ -8,22 +8,29 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.ui.theme.Red
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun HealthEventRoute(viewModel: HealthEventViewModel) {
+fun HealthEventRoute(
+    viewModel: HealthEventViewModel,
+    navController: NavHostController
+) {
     val state = viewModel.uiState
 
     HealthEventScreen(
-        state = state
+        state = state,
+        navController = navController
     )
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HealthEventScreen(
-    state: HealthEventUiState
+    state: HealthEventUiState,
+    navController: NavHostController
 ) {
     Column(
         modifier = Modifier
@@ -39,6 +46,7 @@ fun PreviewScreen() {
     HealthEventScreen(
         state = HealthEventUiState(
 
-        )
+        ),
+        navController = rememberNavController()
     )
 }

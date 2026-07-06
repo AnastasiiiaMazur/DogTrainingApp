@@ -33,19 +33,19 @@ fun AppNavGraph(
         }
 
         composable(Routes.TRAINING_HUB) {
-            TrainingRoute(trainingViewModel)
+            TrainingRoute(trainingViewModel, navController)
         }
 
         composable(Routes.PROFILE) {
-            ProfileRoute(profileViewModel)
+            ProfileRoute(profileViewModel, navController)
         }
 
         composable(Routes.HEALTH_HUB) {
-            HealthEventRoute(healthViewModel)
+            HealthEventRoute(healthViewModel, navController)
         }
 
         composable(Routes.WALK_TRACKER) {
-            WalkHubRoute(walkViewModel)
+            WalkHubRoute(walkViewModel, navController)
         }
     }
 }
