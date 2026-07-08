@@ -27,6 +27,7 @@ import com.cmps.dogtrainingapp.utils.dismissKeyboard
 
 @Composable
 fun BasicButton(
+    modifier: Modifier = Modifier,
     buttonText: String = "",
     onClick: () -> Unit,
     buttonColor: Color = Orange,
@@ -41,7 +42,7 @@ fun BasicButton(
         onClick = {
             dismissKeyboard(focusManager, keyboardController)
              onClick()},
-        modifier = Modifier
+        modifier
             .fillMaxWidth()
             .padding(top = paddingTop.dp),
         enabled = true,

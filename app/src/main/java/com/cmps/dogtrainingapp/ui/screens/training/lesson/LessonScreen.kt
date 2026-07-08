@@ -2,6 +2,7 @@ package com.cmps.dogtrainingapp.ui.screens.training.lesson
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +32,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.data.model.Lesson
+import com.cmps.dogtrainingapp.ui.components.BasicButton
+import com.cmps.dogtrainingapp.ui.screens.training.components.LessonItem
 import com.cmps.dogtrainingapp.ui.screens.training.course.CourseUiState
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
@@ -70,81 +76,139 @@ fun LessonScreen(
         context.packageName
     )
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(
                 top = 50.dp,
-                bottom = 50.dp,
+                bottom = 30.dp,
                 start = 20.dp,
                 end = 20.dp
             )
     ) {
-        Text(
-            text = "state.course.title",
-            color = Black,
-            fontSize = 26.sp,
-            fontFamily = MyFontFamily,
-            fontWeight = FontWeight.Bold
-        )
 
-        Icon(
-            imageVector = ImageVector.vectorResource(id = R.drawable.back_button),
-            contentDescription = "Back button",
-            tint = DarkGray,
+        Column(
             modifier = Modifier
-                .padding(top = 15.dp)
-                .size(25.dp)
-                .clickable { navController.popBackStack() }
-        )
-
-        Spacer(modifier = Modifier.padding(bottom = 15.dp))
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(bottom = 10.dp)
+                .padding(bottom = 65.dp)
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
         ) {
             Text(
-                text = lesson.title,
+                text = "Lesson Details",
                 color = Black,
-                fontSize = 20.sp,
+                fontSize = 26.sp,
                 fontFamily = MyFontFamily,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.weight(1f)
+                fontWeight = FontWeight.Bold
             )
 
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.back_button),
+                contentDescription = "Back button",
+                tint = DarkGray,
+                modifier = Modifier
+                    .padding(top = 15.dp)
+                    .size(25.dp)
+                    .clickable { navController.popBackStack() }
+            )
+
+            Spacer(modifier = Modifier.height(15.dp))
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(bottom = 10.dp)
+            ) {
+                Text(
+                    text = lesson.title,
+                    color = Black,
+                    fontSize = 20.sp,
+                    fontFamily = MyFontFamily,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1f)
+                )
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Text(
+                    text = lesson.duration,
+                    color = Gray,
+                    fontSize = 13.sp,
+                    fontFamily = MyFontFamily,
+                    fontWeight = FontWeight.Normal
+                )
+            }
+
             Text(
-                text = lesson.duration,
-                color = Gray,
-                fontSize = 13.sp,
+                text = lesson.goal,
+                color = Black,
+                fontSize = 18.sp,
                 fontFamily = MyFontFamily,
-                fontWeight = FontWeight.Normal
+                fontWeight = FontWeight.SemiBold
+            )
+
+            Spacer(modifier = Modifier.height(15.dp))
+
+            Image(
+                painter = painterResource(id = imageRes),
+                contentDescription = "course image",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.height(200.dp)
+            )
+
+            Spacer(modifier = Modifier.height(15.dp))
+
+            lesson.steps.forEachIndexed { index, step ->
+
+                LessonItem(
+                    type = "Step",
+                    item = step,
+                    itemNum = index + 1
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+            }
+
+            Spacer(modifier = Modifier.height(15.dp))
+
+            Text(
+                text = "Useful Tips",
+                color = Black,
+                fontSize = 18.sp,
+                fontFamily = MyFontFamily,
+                fontWeight = FontWeight.SemiBold
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            lesson.tips.forEachIndexed { index, tip ->
+
+                LessonItem(
+                    type = "Tip",
+                    item = tip,
+                    itemNum = index + 1
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+            }
+
+            Spacer(modifier = Modifier.height(15.dp))
+
+            Text(
+                text = "Completion Criteria: ${ lesson.completionCriteria }",
+                color = Black,
+                fontSize = 18.sp,
+                fontFamily = MyFontFamily,
+                fontWeight = FontWeight.SemiBold
             )
         }
 
-        Text(
-            text = lesson.goal,
-            color = Black,
-            fontSize = 18.sp,
-            fontFamily = MyFontFamily,
-            fontWeight = FontWeight.SemiBold
+        BasicButton(
+            buttonText = "Mark Lesson Complete",
+            onClick = {},
+            modifier = Modifier.align(Alignment.BottomCenter)
         )
 
-        Image(
-            painter = painterResource(id = imageRes),
-            contentDescription = "course image",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.height(200.dp)
-        )
-
-        Text(
-            text = "Completion Criteria: ${ state.lesson?.completionCriteria ?: "" }",
-            color = Black,
-            fontSize = 18.sp,
-            fontFamily = MyFontFamily,
-            fontWeight = FontWeight.SemiBold
-        )
     }
+
 }
 
 @Preview(showBackground = true)
