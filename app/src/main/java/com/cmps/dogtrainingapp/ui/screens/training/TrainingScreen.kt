@@ -25,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.data.model.Course
 import com.cmps.dogtrainingapp.data.model.CourseLevel
+import com.cmps.dogtrainingapp.ui.navigation.Routes
 import com.cmps.dogtrainingapp.ui.navigation.navigateHome
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
@@ -97,7 +98,7 @@ fun TrainingScreen(
 
             CourseCard(
                 course,
-                onClick = {}
+                onClick = { navController.navigate(Routes.course(course.id)) }
             )
 
         }

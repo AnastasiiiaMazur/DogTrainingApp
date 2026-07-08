@@ -6,4 +6,7 @@ object Routes {
     const val PROFILE = "profile"
     const val HEALTH_HUB = "health hub"
     const val WALK_TRACKER = "walk tracker"
+
+    const val COURSE = "course/{courseId}"
+    fun course(courseId: String) = "course/$courseId"
 }
