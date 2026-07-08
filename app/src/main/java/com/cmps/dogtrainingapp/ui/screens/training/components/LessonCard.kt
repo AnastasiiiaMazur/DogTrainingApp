@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +33,6 @@ import com.cmps.dogtrainingapp.ui.theme.Orange
 @Composable
 fun LessonCard(
     lesson: Lesson,
-    lessonNumber: Int,
     isCompleted: Boolean,
     isUnlocked: Boolean,
     onClick: () -> Unit,
@@ -59,14 +59,14 @@ fun LessonCard(
         .padding(top = 10.dp)
         .clip(RoundedCornerShape(12.dp))
         .fillMaxWidth()
-        .height(200.dp)
-            .clickable {
-                if (isCompleted || isUnlocked) {
-                    onClick()
-                } else {
-                    onLockedClick()
-                }
+        .wrapContentHeight()
+        .clickable {
+            if (isCompleted || isUnlocked) {
+                onClick()
+            } else {
+                onLockedClick()
             }
+        }
     ) {
 
         Box(
@@ -98,16 +98,16 @@ fun LessonCard(
             text = actionText,
             color = Orange,
             fontFamily = MyFontFamily,
-            fontSize = 16.sp,
+            fontSize = 14.sp,
             fontWeight = FontWeight.SemiBold
         )
 
         Text(
-            text = "Lesson $lessonNumber: ${lesson.title}",
+            text = lesson.title,
             color = Black,
             fontFamily = MyFontFamily,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.SemiBold
+            fontSize = 15.sp,
+            fontWeight = FontWeight.Bold
         )
 
     }
@@ -133,7 +133,6 @@ fun LessonCardPreview() {
     LessonCard(
         lesson = lesson,
         onClick = {},
-        lessonNumber = 1,
         isCompleted = true,
         isUnlocked = true,
         onLockedClick = {}
