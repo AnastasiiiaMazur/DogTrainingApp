@@ -9,4 +9,7 @@ object Routes {
 
     const val COURSE = "course/{courseId}"
     fun course(courseId: String) = "course/$courseId"
+
+    const val LESSON = "course/{courseId}/lesson/{lessonId}"
+    fun lesson(courseId: String, lessonId: String) = "course/$courseId/lesson/$lessonId"
 }

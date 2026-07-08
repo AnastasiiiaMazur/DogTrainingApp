@@ -4,6 +4,7 @@ import android.content.Context
 import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.data.model.Course
 import com.cmps.dogtrainingapp.data.model.CoursesResponse
+import com.cmps.dogtrainingapp.data.model.Lesson
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
@@ -18,4 +19,5 @@ class TrainingJsonSource(
 
         return response.courses
     }
+
 }

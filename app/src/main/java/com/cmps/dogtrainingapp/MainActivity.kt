@@ -39,6 +39,8 @@ import com.cmps.dogtrainingapp.ui.screens.training.TrainingViewModel
 import com.cmps.dogtrainingapp.ui.screens.training.TrainingViewModelFactory
 import com.cmps.dogtrainingapp.ui.screens.training.course.CourseViewModel
 import com.cmps.dogtrainingapp.ui.screens.training.course.CourseViewModelFactory
+import com.cmps.dogtrainingapp.ui.screens.training.lesson.LessonViewModel
+import com.cmps.dogtrainingapp.ui.screens.training.lesson.LessonViewModelFactory
 import com.cmps.dogtrainingapp.ui.screens.walk.WalkViewModel
 import com.cmps.dogtrainingapp.ui.screens.walk.WalkViewModelFactory
 import com.cmps.dogtrainingapp.ui.theme.DogTrainingAppTheme
@@ -75,6 +77,9 @@ class MainActivity : ComponentActivity() {
     private val courseViewModel: CourseViewModel by viewModels {
         CourseViewModelFactory(trainingRepo)
     }
+    private val lessonViewModel: LessonViewModel by viewModels {
+        LessonViewModelFactory(trainingRepo)
+    }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -109,7 +114,8 @@ class MainActivity : ComponentActivity() {
                             walkViewModel = walkViewModel,
                             healthViewModel = healthViewModel,
                             trainingViewModel = trainingViewModel,
-                            courseViewModel = courseViewModel
+                            courseViewModel = courseViewModel,
+                            lessonViewModel = lessonViewModel
                         )
                     }
 

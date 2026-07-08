@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.cmps.dogtrainingapp.R
+import com.cmps.dogtrainingapp.ui.navigation.Routes
 import com.cmps.dogtrainingapp.ui.navigation.navigateHome
 import com.cmps.dogtrainingapp.ui.screens.training.components.LessonCard
 import com.cmps.dogtrainingapp.ui.theme.Black
@@ -102,7 +103,12 @@ fun CourseScreen(
                     isUnlocked = index == 0 ||
                             state.completedLessonIds.contains(course.lessons[index - 1].id),
                     onClick = {
-                        // later navigate to lesson screen
+                        navController.navigate(
+                            Routes.lesson(
+                                course.id,
+                                lesson.id
+                            )
+                        )
                     },
                     onLockedClick = {
                         // later show message

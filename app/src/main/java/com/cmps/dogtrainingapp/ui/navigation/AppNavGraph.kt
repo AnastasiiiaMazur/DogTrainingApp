@@ -14,6 +14,8 @@ import com.cmps.dogtrainingapp.ui.screens.training.TrainingRoute
 import com.cmps.dogtrainingapp.ui.screens.training.TrainingViewModel
 import com.cmps.dogtrainingapp.ui.screens.training.course.CourseRoute
 import com.cmps.dogtrainingapp.ui.screens.training.course.CourseViewModel
+import com.cmps.dogtrainingapp.ui.screens.training.lesson.LessonRoute
+import com.cmps.dogtrainingapp.ui.screens.training.lesson.LessonViewModel
 import com.cmps.dogtrainingapp.ui.screens.walk.WalkHubRoute
 import com.cmps.dogtrainingapp.ui.screens.walk.WalkViewModel
 
@@ -25,7 +27,8 @@ fun AppNavGraph(
     walkViewModel: WalkViewModel,
     healthViewModel: HealthEventViewModel,
     trainingViewModel: TrainingViewModel,
-    courseViewModel: CourseViewModel
+    courseViewModel: CourseViewModel,
+    lessonViewModel: LessonViewModel
 ) {
     NavHost(
         navController = navController,
@@ -58,6 +61,19 @@ fun AppNavGraph(
             CourseRoute(
                 courseId = courseId,
                 viewModel = courseViewModel,
+                navController = navController
+            )
+        }
+
+        composable(Routes.LESSON) { backStackEntry ->
+
+            val courseId = backStackEntry.arguments?.getString("courseId")
+            val lessonId = backStackEntry.arguments?.getString("lessonId")
+
+            LessonRoute(
+                courseId = courseId,
+                lessonId = lessonId,
+                viewModel = lessonViewModel,
                 navController = navController
             )
         }
