@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,11 +32,13 @@ import com.cmps.dogtrainingapp.data.model.Course
 import com.cmps.dogtrainingapp.data.model.CourseLevel
 import com.cmps.dogtrainingapp.ui.components.GradientDot
 import com.cmps.dogtrainingapp.ui.theme.Black
+import com.cmps.dogtrainingapp.ui.theme.Gray
 import com.cmps.dogtrainingapp.ui.theme.Green
 import com.cmps.dogtrainingapp.ui.theme.LightGreen
 import com.cmps.dogtrainingapp.ui.theme.LightRed
 import com.cmps.dogtrainingapp.ui.theme.LightYellow
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
+import com.cmps.dogtrainingapp.ui.theme.Orange
 import com.cmps.dogtrainingapp.ui.theme.Red
 import com.cmps.dogtrainingapp.ui.theme.White
 import com.cmps.dogtrainingapp.ui.theme.Yellow
@@ -43,6 +47,7 @@ import com.cmps.dogtrainingapp.ui.theme.Yellow
 @Composable
 fun CourseCard(
     course: Course,
+    completedLessons: Int = 0,
     onClick: () -> Unit
 ) {
     val context = LocalContext.current
@@ -59,7 +64,9 @@ fun CourseCard(
         else -> listOf(Red, LightRed)
     }
 
-    //painterResource(id = imageRes)
+    val hasStarted = completedLessons > 0
+    val totalLessons = course.lessons.size
+    val progress = completedLessons.toFloat() / totalLessons
 
     Box(
         modifier = Modifier
@@ -92,7 +99,7 @@ fun CourseCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Start Course",
+                    text = if (hasStarted) "Continue Course" else "Start Course",
                     color = White,
                     fontFamily = MyFontFamily,
                     fontSize = 18.sp,
@@ -116,11 +123,9 @@ fun CourseCard(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Row {
-
+            if (hasStarted) {
                 Column(
-                    modifier = Modifier
-                        .weight(0.7f)
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
                         text = course.title,
@@ -131,25 +136,62 @@ fun CourseCard(
                     )
 
                     Text(
-                        text = course.description,
+                        text = "$completedLessons of $totalLessons lessons completed",
                         color = White,
                         fontFamily = MyFontFamily,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Normal
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.padding(top = 6.dp)
+                    )
+
+                    LinearProgressIndicator(
+                        progress = { progress },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp, bottom = 6.dp)
+                            .height(6.dp)
+                            .clip(RoundedCornerShape(50.dp)),
+                        color = Orange,
+                        trackColor = Gray,
+                        strokeCap = ProgressIndicatorDefaults.LinearStrokeCap,
                     )
                 }
+            } else {
+                Row {
 
-                Text(
-                    text = "${ course.lessons.size } lessons",
-                    color = White,
-                    fontFamily = MyFontFamily,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    textAlign = TextAlign.End,
-                    modifier = Modifier
-                        .weight(0.3f)
-                        .fillMaxWidth()
-                )
+                    Column(
+                        modifier = Modifier
+                            .weight(0.7f)
+                    ) {
+                        Text(
+                            text = course.title,
+                            color = White,
+                            fontFamily = MyFontFamily,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+
+                        Text(
+                            text = course.description,
+                            color = White,
+                            fontFamily = MyFontFamily,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Normal
+                        )
+                    }
+
+                    Text(
+                        text = "${ course.lessons.size } lessons",
+                        color = White,
+                        fontFamily = MyFontFamily,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        textAlign = TextAlign.End,
+                        modifier = Modifier
+                            .weight(0.3f)
+                            .fillMaxWidth()
+                    )
+                }
             }
         }
     }

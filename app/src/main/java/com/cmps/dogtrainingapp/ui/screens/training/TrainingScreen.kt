@@ -80,17 +80,6 @@ fun TrainingScreen(
                     .clickable{ navController.navigateHome() }
             )
 
-//            IconButton(
-//                onClick = { navController.navigateHome() },
-//                modifier = Modifier.padding(top = 15.dp)
-//            ) {
-//                Icon(
-//                    imageVector = ImageVector.vectorResource(id = R.drawable.back_button),
-//                    contentDescription = "Back",
-//                    tint = DarkGray
-//                )
-//            }
-
             Spacer(modifier = Modifier.padding(bottom = 15.dp))
         }
 
@@ -98,6 +87,7 @@ fun TrainingScreen(
 
             CourseCard(
                 course,
+                completedLessons = 0,
                 onClick = { navController.navigate(Routes.course(course.id)) }
             )
 
