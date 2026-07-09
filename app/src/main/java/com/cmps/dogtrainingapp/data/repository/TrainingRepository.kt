@@ -7,6 +7,9 @@ import com.cmps.dogtrainingapp.data.model.CourseLevel
 import com.cmps.dogtrainingapp.data.model.Lesson
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
 import com.cmps.dogtrainingapp.data.source.json.TrainingJsonSource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 
 class TrainingRepository(
     private val trainingJsonSource: TrainingJsonSource,
@@ -59,16 +62,36 @@ class TrainingRepository(
         lessonId: String
     ): Boolean {
         return lessonProgressDao.isLessonCompleted(
-            petPrefs.getSelectedPetId(),
-            courseId,
-            lessonId
+            petId = petPrefs.getSelectedPetId(),
+            courseId = courseId,
+            lessonId = lessonId
         ) ?: false
     }
 
-    suspend fun getCompletedLessonIds(courseId: String): Set<String> {
-        return lessonProgressDao.getCompletedLessonIds(
-            petId = petPrefs.getSelectedPetId(),
-            courseId = courseId
-        ).toSet()
+    fun getCompletedLessonIdsForCourse(
+        courseId: String
+    ): Flow<Set<String>> {
+        return petPrefs.selectedPetIdFlow
+            .flatMapLatest { petId ->
+                lessonProgressDao.getCompletedLessonIdsFlow(
+                    petId = petId,
+                    courseId = courseId
+                )
+            }
+            .map { lessonIds ->
+                lessonIds.toSet()
+            }
+    }
+
+    fun getCompletedLessonCounts(): Flow<Map<String, Int>> {
+        return petPrefs.selectedPetIdFlow
+            .flatMapLatest { petId ->
+                lessonProgressDao.getCompletedLessonCountsFlow(petId)
+            }
+            .map { progressList ->
+                progressList.associate {
+                    it.courseId to it.completedCount
+                }
+            }
     }
 }

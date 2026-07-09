@@ -6,32 +6,21 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 import com.cmps.dogtrainingapp.data.local.entity.LessonProgressEntity
+import com.cmps.dogtrainingapp.data.model.CourseProgressCount
 
 @Dao
 interface LessonProgressDao {
-
-    @Query("""SELECT * FROM lesson_progress WHERE petId = :petId AND courseId = :courseId""")
-    fun getLessonsForCourse(petId: Long, courseId: String): Flow<List<LessonProgressEntity>>
-
-    @Query("""SELECT * FROM lesson_progress WHERE petId = :petId AND courseId = :courseId AND lessonId = :lessonId LIMIT 1""")
-    suspend fun getLessonProgress(petId: Long, courseId: String, lessonId: String): LessonProgressEntity?
-
-    @Query("""SELECT * FROM lesson_progress WHERE petId = :petId""")
-    fun getAllForPet(petId: Long): Flow<List<LessonProgressEntity>>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(progress: LessonProgressEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveLessonProgress(progress: LessonProgressEntity)
 
     @Query("""
-    SELECT completed
-    FROM lesson_progress
-    WHERE petId = :petId
-      AND courseId = :courseId
-      AND lessonId = :lessonId
-""")
+        SELECT completed
+        FROM lesson_progress
+        WHERE petId = :petId
+          AND courseId = :courseId
+          AND lessonId = :lessonId
+    """)
     suspend fun isLessonCompleted(
         petId: Long,
         courseId: String,
@@ -39,14 +28,25 @@ interface LessonProgressDao {
     ): Boolean?
 
     @Query("""
-    SELECT lessonId 
-    FROM lesson_progress
-    WHERE petId = :petId 
-      AND courseId = :courseId 
-      AND completed = 1
-""")
-    suspend fun getCompletedLessonIds(
+        SELECT lessonId
+        FROM lesson_progress
+        WHERE petId = :petId
+          AND courseId = :courseId
+          AND completed = 1
+    """)
+    fun getCompletedLessonIdsFlow(
         petId: Long,
         courseId: String
-    ): List<String>
+    ): Flow<List<String>>
+
+    @Query("""
+        SELECT courseId, COUNT(*) as completedCount
+        FROM lesson_progress
+        WHERE petId = :petId
+          AND completed = 1
+        GROUP BY courseId
+    """)
+    fun getCompletedLessonCountsFlow(
+        petId: Long
+    ): Flow<List<CourseProgressCount>>
 }

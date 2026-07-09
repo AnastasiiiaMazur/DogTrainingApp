@@ -86,9 +86,11 @@ fun TrainingScreen(
         items(state.courses) { course ->
 
             CourseCard(
-                course,
-                completedLessons = 0,
-                onClick = { navController.navigate(Routes.course(course.id)) }
+                course = course,
+                completedLessons = state.completedLessonsByCourse[course.id] ?: 0,
+                onClick = {
+                    navController.navigate(Routes.course(course.id))
+                }
             )
 
         }

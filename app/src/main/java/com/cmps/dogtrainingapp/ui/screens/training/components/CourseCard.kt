@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.StrokeCap.Companion.Butt
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -30,10 +31,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cmps.dogtrainingapp.data.model.Course
 import com.cmps.dogtrainingapp.data.model.CourseLevel
+import com.cmps.dogtrainingapp.data.model.Lesson
 import com.cmps.dogtrainingapp.ui.components.GradientDot
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.Gray
 import com.cmps.dogtrainingapp.ui.theme.Green
+import com.cmps.dogtrainingapp.ui.theme.LightGray2
 import com.cmps.dogtrainingapp.ui.theme.LightGreen
 import com.cmps.dogtrainingapp.ui.theme.LightRed
 import com.cmps.dogtrainingapp.ui.theme.LightYellow
@@ -152,8 +155,10 @@ fun CourseCard(
                             .height(6.dp)
                             .clip(RoundedCornerShape(50.dp)),
                         color = Orange,
-                        trackColor = Gray,
-                        strokeCap = ProgressIndicatorDefaults.LinearStrokeCap,
+                        trackColor = LightGray2,
+                        strokeCap = Butt,
+                        gapSize = 0.dp,
+                        drawStopIndicator = {}
                     )
                 }
             } else {
@@ -201,17 +206,41 @@ fun CourseCard(
 @Composable
 fun CourseCardPreview() {
 
+    val lessons = listOf(
+        Lesson(
+            id = "les-001",
+            title = "Essential Commands",
+            image = "mod1_l5",
+            goal = "Establish a clear and reliable recall command that your dog responds to immediately.",
+            duration = "15–20 minutes",
+            steps = emptyList(),
+            tips = emptyList(),
+            completionCriteria = "Dog reliably comes immediately when called from short distances, successfully completing 8 out of 10 attempts.",
+        ),
+        Lesson(
+            id = "les-002",
+            title = "Essential Commands",
+            image = "mod1_l5",
+            goal = "Establish a clear and reliable recall command that your dog responds to immediately.",
+            duration = "15–20 minutes",
+            steps = emptyList(),
+            tips = emptyList(),
+            completionCriteria = "Dog reliably comes immediately when called from short distances, successfully completing 8 out of 10 attempts.",
+        )
+    )
+
     val course = Course(
         id = "1",
         title = "Essential Commands",
         description = "Teach fundamental commands every puppy needs.",
         level = CourseLevel.INTERMEDIATE,
         imageName = "mod1_l1",
-        lessons = emptyList()
+        lessons = lessons
     )
 
     CourseCard(
         course = course,
-        onClick = {}
+        onClick = {},
+        completedLessons = 1
     )
 }
