@@ -37,4 +37,16 @@ interface LessonProgressDao {
         courseId: String,
         lessonId: String
     ): Boolean?
+
+    @Query("""
+    SELECT lessonId 
+    FROM lesson_progress
+    WHERE petId = :petId 
+      AND courseId = :courseId 
+      AND completed = 1
+""")
+    suspend fun getCompletedLessonIds(
+        petId: Long,
+        courseId: String
+    ): List<String>
 }

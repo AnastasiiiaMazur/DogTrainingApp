@@ -1,5 +1,6 @@
 package com.cmps.dogtrainingapp.ui.screens.training.course
 
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -57,6 +59,7 @@ fun CourseScreen(
     navController: NavHostController
 ) {
 
+    val context = LocalContext.current
     val course = state.course ?: return
 
     Column(
@@ -111,14 +114,13 @@ fun CourseScreen(
                         )
                     },
                     onLockedClick = {
-                        // later show message
+                        Toast.makeText(
+                        context,
+                        "You need to complete previous lessons first!",
+                        Toast.LENGTH_LONG).show()
                     }
                 )
             }
         }
-
     }
-
-
-
 }

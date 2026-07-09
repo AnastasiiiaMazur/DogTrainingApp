@@ -64,4 +64,11 @@ class TrainingRepository(
             lessonId
         ) ?: false
     }
+
+    suspend fun getCompletedLessonIds(courseId: String): Set<String> {
+        return lessonProgressDao.getCompletedLessonIds(
+            petId = petPrefs.getSelectedPetId(),
+            courseId = courseId
+        ).toSet()
+    }
 }
