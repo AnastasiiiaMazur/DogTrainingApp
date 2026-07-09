@@ -21,4 +21,20 @@ interface LessonProgressDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(progress: LessonProgressEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun saveLessonProgress(progress: LessonProgressEntity)
+
+    @Query("""
+    SELECT completed
+    FROM lesson_progress
+    WHERE petId = :petId
+      AND courseId = :courseId
+      AND lessonId = :lessonId
+""")
+    suspend fun isLessonCompleted(
+        petId: Long,
+        courseId: String,
+        lessonId: String
+    ): Boolean?
 }

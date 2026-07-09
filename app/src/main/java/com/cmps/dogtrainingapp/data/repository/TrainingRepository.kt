@@ -1,12 +1,17 @@
 package com.cmps.dogtrainingapp.data.repository
 
+import com.cmps.dogtrainingapp.data.local.dao.LessonProgressDao
+import com.cmps.dogtrainingapp.data.local.entity.LessonProgressEntity
 import com.cmps.dogtrainingapp.data.model.Course
 import com.cmps.dogtrainingapp.data.model.CourseLevel
 import com.cmps.dogtrainingapp.data.model.Lesson
+import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
 import com.cmps.dogtrainingapp.data.source.json.TrainingJsonSource
 
 class TrainingRepository(
-    private val trainingJsonSource: TrainingJsonSource
+    private val trainingJsonSource: TrainingJsonSource,
+    private val lessonProgressDao: LessonProgressDao,
+    private val petPrefs: SelectedPetPreferences
 ) {
 
     fun getCourses(): List<Course> {
@@ -35,4 +40,28 @@ class TrainingRepository(
             ?.firstOrNull { it.id == lessonId }
     }
 
+    suspend fun markLessonComplete(
+        courseId: String,
+        lessonId: String
+    ) {
+        lessonProgressDao.saveLessonProgress(
+            LessonProgressEntity(
+                petId = petPrefs.getSelectedPetId(),
+                courseId = courseId,
+                lessonId = lessonId,
+                completed = true
+            )
+        )
+    }
+
+    suspend fun isLessonCompleted(
+        courseId: String,
+        lessonId: String
+    ): Boolean {
+        return lessonProgressDao.isLessonCompleted(
+            petPrefs.getSelectedPetId(),
+            courseId,
+            lessonId
+        ) ?: false
+    }
 }

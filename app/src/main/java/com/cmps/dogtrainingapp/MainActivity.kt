@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
     private val walkRepo by lazy { WalkHubRepository(walkDao, petPrefs) }
     private val weightRepo by lazy { WeightRepository(weightDao, petPrefs) }
     private val healthRepo by lazy { HealthEventRepository(healthDao, petPrefs) }
-    private val trainingRepo by lazy { TrainingRepository(trainingJsonSource) }
+    private val trainingRepo by lazy { TrainingRepository(trainingJsonSource, lessonDao, petPrefs) }
 
     private val profileViewModel: ProfileViewModel by viewModels {
         ProfileViewModelFactory(profileRepo, weightRepo) }

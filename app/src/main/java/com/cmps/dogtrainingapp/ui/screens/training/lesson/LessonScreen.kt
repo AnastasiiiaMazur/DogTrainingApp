@@ -1,5 +1,6 @@
 package com.cmps.dogtrainingapp.ui.screens.training.lesson
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -58,14 +59,16 @@ fun LessonRoute(
 
     LessonScreen(
         state = state,
-        navController = navController
+        navController = navController,
+        onMarkCompleteClick = { viewModel.markLessonComplete() }
     )
 }
 
 @Composable
 fun LessonScreen(
     state: LessonUiState,
-    navController: NavHostController
+    navController: NavHostController,
+    onMarkCompleteClick: () -> Unit
 ) {
     val context = LocalContext.current
     val lesson = state.lesson ?: return
@@ -75,6 +78,8 @@ fun LessonScreen(
         "drawable",
         context.packageName
     )
+
+    val customPadding = if (state.isCompleted) 10.dp else 65.dp
 
     Box(
         modifier = Modifier
@@ -89,7 +94,7 @@ fun LessonScreen(
 
         Column(
             modifier = Modifier
-                .padding(bottom = 65.dp)
+                .padding(bottom = customPadding)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
@@ -201,14 +206,19 @@ fun LessonScreen(
             )
         }
 
-        BasicButton(
-            buttonText = "Mark Lesson Complete",
-            onClick = {},
-            modifier = Modifier.align(Alignment.BottomCenter)
-        )
-
+        if (!state.isCompleted) {
+            BasicButton(
+                buttonText = "Mark Lesson Complete",
+                onClick = {
+                    onMarkCompleteClick()
+                    Toast.makeText(
+                        context,
+                        "Progress saved!",
+                        Toast.LENGTH_SHORT).show() },
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
+        }
     }
-
 }
 
 @Preview(showBackground = true)
@@ -233,11 +243,13 @@ fun LessonScreenPreview() {
                 "Do not use the puppy’s name negatively."
             ),
             completionCriteria = "Your puppy turns toward you when called 8 out of 10 times."
-        )
+        ),
+        isCompleted = true
     )
 
     LessonScreen(
         state = state,
-        navController = rememberNavController()
+        navController = rememberNavController(),
+        onMarkCompleteClick = {}
     )
 }
