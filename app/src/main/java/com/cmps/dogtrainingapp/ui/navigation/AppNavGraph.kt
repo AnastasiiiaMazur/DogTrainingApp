@@ -10,6 +10,7 @@ import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardRoute
 import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardViewModel
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventRoute
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModel
+import com.cmps.dogtrainingapp.ui.screens.health.addEditEvent.AddEditEventRoute
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModel
 import com.cmps.dogtrainingapp.ui.screens.training.TrainingRoute
@@ -77,6 +78,15 @@ fun AppNavGraph(
                 courseId = courseId,
                 lessonId = lessonId,
                 viewModel = lessonViewModel,
+                navController = navController
+            )
+        }
+
+        composable(Routes.EVENT) { backStackEntry ->
+            val eventId = backStackEntry.arguments?.getLong("eventId")
+
+            AddEditEventRoute(
+                eventId = eventId,
                 navController = navController
             )
         }

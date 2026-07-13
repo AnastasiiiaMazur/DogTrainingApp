@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.R
+import com.cmps.dogtrainingapp.ui.components.BasicButton
+import com.cmps.dogtrainingapp.ui.navigation.Routes
 import com.cmps.dogtrainingapp.ui.navigation.navigateHome
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
@@ -118,6 +120,12 @@ fun HealthEventScreen(
             fontSize = 17.sp,
             color = Black,
             modifier = Modifier.padding(top = 5.dp)
+        )
+
+        BasicButton(
+            buttonText = "Add Health Event",
+            paddingTop = 15,
+            onClick = { navController.navigate(Routes.event(state.editingEventId))}
         )
     }
 }
