@@ -6,8 +6,8 @@ import com.cmps.dogtrainingapp.data.local.entity.PetEntity
 import com.cmps.dogtrainingapp.domain.model.DailyRecommendation
 
 data class DashboardUiState (
-    val currentPet: PetEntity,
+    val currentPet: PetEntity? = null,
     val upcomingActivities: List<HealthEventEntity> = emptyList(),
-    val courseProgress: LessonProgressEntity,
+    val courseProgress: LessonProgressEntity? = null,
     val dailyRecs: List<DailyRecommendation> = emptyList()
 )

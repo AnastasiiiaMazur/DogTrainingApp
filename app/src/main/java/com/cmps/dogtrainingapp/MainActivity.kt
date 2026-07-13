@@ -29,6 +29,8 @@ import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
 import com.cmps.dogtrainingapp.data.source.json.TrainingJsonSource
 import com.cmps.dogtrainingapp.ui.navigation.AppNavGraph
 import com.cmps.dogtrainingapp.ui.navigation.CustomBottomNav
+import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardViewModel
+import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardViewModelFactory
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModel
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModelFactory
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
@@ -66,6 +68,8 @@ class MainActivity : ComponentActivity() {
     private val healthRepo by lazy { HealthEventRepository(healthDao, petPrefs) }
     private val trainingRepo by lazy { TrainingRepository(trainingJsonSource, lessonDao, petPrefs) }
 
+    private val dashboardViewModel: DashboardViewModel by viewModels {
+        DashboardViewModelFactory() }
     private val profileViewModel: ProfileViewModel by viewModels {
         ProfileViewModelFactory(profileRepo, weightRepo) }
     private val walkViewModel: WalkViewModel by viewModels {
@@ -75,11 +79,9 @@ class MainActivity : ComponentActivity() {
     private val trainingViewModel: TrainingViewModel by viewModels {
         TrainingViewModelFactory(trainingRepo) }
     private val courseViewModel: CourseViewModel by viewModels {
-        CourseViewModelFactory(trainingRepo)
-    }
+        CourseViewModelFactory(trainingRepo) }
     private val lessonViewModel: LessonViewModel by viewModels {
-        LessonViewModelFactory(trainingRepo)
-    }
+        LessonViewModelFactory(trainingRepo) }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -110,6 +112,7 @@ class MainActivity : ComponentActivity() {
 
                         AppNavGraph(
                             navController = navController,
+                            dashboardViewModel = dashboardViewModel,
                             profileViewModel = profileViewModel,
                             walkViewModel = walkViewModel,
                             healthViewModel = healthViewModel,
