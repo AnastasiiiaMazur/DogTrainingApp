@@ -33,6 +33,8 @@ import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardViewModel
 import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardViewModelFactory
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModel
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModelFactory
+import com.cmps.dogtrainingapp.ui.screens.health.addEditEvent.AddEditViewModel
+import com.cmps.dogtrainingapp.ui.screens.health.addEditEvent.AddEditViewModelFactory
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileScreen
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModel
@@ -82,6 +84,8 @@ class MainActivity : ComponentActivity() {
         CourseViewModelFactory(trainingRepo) }
     private val lessonViewModel: LessonViewModel by viewModels {
         LessonViewModelFactory(trainingRepo) }
+    private val addEditViewModel: AddEditViewModel by viewModels {
+        AddEditViewModelFactory() }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -118,7 +122,8 @@ class MainActivity : ComponentActivity() {
                             healthViewModel = healthViewModel,
                             trainingViewModel = trainingViewModel,
                             courseViewModel = courseViewModel,
-                            lessonViewModel = lessonViewModel
+                            lessonViewModel = lessonViewModel,
+                            addEditViewModel = addEditViewModel
                         )
                     }
 

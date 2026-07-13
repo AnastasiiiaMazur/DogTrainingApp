@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
@@ -37,30 +39,46 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.R
+import com.cmps.dogtrainingapp.ui.components.BasicButton
 import com.cmps.dogtrainingapp.ui.components.openDatePicker
 import com.cmps.dogtrainingapp.ui.navigation.navigateHome
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
+import com.cmps.dogtrainingapp.ui.theme.Gray
+import com.cmps.dogtrainingapp.ui.theme.LightGray2
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
 import com.cmps.dogtrainingapp.ui.theme.Orange
+import com.cmps.dogtrainingapp.ui.theme.Red
 import com.cmps.dogtrainingapp.ui.theme.White
 import com.cmps.dogtrainingapp.utils.dismissKeyboard
 import com.cmps.dogtrainingapp.utils.hideKeyboardOnTap
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AddEditEventRoute(
     eventId: Long?,
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: AddEditViewModel
 ) {
 
+    val state = viewModel.state
+
+    AddEditEventScreen(
+        navController = navController,
+        eventId = eventId,
+        state = state
+    )
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AddEditEventScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    eventId: Long?,
+    state: AddEditUiState
 ) {
 
     val context = LocalContext.current
@@ -96,149 +114,120 @@ fun AddEditEventScreen(
             )
     ) {
         Text(
-            text = "Walk Hub",
+            text = "Add/Edit Health Event",
             color = Black,
             fontSize = 26.sp,
             fontFamily = MyFontFamily,
             fontWeight = FontWeight.Bold
         )
 
-        Icon(
-            imageVector = ImageVector.vectorResource(id = R.drawable.back_button),
-            contentDescription = "Back button",
-            tint = DarkGray,
-            modifier = Modifier
-                .padding(top = 15.dp)
-                .size(25.dp)
-                .clickable { navController.navigateHome() }
-        )
-
-        Column(
-            modifier = Modifier
-                .padding(top = 15.dp)
-                .clip(RoundedCornerShape(12.dp))
-                .background(White)
-                .fillMaxWidth()
-                .padding(horizontal = 15.dp, vertical = 10.dp)
+        Row(
+            modifier = Modifier.padding(top = 15.dp)
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.back_button),
+                contentDescription = "Back button",
+                tint = DarkGray,
                 modifier = Modifier
-                    .clickable { openTimePicker(context) }
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.time_icon),
-                    contentDescription = "time icon",
+                    .size(25.dp)
+                    .clickable { navController.popBackStack() }
+            )
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            if (eventId != null) {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.delete_button),
+                    contentDescription = "Delete button",
+                    tint = Red,
                     modifier = Modifier
-                        .padding(end = 7.dp)
-                        .size(20.dp)
+                        .padding(top = 5.dp)
+                        .size(18.dp)
+                        .align(Alignment.CenterVertically)
                 )
 
                 Text(
-                    text = "-",
-//                        state.selectedTime.format(
-//                        DateTimeFormatter.ofPattern("HH:mm") ),
+                    text = "Delete Event",
                     fontFamily = MyFontFamily,
                     fontWeight = FontWeight.SemiBold,
-                    fontSize = 15.sp
+                    fontSize = 15.sp,
+                    color = Red,
+                    modifier = Modifier
+                        .padding(top = 7.dp)
+                        .clickable{
+                            dismissKeyboard(focusManager, keyboardController)
+                            // onDeleteClicked
+                        }
+                        .align(Alignment.CenterVertically)
                 )
             }
+        }
 
-            HorizontalDivider(
+        Column {
+            Column(
                 modifier = Modifier
-                    .padding(top = 7.dp, bottom = 7.dp),
-                thickness = 1.dp
-            )
+                    .padding(top = 15.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(White)
+                    .fillMaxWidth()
+                    .padding(horizontal = 15.dp, vertical = 10.dp)
+            ) {
+                BasicTextField(
+                    value = //"Event Title",
+                    state.selectedTitle,
+                    onValueChange = {
+                        if (it.length <= 100) {
+                            //onNotesChanged(it)
+                        }
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp, vertical = 5.dp),
+                    textStyle = TextStyle(
+                        color = Black,
+                        fontSize = 15.sp,
+                        fontFamily = MyFontFamily,
+                        fontWeight = FontWeight.SemiBold
+                    ),
+                    singleLine = true,
+                    decorationBox = { innerTextField ->
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .clickable {
-                        openDatePicker(
-                            context = context,
-                            onDateSelected = {}//onDateChanged
+                    if (state.selectedTitle.isEmpty()) {
+                        Text(
+                            text = "Event Title",
+                            color = Gray,
+                            fontSize = 15.sp,
+                            fontFamily = MyFontFamily,
+                            fontWeight = FontWeight.SemiBold
                         )
                     }
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.calendar_icon),
-                    contentDescription = "calendar icon",
+
+                        innerTextField()
+                    }
+                )
+
+                HorizontalDivider(
+                    modifier = Modifier.padding(top = 7.dp, bottom = 7.dp),
+                    thickness = 1.dp
+                )
+
+                BasicTextField(
+                    value = "Note",//state.durationText,
+                    onValueChange = {
+                        if ( it.length <= 200 ) {
+                            //onDurationChanged(it)
+                        }
+                    },
                     modifier = Modifier
-                        .padding(end = 7.dp)
-                        .size(20.dp)
-                )
-
-                Text(
-                    text = "",
-//                        state.selectedDate.format(
-//                        DateTimeFormatter.ofPattern("dd/MM/yyyy") ),
-                    fontFamily = MyFontFamily,
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 15.sp
-                )
-            }
-
-            HorizontalDivider(
-                modifier = Modifier.padding(top = 7.dp, bottom = 7.dp),
-                thickness = 1.dp
-            )
-
-            BasicTextField(
-                value = "",//state.notes,
-                onValueChange = {
-                    if (it.length <= 100) {
-                        //onNotesChanged(it)
-                    }
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 5.dp),
-                textStyle = TextStyle(
-                    color = Black,
-                    fontSize = 15.sp,
-                    fontFamily = MyFontFamily
-                ),
-                singleLine = true,
-                decorationBox = { innerTextField ->
-
-//                    if (state.notes.isEmpty()) {
-//                        Text(
-//                            text = "Note",
-//                            color = Gray,
-//                            fontSize = 15.sp,
-//                            fontFamily = MyFontFamily
-//                        )
-//                    }
-
-                    innerTextField()
-                }
-            )
-
-            HorizontalDivider(
-                modifier = Modifier.padding(top = 7.dp, bottom = 7.dp),
-                thickness = 1.dp
-            )
-
-            BasicTextField(
-                value = "",//state.durationText,
-                onValueChange = {
-                    if (
-                        it.length <= 3 &&
-                        it.all { char -> char.isDigit() }
-                    ) {
-                        //onDurationChanged(it)
-                    }
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 5.dp),
-                textStyle = TextStyle(
-                    color = Black,
-                    fontSize = 15.sp,
-                    fontFamily = MyFontFamily
-                ),
-                singleLine = true,
-                decorationBox = { innerTextField ->
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp, vertical = 5.dp),
+                    textStyle = TextStyle(
+                        color = Black,
+                        fontSize = 15.sp,
+                        fontFamily = MyFontFamily
+                    ),
+                    singleLine = true,
+                    decorationBox = { innerTextField ->
 
 //                    if (state.durationText.isEmpty()) {
 //                        Text(
@@ -249,9 +238,9 @@ fun AddEditEventScreen(
 //                        )
 //                    }
 
-                    innerTextField()
-                }
-            )
+                        innerTextField()
+                    }
+                )
 
 //            if (state.errorMessage != null) {
 //                Text(
@@ -263,31 +252,176 @@ fun AddEditEventScreen(
 //                    modifier = Modifier.padding(horizontal = 8.dp)
 //                )
 //            }
+            }
 
-            HorizontalDivider(
-                modifier = Modifier.padding(top = 7.dp, bottom = 7.dp),
-                thickness = 1.dp
-            )
+            Spacer(modifier = Modifier.height(7.dp))
 
             Row(
+                verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .padding(vertical = 8.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(White)
+                    .fillMaxWidth()
+                    .clickable {
+                        openDatePicker(
+                            context = context,
+                            onDateSelected = {}//onDateChanged
+                        )
+                    }
+                    .padding(vertical = 10.dp, horizontal = 10.dp)
             ) {
-                Spacer(modifier = Modifier.weight(1f))
+
                 Text(
-                    text = "Save",
+                    text = "Event Type",
+//                        state.selectedDate.format(
+//                        DateTimeFormatter.ofPattern("dd/MM/yyyy") ),
                     fontFamily = MyFontFamily,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    color = Orange,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 15.sp,
+                    modifier = Modifier.weight(1f)
+                )
+
+                Image(
+                    painter = painterResource(R.drawable.arrow),
+                    contentDescription = "arrow",
                     modifier = Modifier
-                        .clickable {
-                            dismissKeyboard(focusManager, keyboardController)
-                        }
-                    //onSaveClicked() }
+                        .padding(end = 7.dp)
+                        .size(20.dp)
+                        .rotate(270f)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(7.dp))
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(White)
+                    .fillMaxWidth()
+                    .clickable {
+                        openDatePicker(
+                            context = context,
+                            onDateSelected = {}//onDateChanged
+                        )
+                    }
+                    .padding(vertical = 10.dp, horizontal = 10.dp)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.calendar_icon),
+                    contentDescription = "calendar icon",
+                    modifier = Modifier
+                        .padding(end = 7.dp)
+                        .size(20.dp)
+                )
+
+                Text(
+                    text = //"Date",
+                        state.selectedDate.format(
+                        DateTimeFormatter.ofPattern("dd/MM/yyyy") ),
+                    fontFamily = MyFontFamily,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 15.sp
+                )
+            }
+
+            Spacer(modifier = Modifier.height(7.dp))
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(White)
+                    .fillMaxWidth()
+                    .clickable { openTimePicker(context) }
+                    .padding(vertical = 10.dp, horizontal = 10.dp)
+            ) {
+
+                Image(
+                    painter = painterResource(R.drawable.time_icon),
+                    contentDescription = "time icon",
+                    modifier = Modifier
+                        .padding(end = 7.dp)
+                        .size(20.dp)
+                )
+
+                Text(
+                    text = //"Time",
+                        state.selectedTime.format(
+                        DateTimeFormatter.ofPattern("HH:mm") ),
+                    fontFamily = MyFontFamily,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 15.sp
+                )
+            }
+
+            Spacer(modifier = Modifier.height(7.dp))
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(White)
+                    .fillMaxWidth()
+                    .clickable {
+                        openDatePicker(
+                            context = context,
+                            onDateSelected = {}//onDateChanged
+                        )
+                    }
+                    .padding(vertical = 10.dp, horizontal = 10.dp)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.time_icon),
+                    contentDescription = "time icon 2",
+                    modifier = Modifier
+                        .padding(end = 7.dp)
+                        .size(20.dp)
+                )
+
+                Text(
+                    text = "Repeat",
+//                        state.selectedDate.format(
+//                        DateTimeFormatter.ofPattern("dd/MM/yyyy") ),
+                    fontFamily = MyFontFamily,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 15.sp,
+                    modifier = Modifier.weight(1f)
+                )
+
+                Image(
+                    painter = painterResource(R.drawable.arrow),
+                    contentDescription = "calendar icon",
+                    modifier = Modifier
+                        .padding(end = 7.dp)
+                        .size(20.dp)
+                        .rotate(270f)
                 )
             }
         }
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        BasicButton(
+            buttonText = "Save",
+            onClick = {}
+        )
+
+        Text(
+            text = "Cancel",
+            fontFamily = MyFontFamily,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 18.sp,
+            color = Red,
+            modifier = Modifier
+                .padding(top = 10.dp)
+                .clickable{
+                    dismissKeyboard(focusManager, keyboardController)
+                    navController.popBackStack()
+                }
+                .align(Alignment.CenterHorizontally)
+        )
+
     }
 }
 
@@ -296,6 +430,8 @@ fun AddEditEventScreen(
 @Preview
 fun PreviewScreen() {
     AddEditEventScreen(
-        navController = rememberNavController()
+        navController = rememberNavController(),
+        eventId = null,
+        state = AddEditUiState()
     )
 }

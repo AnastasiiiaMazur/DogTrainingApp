@@ -11,6 +11,7 @@ import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardViewModel
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventRoute
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModel
 import com.cmps.dogtrainingapp.ui.screens.health.addEditEvent.AddEditEventRoute
+import com.cmps.dogtrainingapp.ui.screens.health.addEditEvent.AddEditViewModel
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModel
 import com.cmps.dogtrainingapp.ui.screens.training.TrainingRoute
@@ -32,7 +33,8 @@ fun AppNavGraph(
     healthViewModel: HealthEventViewModel,
     trainingViewModel: TrainingViewModel,
     courseViewModel: CourseViewModel,
-    lessonViewModel: LessonViewModel
+    lessonViewModel: LessonViewModel,
+    addEditViewModel: AddEditViewModel
 ) {
     NavHost(
         navController = navController,
@@ -87,7 +89,8 @@ fun AppNavGraph(
 
             AddEditEventRoute(
                 eventId = eventId,
-                navController = navController
+                navController = navController,
+                viewModel = addEditViewModel
             )
         }
     }
