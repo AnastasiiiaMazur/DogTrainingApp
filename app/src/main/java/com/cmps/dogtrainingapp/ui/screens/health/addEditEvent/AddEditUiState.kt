@@ -9,8 +9,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 @RequiresApi(Build.VERSION_CODES.O)
-data class AddEditUiState (
-    val healthEvent: HealthEventEntity? = null,
+data class AddEditUiState(
     val editingEventId: Long? = null,
 
     val selectedTitle: String = "",
@@ -20,5 +19,6 @@ data class AddEditUiState (
     val selectedType: HealthEventType = HealthEventType.OTHER,
     val selectedInterval: RepeatInterval = RepeatInterval.NEVER,
 
-    val errorMessage: String? = null
+    val errorMessage: String? = null,
+    val isSaved: Boolean = false
 )

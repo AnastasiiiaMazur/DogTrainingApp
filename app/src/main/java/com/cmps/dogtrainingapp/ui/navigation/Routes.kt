@@ -13,6 +13,5 @@ object Routes {
     const val LESSON = "course/{courseId}/lesson/{lessonId}"
     fun lesson(courseId: String, lessonId: String) = "course/$courseId/lesson/$lessonId"
 
-    const val EVENT = "health/{eventId}"
-    fun event(eventId: Long?) = "health/$eventId"
+    const val ADD_HEALTH_EVENT = "add_health_event"
 }

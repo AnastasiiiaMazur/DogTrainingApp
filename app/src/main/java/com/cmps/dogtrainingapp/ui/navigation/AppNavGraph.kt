@@ -84,11 +84,9 @@ fun AppNavGraph(
             )
         }
 
-        composable(Routes.EVENT) { backStackEntry ->
-            val eventId = backStackEntry.arguments?.getLong("eventId")
-
+        composable(Routes.ADD_HEALTH_EVENT) {
             AddEditEventRoute(
-                eventId = eventId,
+                eventId = null,
                 navController = navController,
                 viewModel = addEditViewModel
             )

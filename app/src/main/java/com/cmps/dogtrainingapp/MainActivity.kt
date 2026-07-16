@@ -85,7 +85,7 @@ class MainActivity : ComponentActivity() {
     private val lessonViewModel: LessonViewModel by viewModels {
         LessonViewModelFactory(trainingRepo) }
     private val addEditViewModel: AddEditViewModel by viewModels {
-        AddEditViewModelFactory() }
+        AddEditViewModelFactory(healthRepo) }
 
 
     @RequiresApi(Build.VERSION_CODES.O)

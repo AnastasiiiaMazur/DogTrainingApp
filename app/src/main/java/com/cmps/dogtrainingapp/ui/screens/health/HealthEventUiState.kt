@@ -15,16 +15,5 @@ data class HealthEventUiState(
     val totalEvents: Int = 0,
     val upcomingEvents: Int = 0,
     val overdueEvents: Int = 0,
-    val completedEvents: Int = 0,
-
-    val editingEventId: Long? = null,
-
-    val selectedTitle: String = "",
-    val selectedNotes: String = "",
-    val selectedDate: LocalDate = LocalDate.now(),
-    val selectedTime: LocalTime = LocalTime.now(),
-    val selectedType: HealthEventType = HealthEventType.OTHER,
-    val selectedInterval: RepeatInterval = RepeatInterval.NEVER,
-
-    val errorMessage: String? = null
+    val completedEvents: Int = 0
 )

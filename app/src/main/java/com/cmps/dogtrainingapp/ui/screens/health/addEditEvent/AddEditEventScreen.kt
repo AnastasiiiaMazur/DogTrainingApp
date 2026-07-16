@@ -39,19 +39,20 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.R
+import com.cmps.dogtrainingapp.data.local.entity.HealthEventType
+import com.cmps.dogtrainingapp.data.local.entity.RepeatInterval
 import com.cmps.dogtrainingapp.ui.components.BasicButton
 import com.cmps.dogtrainingapp.ui.components.openDatePicker
-import com.cmps.dogtrainingapp.ui.navigation.navigateHome
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
 import com.cmps.dogtrainingapp.ui.theme.Gray
-import com.cmps.dogtrainingapp.ui.theme.LightGray2
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
-import com.cmps.dogtrainingapp.ui.theme.Orange
 import com.cmps.dogtrainingapp.ui.theme.Red
 import com.cmps.dogtrainingapp.ui.theme.White
 import com.cmps.dogtrainingapp.utils.dismissKeyboard
 import com.cmps.dogtrainingapp.utils.hideKeyboardOnTap
+import java.time.LocalDate
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
@@ -64,12 +65,20 @@ fun AddEditEventRoute(
     viewModel: AddEditViewModel
 ) {
 
-    val state = viewModel.state
+    val state = viewModel.uiState
 
     AddEditEventScreen(
         navController = navController,
         eventId = eventId,
-        state = state
+        state = state,
+        onDateChanged = { viewModel.onDateChanged(it) },
+        onTimeChanged = { viewModel.onTimeChanged(it) },
+        onTitleChanged = { viewModel.onTitleChanged(it) },
+        onNoteChanged = { viewModel.onNoteChanged(it) },
+        onTypeChanged = viewModel::onTypeChanged,
+        onRepeatChanged = viewModel::onRepeatChanged,
+        onSaveClicked = viewModel::onSaveClicked,
+        onDeleteClicked = viewModel::onDeleteClicked
     )
 }
 
@@ -78,7 +87,15 @@ fun AddEditEventRoute(
 fun AddEditEventScreen(
     navController: NavHostController,
     eventId: Long?,
-    state: AddEditUiState
+    state: AddEditUiState,
+    onDateChanged: (LocalDate) -> Unit,
+    onTimeChanged: (LocalTime) -> Unit,
+    onTitleChanged: (String) -> Unit,
+    onNoteChanged: (String) -> Unit,
+    onTypeChanged: (HealthEventType) -> Unit,
+    onRepeatChanged: (RepeatInterval) -> Unit,
+    onSaveClicked: () -> Unit,
+    onDeleteClicked: (Long) -> Unit
 ) {
 
     val context = LocalContext.current
@@ -94,7 +111,7 @@ fun AddEditEventScreen(
             context,
             { _, hour, minute ->
 
-                //onTimeChanged( LocalTime.of(hour, minute) )
+                onTimeChanged( LocalTime.of(hour, minute) )
             },
             now.get(Calendar.HOUR_OF_DAY),
             now.get(Calendar.MINUTE),
@@ -108,13 +125,17 @@ fun AddEditEventScreen(
             .fillMaxSize()
             .padding(
                 top = 50.dp,
-                bottom = 50.dp,
+                bottom = 30.dp,
                 start = 20.dp,
                 end = 20.dp
             )
     ) {
         Text(
-            text = "Add/Edit Health Event",
+            text = if (eventId == null) {
+                "Add Health Event"
+            } else {
+                "Edit Health Event"
+            },
             color = Black,
             fontSize = 26.sp,
             fontFamily = MyFontFamily,
@@ -156,7 +177,9 @@ fun AddEditEventScreen(
                         .padding(top = 7.dp)
                         .clickable{
                             dismissKeyboard(focusManager, keyboardController)
-                            // onDeleteClicked
+                            eventId?.let { id ->
+                                onDeleteClicked(id)
+                            }
                         }
                         .align(Alignment.CenterVertically)
                 )
@@ -173,11 +196,10 @@ fun AddEditEventScreen(
                     .padding(horizontal = 15.dp, vertical = 10.dp)
             ) {
                 BasicTextField(
-                    value = //"Event Title",
-                    state.selectedTitle,
+                    value = state.selectedTitle,
                     onValueChange = {
                         if (it.length <= 100) {
-                            //onNotesChanged(it)
+                            onTitleChanged(it)
                         }
                     },
                     modifier = Modifier
@@ -212,10 +234,10 @@ fun AddEditEventScreen(
                 )
 
                 BasicTextField(
-                    value = "Note",//state.durationText,
+                    value = state.selectedNotes,
                     onValueChange = {
                         if ( it.length <= 200 ) {
-                            //onDurationChanged(it)
+                            onNoteChanged(it)
                         }
                     },
                     modifier = Modifier
@@ -229,29 +251,29 @@ fun AddEditEventScreen(
                     singleLine = true,
                     decorationBox = { innerTextField ->
 
-//                    if (state.durationText.isEmpty()) {
-//                        Text(
-//                            text = "Duration (min)",
-//                            color = Gray,
-//                            fontSize = 15.sp,
-//                            fontFamily = MyFontFamily
-//                        )
-//                    }
+                    if (state.selectedNotes.isEmpty()) {
+                        Text(
+                            text = "Note",
+                            color = Gray,
+                            fontSize = 15.sp,
+                            fontFamily = MyFontFamily
+                        )
+                    }
 
                         innerTextField()
                     }
                 )
 
-//            if (state.errorMessage != null) {
-//                Text(
-//                    text = state.errorMessage,
-//                    fontFamily = MyFontFamily,
-//                    fontWeight = FontWeight.SemiBold,
-//                    fontSize = 14.sp,
-//                    color = Red,
-//                    modifier = Modifier.padding(horizontal = 8.dp)
-//                )
-//            }
+            if (state.errorMessage != null) {
+                Text(
+                    text = state.errorMessage,
+                    fontFamily = MyFontFamily,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 14.sp,
+                    color = Red,
+                    modifier = Modifier.padding(horizontal = 8.dp)
+                )
+            }
             }
 
             Spacer(modifier = Modifier.height(7.dp))
@@ -265,7 +287,7 @@ fun AddEditEventScreen(
                     .clickable {
                         openDatePicker(
                             context = context,
-                            onDateSelected = {}//onDateChanged
+                            onDateSelected = {}//onTypeChanged
                         )
                     }
                     .padding(vertical = 10.dp, horizontal = 10.dp)
@@ -273,8 +295,6 @@ fun AddEditEventScreen(
 
                 Text(
                     text = "Event Type",
-//                        state.selectedDate.format(
-//                        DateTimeFormatter.ofPattern("dd/MM/yyyy") ),
                     fontFamily = MyFontFamily,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 15.sp,
@@ -302,7 +322,7 @@ fun AddEditEventScreen(
                     .clickable {
                         openDatePicker(
                             context = context,
-                            onDateSelected = {}//onDateChanged
+                            onDateSelected = onDateChanged
                         )
                     }
                     .padding(vertical = 10.dp, horizontal = 10.dp)
@@ -366,7 +386,7 @@ fun AddEditEventScreen(
                     .clickable {
                         openDatePicker(
                             context = context,
-                            onDateSelected = {}//onDateChanged
+                            onDateSelected = {}//onRepeatChanged
                         )
                     }
                     .padding(vertical = 10.dp, horizontal = 10.dp)
@@ -381,8 +401,6 @@ fun AddEditEventScreen(
 
                 Text(
                     text = "Repeat",
-//                        state.selectedDate.format(
-//                        DateTimeFormatter.ofPattern("dd/MM/yyyy") ),
                     fontFamily = MyFontFamily,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 15.sp,
@@ -403,8 +421,8 @@ fun AddEditEventScreen(
         Spacer(modifier = Modifier.weight(1f))
 
         BasicButton(
-            buttonText = "Save",
-            onClick = {}
+            buttonText = if (eventId == null) "Add Event" else "Save Changes",
+            onClick = onSaveClicked
         )
 
         Text(
@@ -432,6 +450,16 @@ fun PreviewScreen() {
     AddEditEventScreen(
         navController = rememberNavController(),
         eventId = null,
-        state = AddEditUiState()
+        state = AddEditUiState(
+            errorMessage = "vjnpn"
+        ),
+        onTimeChanged = {},
+        onDateChanged = {},
+        onTitleChanged = {},
+        onNoteChanged = {},
+        onTypeChanged = {},
+        onRepeatChanged ={},
+        onSaveClicked = {},
+        onDeleteClicked = {}
     )
 }
