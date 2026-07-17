@@ -13,5 +13,12 @@ object Routes {
     const val LESSON = "course/{courseId}/lesson/{lessonId}"
     fun lesson(courseId: String, lessonId: String) = "course/$courseId/lesson/$lessonId"
 
-    const val ADD_HEALTH_EVENT = "add_health_event"
+    const val ADD_EDIT_EVENT = "add_edit_event?eventId={eventId}"
+    fun addEditEvent(eventId: Long? = null): String {
+        return if (eventId == null) {
+            "add_edit_event"
+        } else {
+            "add_edit_event?eventId=$eventId"
+        }
+    }
 }

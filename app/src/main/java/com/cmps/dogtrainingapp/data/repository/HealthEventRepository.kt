@@ -32,4 +32,8 @@ class HealthEventRepository(
     fun getSelectedPetId(): Long {
         return petPrefs.getSelectedPetId()
     }
+
+    suspend fun getEventById(eventId: Long): HealthEventEntity? {
+        return healthDao.getEventById(eventId)
+    }
 }

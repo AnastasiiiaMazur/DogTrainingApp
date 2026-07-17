@@ -4,8 +4,10 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardRoute
 import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardViewModel
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventRoute
@@ -84,9 +86,24 @@ fun AppNavGraph(
             )
         }
 
-        composable(Routes.ADD_HEALTH_EVENT) {
+        composable(
+            route = Routes.ADD_EDIT_EVENT,
+            arguments = listOf(
+                navArgument("eventId") {
+                    type = NavType.LongType
+                    defaultValue = -1L
+                }
+            )
+        ) { backStackEntry ->
+
+            val argument = backStackEntry.arguments
+                ?.getLong("eventId")
+                ?: -1L
+
+            val eventId = argument.takeIf { it != -1L }
+
             AddEditEventRoute(
-                eventId = null,
+                eventId = eventId,
                 navController = navController,
                 viewModel = addEditViewModel
             )

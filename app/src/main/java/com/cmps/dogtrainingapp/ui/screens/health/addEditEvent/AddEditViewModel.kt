@@ -24,6 +24,43 @@ class AddEditViewModel(
     var uiState by mutableStateOf(AddEditUiState())
         private set
 
+    fun loadEvent(eventId: Long?) {
+
+        if (eventId == null) {
+            resetForm()
+            return
+        }
+
+        if (uiState.editingEventId == eventId) {
+            return
+        }
+
+        viewModelScope.launch {
+            val event = healthRepo.getEventById(eventId)
+
+            if (event == null) {
+                uiState = uiState.copy(
+                    errorMessage = "Health event could not be found."
+                )
+                return@launch
+            }
+
+            uiState = uiState.copy(
+                editingEventId = event.id,
+                selectedTitle = event.title,
+                selectedNotes = event.notes.orEmpty(),
+                selectedDate = event.date,
+                selectedTime = event.time,
+                selectedType = event.type,
+                selectedInterval = event.repeat,
+                errorMessage = null
+            )
+        }
+    }
+
+    private fun resetForm() {
+        uiState = AddEditUiState()
+    }
 
     fun onSaveClicked() {
         uiState = uiState.copy(
@@ -48,7 +85,9 @@ class AddEditViewModel(
                 date = uiState.selectedDate,
                 time = uiState.selectedTime,
                 repeat = uiState.selectedInterval,
-                petId = healthRepo.getSelectedPetId()
+                petId = healthRepo.getSelectedPetId(),
+                isCompleted = uiState.isCompleted,
+                completedOn = uiState.completedOn
             )
 
             if (editingId == null) {

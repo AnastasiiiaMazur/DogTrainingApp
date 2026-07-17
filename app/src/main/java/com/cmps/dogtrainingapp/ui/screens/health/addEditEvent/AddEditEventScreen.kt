@@ -25,6 +25,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -75,6 +76,10 @@ fun AddEditEventRoute(
 ) {
 
     val state = viewModel.uiState
+
+    LaunchedEffect(eventId) {
+        viewModel.loadEvent(eventId)
+    }
 
     AddEditEventScreen(
         navController = navController,
@@ -500,6 +505,8 @@ fun AddEditEventScreen(
                     if (eventId != null) "Health event updated!" else "Health event saved!",
                     Toast.LENGTH_LONG
                 ).show()
+
+                navController.popBackStack()
             }
         )
 

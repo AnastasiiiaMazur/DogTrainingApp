@@ -58,14 +58,32 @@ class HealthEventViewModel(
         }
     }
 
+//    fun onCompleteClicked(event: HealthEventEntity) {
+//        viewModelScope.launch {
+//            val completedEvent = event.copy(
+//                isCompleted = true,
+//                completedOn = LocalDateTime.now()
+//            )
+//
+//            healthRepo.updateEvent(completedEvent)
+//        }
+//    }
+
     fun onCompleteClicked(event: HealthEventEntity) {
         viewModelScope.launch {
-            val completedEvent = event.copy(
-                isCompleted = true,
-                completedOn = LocalDateTime.now()
+
+            val isNowCompleted = !event.isCompleted
+
+            val updatedEvent = event.copy(
+                isCompleted = isNowCompleted,
+                completedOn = if (isNowCompleted) {
+                    LocalDateTime.now()
+                } else {
+                    null
+                }
             )
 
-            healthRepo.updateEvent(completedEvent)
+            healthRepo.updateEvent(updatedEvent)
         }
     }
 }

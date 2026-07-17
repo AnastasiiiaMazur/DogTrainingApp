@@ -95,7 +95,9 @@ fun HealthEventScreen(
             HealthEventCard(
                 event = event,
                 onEditClicked = {
-                    // navigation later
+                    navController.navigate(
+                        Routes.addEditEvent(event.id)
+                    )
                 },
                 onCompleteClicked = {
                     onCompleteClicked(event)
@@ -144,7 +146,7 @@ fun HealthEventScreen(
         BasicButton(
             buttonText = "Add Health Event",
             paddingTop = 15,
-            onClick = { navController.navigate(Routes.ADD_HEALTH_EVENT) }
+            onClick = { navController.navigate(Routes.addEditEvent()) }
         )
     }
 }

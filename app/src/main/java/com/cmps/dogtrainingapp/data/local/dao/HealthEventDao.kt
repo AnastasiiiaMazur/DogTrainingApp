@@ -25,4 +25,7 @@ interface HealthEventDao {
 
     @Query("SELECT * FROM health_events WHERE id = :id")
     suspend fun getById(id: Long): HealthEventEntity?
+
+    @Query("""SELECT * FROM health_events WHERE id = :eventId LIMIT 1""")
+    suspend fun getEventById(eventId: Long): HealthEventEntity?
 }
