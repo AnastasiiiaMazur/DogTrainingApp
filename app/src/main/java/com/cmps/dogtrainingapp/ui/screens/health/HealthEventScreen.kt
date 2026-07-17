@@ -108,7 +108,7 @@ fun HealthEventScreen(
         }
 
         Text(
-            text = "Weekly Summary",
+            text = "Summary",
             color = Black,
             fontSize = 20.sp,
             fontFamily = MyFontFamily,
@@ -126,7 +126,7 @@ fun HealthEventScreen(
         )
 
         Text(
-            text = "Completed this week: ${state.completedEvents}",
+            text = "Completed events: ${state.completedEvents}",
             fontFamily = MyFontFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 17.sp,

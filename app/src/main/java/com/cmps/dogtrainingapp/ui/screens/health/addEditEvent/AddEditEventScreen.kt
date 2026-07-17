@@ -527,24 +527,3 @@ fun AddEditEventScreen(
 
     }
 }
-
-@RequiresApi(Build.VERSION_CODES.O)
-@Composable
-@Preview
-fun PreviewScreen() {
-    AddEditEventScreen(
-        navController = rememberNavController(),
-        eventId = null,
-        state = AddEditUiState(
-            errorMessage = "vjnpn"
-        ),
-        onTimeChanged = {},
-        onDateChanged = {},
-        onTitleChanged = {},
-        onNoteChanged = {},
-        onTypeChanged = {},
-        onRepeatChanged ={},
-        onSaveClicked = {},
-        onDeleteClicked = {}
-    )
-}
