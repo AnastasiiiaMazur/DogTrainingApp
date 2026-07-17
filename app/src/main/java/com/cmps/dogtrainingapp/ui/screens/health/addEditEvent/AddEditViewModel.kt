@@ -32,7 +32,7 @@ class AddEditViewModel(
 
         if (uiState.selectedTitle.isBlank()) {
             uiState = uiState.copy(
-                errorMessage = "* Title cannot be empty!"
+                errorMessage = "Title cannot be empty!"
             )
             return
         }

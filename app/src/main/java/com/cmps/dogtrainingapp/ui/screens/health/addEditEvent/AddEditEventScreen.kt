@@ -3,10 +3,12 @@ package com.cmps.dogtrainingapp.ui.screens.health.addEditEvent
 import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,10 +19,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -102,6 +110,9 @@ fun AddEditEventScreen(
 
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
+
+    var typeExpanded by remember { mutableStateOf(false) }
+    var repeatExpanded by remember { mutableStateOf(false) }
 
     fun openTimePicker(context: Context) {
 
@@ -278,37 +289,58 @@ fun AddEditEventScreen(
 
             Spacer(modifier = Modifier.height(7.dp))
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(White)
-                    .fillMaxWidth()
-                    .clickable {
-                        openDatePicker(
-                            context = context,
-                            onDateSelected = {}//onTypeChanged
+            Box(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(White)
+                        .fillMaxWidth()
+                        .clickable { typeExpanded = true }
+                        .padding(vertical = 10.dp, horizontal = 10.dp)
+                ) {
+                    Text(
+                        text = state.selectedType.displayName ?: "Event Type",
+                        fontFamily = MyFontFamily,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 15.sp,
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    Image(
+                        painter = painterResource(R.drawable.arrow),
+                        contentDescription = "arrow",
+                        modifier = Modifier
+                            .padding(end = 7.dp)
+                            .size(20.dp)
+                            .rotate(270f)
+                    )
+                }
+
+                DropdownMenu(
+                    expanded = typeExpanded,
+                    onDismissRequest = { typeExpanded = false },
+                    modifier = Modifier
+                        .background(White)
+                        .clip(RoundedCornerShape(10.dp))
+                ) {
+                    HealthEventType.entries.forEach { type ->
+                        DropdownMenuItem(
+                            text = { Text(
+                                text = type.displayName,
+                                fontSize = 16.sp,
+                                color = Black,
+                                fontFamily = MyFontFamily,
+                                fontWeight = FontWeight.Normal) },
+                            onClick = {
+                                onTypeChanged(type)
+                                typeExpanded = false
+                            }
                         )
                     }
-                    .padding(vertical = 10.dp, horizontal = 10.dp)
-            ) {
-
-                Text(
-                    text = "Event Type",
-                    fontFamily = MyFontFamily,
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 15.sp,
-                    modifier = Modifier.weight(1f)
-                )
-
-                Image(
-                    painter = painterResource(R.drawable.arrow),
-                    contentDescription = "arrow",
-                    modifier = Modifier
-                        .padding(end = 7.dp)
-                        .size(20.dp)
-                        .rotate(270f)
-                )
+                }
             }
 
             Spacer(modifier = Modifier.height(7.dp))
@@ -377,44 +409,67 @@ fun AddEditEventScreen(
 
             Spacer(modifier = Modifier.height(7.dp))
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(White)
-                    .fillMaxWidth()
-                    .clickable {
-                        openDatePicker(
-                            context = context,
-                            onDateSelected = {}//onRepeatChanged
+
+            Box(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(White)
+                        .fillMaxWidth()
+                        .clickable { repeatExpanded = true }
+                        .padding(vertical = 10.dp, horizontal = 10.dp)
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.time_icon),
+                        contentDescription = "time icon 2",
+                        modifier = Modifier
+                            .padding(end = 7.dp)
+                            .size(20.dp)
+                    )
+
+                    Text(
+                        text = state.selectedInterval.displayName ?: "Repeat",
+                        fontFamily = MyFontFamily,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 15.sp,
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    Image(
+                        painter = painterResource(R.drawable.arrow),
+                        contentDescription = "calendar icon",
+                        modifier = Modifier
+                            .padding(end = 7.dp)
+                            .size(20.dp)
+                            .rotate(270f)
+                    )
+                }
+
+                DropdownMenu(
+                    expanded = repeatExpanded,
+                    onDismissRequest = { repeatExpanded = false },
+                    modifier = Modifier
+                        .background(White)
+                        .clip(RoundedCornerShape(10.dp))
+                ) {
+                    RepeatInterval.entries.forEach { repeat ->
+                        DropdownMenuItem(
+                            text = { Text(
+                                text = repeat.displayName,
+                                fontSize = 16.sp,
+                                color = Black,
+                                fontFamily = MyFontFamily,
+                                fontWeight = FontWeight.Normal) },
+                            onClick = {
+                                onRepeatChanged(repeat)
+                                repeatExpanded = false
+                            }
                         )
                     }
-                    .padding(vertical = 10.dp, horizontal = 10.dp)
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.time_icon),
-                    contentDescription = "time icon 2",
-                    modifier = Modifier
-                        .padding(end = 7.dp)
-                        .size(20.dp)
-                )
-
-                Text(
-                    text = "Repeat",
-                    fontFamily = MyFontFamily,
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 15.sp,
-                    modifier = Modifier.weight(1f)
-                )
-
-                Image(
-                    painter = painterResource(R.drawable.arrow),
-                    contentDescription = "calendar icon",
-                    modifier = Modifier
-                        .padding(end = 7.dp)
-                        .size(20.dp)
-                        .rotate(270f)
-                )
+                }
             }
         }
 
@@ -422,7 +477,15 @@ fun AddEditEventScreen(
 
         BasicButton(
             buttonText = if (eventId == null) "Add Event" else "Save Changes",
-            onClick = onSaveClicked
+            onClick = {
+                onSaveClicked()
+
+                Toast.makeText(
+                    context,
+                    if (eventId != null) "Health event updated!" else "Health event saved!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         )
 
         Text(
