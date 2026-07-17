@@ -50,6 +50,7 @@ import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.data.local.entity.HealthEventType
 import com.cmps.dogtrainingapp.data.local.entity.RepeatInterval
 import com.cmps.dogtrainingapp.ui.components.BasicButton
+import com.cmps.dogtrainingapp.ui.components.ConfirmationDialog
 import com.cmps.dogtrainingapp.ui.components.openDatePicker
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
@@ -113,6 +114,7 @@ fun AddEditEventScreen(
 
     var typeExpanded by remember { mutableStateOf(false) }
     var repeatExpanded by remember { mutableStateOf(false) }
+    var showDeleteDialog by remember { mutableStateOf(false) }
 
     fun openTimePicker(context: Context) {
 
@@ -188,12 +190,25 @@ fun AddEditEventScreen(
                         .padding(top = 7.dp)
                         .clickable{
                             dismissKeyboard(focusManager, keyboardController)
-                            eventId?.let { id ->
-                                onDeleteClicked(id)
-                            }
+                            showDeleteDialog = true
                         }
                         .align(Alignment.CenterVertically)
                 )
+
+                if (showDeleteDialog) {
+                    ConfirmationDialog(
+                        message = "Are you sure you want to delete " +
+                                "the event ${state.selectedTitle}?",
+                        onConfirm = {
+                            showDeleteDialog = false
+                            onDeleteClicked(eventId)
+                            navController.popBackStack()
+                        },
+                        onDismiss = {
+                            showDeleteDialog = false
+                        }
+                    )
+                }
             }
         }
 
