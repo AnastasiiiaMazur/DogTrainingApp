@@ -38,6 +38,7 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.ui.screens.dashboard.components.DailyRecItem
+import com.cmps.dogtrainingapp.ui.screens.dashboard.components.DailyRecommendationsPager
 import com.cmps.dogtrainingapp.ui.screens.health.components.EventStatus
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
@@ -140,17 +141,12 @@ fun DashboardScreen(
             fontSize = 20.sp
         )
 
-        LazyRow(
-            modifier = Modifier.fillMaxWidth(),
-            state = rememberLazyListState()
-        ) {
-            itemsIndexed(state.dailyRecs) { index, item ->
-                DailyRecItem(
-                    recommendation = item,
-                    onClick = {}
-                )
+        DailyRecommendationsPager(
+            recommendations = state.dailyRecs,
+            onClick = { recommendation ->
+                // navigate or open recommendation
             }
-        }
+        )
 
         Spacer(modifier = Modifier.width(10.dp))
 

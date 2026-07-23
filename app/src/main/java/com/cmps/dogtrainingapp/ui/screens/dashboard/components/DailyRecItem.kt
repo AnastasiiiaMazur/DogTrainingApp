@@ -31,7 +31,8 @@ import com.cmps.dogtrainingapp.ui.theme.White
 @Composable
 fun DailyRecItem(
     recommendation: Recommendation,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
 
     val context = LocalContext.current
@@ -46,9 +47,8 @@ fun DailyRecItem(
         modifier = Modifier
             .padding(top = 10.dp)
             .clip(RoundedCornerShape(15.dp))
-            .fillMaxWidth()
-            .height(150.dp)
-            .clickable{ onClick() }
+            .height(130.dp)
+            .clickable { onClick() }
     ) {
         Image(
             painter = painterResource(id = imageRes),
@@ -68,7 +68,7 @@ fun DailyRecItem(
             color = White,
             fontFamily = MyFontFamily,
             fontWeight = FontWeight.SemiBold,
-            fontSize = 24.sp,
+            fontSize = 16.sp,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 15.dp)
                 .align(Alignment.BottomStart)
