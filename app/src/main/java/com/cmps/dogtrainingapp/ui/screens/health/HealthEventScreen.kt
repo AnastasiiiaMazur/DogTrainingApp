@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -15,9 +16,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,10 +31,12 @@ import com.cmps.dogtrainingapp.R
 import com.cmps.dogtrainingapp.data.local.entity.HealthEventEntity
 import com.cmps.dogtrainingapp.ui.components.BasicButton
 import com.cmps.dogtrainingapp.ui.navigation.Routes
+import com.cmps.dogtrainingapp.ui.navigation.navigateAllEvents
 import com.cmps.dogtrainingapp.ui.navigation.navigateHome
 import com.cmps.dogtrainingapp.ui.screens.health.components.HealthEventCard
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
+import com.cmps.dogtrainingapp.ui.theme.Gray
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
 import com.cmps.dogtrainingapp.ui.theme.Red
 
@@ -71,15 +76,35 @@ fun HealthEventScreen(
             fontWeight = FontWeight.Bold
         )
 
-        Icon(
-            imageVector = ImageVector.vectorResource(id = R.drawable.back_button),
-            contentDescription = "Back button",
-            tint = DarkGray,
+        Row(
             modifier = Modifier
                 .padding(top = 15.dp)
-                .size(25.dp)
-                .clickable{ navController.navigateHome() }
-        )
+
+        ) {
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.back_button),
+                contentDescription = "Back button",
+                tint = DarkGray,
+                modifier = Modifier
+                    .size(25.dp)
+                    .clickable{ navController.navigateHome() }
+                    .align(Alignment.CenterVertically)
+            )
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Text(
+                text = "View All",
+                color = Red,
+                fontSize = 15.sp,
+                fontFamily = MyFontFamily,
+                fontWeight = FontWeight.SemiBold,
+                fontStyle = FontStyle.Italic,
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .clickable{ navController.navigateAllEvents() }
+            )
+        }
 
         Text(
             text = "My events",
@@ -90,21 +115,35 @@ fun HealthEventScreen(
             modifier = Modifier.padding(top = 15.dp)
         )
 
-        state.healthEvents.forEachIndexed { index, event ->
+        if (state.weeklyEvents.isEmpty()) {
 
-            HealthEventCard(
-                event = event,
-                onEditClicked = {
-                    navController.navigate(
-                        Routes.addEditEvent(event.id)
-                    )
-                },
-                onCompleteClicked = {
-                    onCompleteClicked(event)
-                }
+            Text(
+                text = "You don't have any events this week.",
+                color = Gray,
+                fontSize = 15.sp,
+                fontFamily = MyFontFamily,
+                fontWeight = FontWeight.Normal,
+                modifier = Modifier.padding(vertical = 15.dp)
             )
 
-            Spacer(modifier = Modifier.height(5.dp))
+        } else {
+
+            state.weeklyEvents.forEach { event ->
+
+                HealthEventCard(
+                    event = event,
+                    onEditClicked = {
+                        navController.navigate(
+                            Routes.addEditEvent(event.id)
+                        )
+                    },
+                    onCompleteClicked = {
+                        onCompleteClicked(event)
+                    }
+                )
+
+                Spacer(modifier = Modifier.height(5.dp))
+            }
         }
 
         Text(

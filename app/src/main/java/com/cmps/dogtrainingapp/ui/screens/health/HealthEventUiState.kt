@@ -11,6 +11,7 @@ import java.time.LocalTime
 @RequiresApi(Build.VERSION_CODES.O)
 data class HealthEventUiState(
     val healthEvents: List<HealthEventEntity> = emptyList(),
+    val weeklyEvents: List<HealthEventEntity> = emptyList(),
 
     val totalEvents: Int = 0,
     val upcomingEvents: Int = 0,

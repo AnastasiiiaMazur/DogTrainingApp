@@ -21,4 +21,6 @@ object Routes {
             "add_edit_event?eventId=$eventId"
         }
     }
+
+    const val ALL_EVENTS = "all events"
 }

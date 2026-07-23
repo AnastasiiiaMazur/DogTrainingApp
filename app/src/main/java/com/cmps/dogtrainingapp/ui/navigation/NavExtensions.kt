@@ -10,3 +10,12 @@ fun NavHostController.navigateHome() {
         launchSingleTop = true
     }
 }
+
+fun NavHostController.navigateAllEvents() {
+    navigate(Routes.ALL_EVENTS) {
+        popUpTo(Routes.ALL_EVENTS) {
+            inclusive = false
+        }
+        launchSingleTop = true
+    }
+}

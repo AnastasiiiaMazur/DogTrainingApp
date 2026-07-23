@@ -54,7 +54,8 @@ class HealthEventViewModel(
                 val completed = events.count { it.isCompleted }
 
                 uiState = uiState.copy(
-                    healthEvents = weeklyEvents,
+                    healthEvents = events,
+                    weeklyEvents = weeklyEvents,
 
                     totalEvents = events.size,
                     upcomingEvents = upcoming,

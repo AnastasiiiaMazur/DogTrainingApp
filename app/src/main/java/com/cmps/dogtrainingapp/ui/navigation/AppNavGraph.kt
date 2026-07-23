@@ -14,6 +14,7 @@ import com.cmps.dogtrainingapp.ui.screens.health.HealthEventRoute
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModel
 import com.cmps.dogtrainingapp.ui.screens.health.addEditEvent.AddEditEventRoute
 import com.cmps.dogtrainingapp.ui.screens.health.addEditEvent.AddEditViewModel
+import com.cmps.dogtrainingapp.ui.screens.health.allevents.ViewAllHealthEventsRoute
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModel
 import com.cmps.dogtrainingapp.ui.screens.training.TrainingRoute
@@ -107,6 +108,10 @@ fun AppNavGraph(
                 navController = navController,
                 viewModel = addEditViewModel
             )
+        }
+
+        composable(Routes.ALL_EVENTS) {
+            ViewAllHealthEventsRoute(healthViewModel, navController)
         }
     }
 }
