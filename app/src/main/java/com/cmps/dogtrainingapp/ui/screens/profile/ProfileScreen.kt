@@ -423,109 +423,111 @@ fun ProfileScreen(
             )
         }
 
-        Row (
-            modifier = Modifier
-                .padding(top = 30.dp)
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(12.dp))
-                .background(White)
-                .padding(top = 13.dp, bottom = 13.dp, start = 20.dp, end = 20.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            Image(
-                painter = painterResource(id = R.drawable.pet_paw),
-                contentDescription = "",
-                contentScale = ContentScale.Crop,
+        if (!state.isEditing) {
+            Row (
                 modifier = Modifier
-                    .padding(end = 10.dp)
-                    .size(25.dp)
-            )
+                    .padding(top = 30.dp)
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(White)
+                    .padding(top = 13.dp, bottom = 13.dp, start = 20.dp, end = 20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
 
-            Text(
-                text = "Switch Pet",
-                color = Black,
-                fontSize = 16.sp,
-                fontFamily = MyFontFamily,
-                fontWeight = FontWeight.Normal,
-                textAlign = TextAlign.Center
-            )
-
-            Spacer(modifier = Modifier.weight(1f))
-
-            Box {
-                Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.arrow),
-                    contentDescription = "Show list button",
-                    tint = Black,
+                Image(
+                    painter = painterResource(id = R.drawable.pet_paw),
+                    contentDescription = "",
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .rotate(
-                            if (petListExpanded) 90f else 270f
-                        )
-                        .clickable { petListExpanded = true }
+                        .padding(end = 10.dp)
+                        .size(25.dp)
                 )
 
-                DropdownMenu(
-                    expanded = petListExpanded,
-                    onDismissRequest = { petListExpanded = false },
-                    modifier = Modifier
-                        .background(White)
-                        .clip(RoundedCornerShape(10.dp))
-                ) {
+                Text(
+                    text = "Switch Pet",
+                    color = Black,
+                    fontSize = 16.sp,
+                    fontFamily = MyFontFamily,
+                    fontWeight = FontWeight.Normal,
+                    textAlign = TextAlign.Center
+                )
 
-                    state.allPets.forEach { pet ->
+                Spacer(modifier = Modifier.weight(1f))
+
+                Box {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.arrow),
+                        contentDescription = "Show list button",
+                        tint = Black,
+                        modifier = Modifier
+                            .rotate(
+                                if (petListExpanded) 90f else 270f
+                            )
+                            .clickable { petListExpanded = true }
+                    )
+
+                    DropdownMenu(
+                        expanded = petListExpanded,
+                        onDismissRequest = { petListExpanded = false },
+                        modifier = Modifier
+                            .background(White)
+                            .clip(RoundedCornerShape(10.dp))
+                    ) {
+
+                        state.allPets.forEach { pet ->
+                            DropdownMenuItem(
+                                text = { Text(
+                                    text = pet.name,
+                                    fontSize = 16.sp,
+                                    color = Black,
+                                    fontFamily = MyFontFamily,
+                                    fontWeight = FontWeight.Normal) },
+                                leadingIcon = {
+                                    val petImageModel: Any = if (
+                                        !pet.imageUri.isNullOrBlank() &&
+                                        File(pet.imageUri).exists()
+                                    ) {
+                                        Uri.fromFile(File(pet.imageUri))
+                                    } else {
+                                        R.drawable.dog_default
+                                    }
+
+                                    AsyncImage(
+                                        model = petImageModel,
+                                        contentDescription = "Pet image",
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier
+                                            .padding(end = 10.dp)
+                                            .size(35.dp)
+                                            .clip(CircleShape)
+                                    )
+                                },
+                                onClick = {
+                                    onPetChanged(pet)
+                                    petListExpanded = false
+                                }
+                            )
+                            Spacer(modifier = Modifier.padding(2.dp))
+                            HorizontalDivider()
+                            Spacer(modifier = Modifier.padding(2.dp))
+                        }
+
                         DropdownMenuItem(
                             text = { Text(
-                                text = pet.name,
+                                text = "+ Add a new pet",
                                 fontSize = 16.sp,
                                 color = Black,
                                 fontFamily = MyFontFamily,
                                 fontWeight = FontWeight.Normal) },
-                            leadingIcon = {
-                                val petImageModel: Any = if (
-                                    !pet.imageUri.isNullOrBlank() &&
-                                    File(pet.imageUri).exists()
-                                ) {
-                                    Uri.fromFile(File(pet.imageUri))
-                                } else {
-                                    R.drawable.dog_default
-                                }
-
-                                AsyncImage(
-                                    model = petImageModel,
-                                    contentDescription = "Pet image",
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier
-                                        .padding(end = 10.dp)
-                                        .size(35.dp)
-                                        .clip(CircleShape)
-                                )
-                            },
                             onClick = {
-                                onPetChanged(pet)
+                                onAddNewPetClicked()
                                 petListExpanded = false
                             }
                         )
-                        Spacer(modifier = Modifier.padding(2.dp))
-                        HorizontalDivider()
-                        Spacer(modifier = Modifier.padding(2.dp))
                     }
-
-                    DropdownMenuItem(
-                        text = { Text(
-                            text = "+ Add a new pet",
-                            fontSize = 16.sp,
-                            color = Black,
-                            fontFamily = MyFontFamily,
-                            fontWeight = FontWeight.Normal) },
-                        onClick = {
-                            onAddNewPetClicked()
-                            petListExpanded = false
-                        }
-                    )
                 }
-            }
 
+            }
         }
     }
 }
