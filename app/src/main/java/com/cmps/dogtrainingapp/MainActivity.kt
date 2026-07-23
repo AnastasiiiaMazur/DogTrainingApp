@@ -20,12 +20,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.data.local.AppDatabase
 import com.cmps.dogtrainingapp.data.local.dao.PetDao
+import com.cmps.dogtrainingapp.data.repository.DailyRecommendationsRepository
 import com.cmps.dogtrainingapp.data.repository.HealthEventRepository
 import com.cmps.dogtrainingapp.data.repository.PetRepository
 import com.cmps.dogtrainingapp.data.repository.TrainingRepository
 import com.cmps.dogtrainingapp.data.repository.WalkHubRepository
 import com.cmps.dogtrainingapp.data.repository.WeightRepository
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
+import com.cmps.dogtrainingapp.data.source.json.RecsJsonSource
 import com.cmps.dogtrainingapp.data.source.json.TrainingJsonSource
 import com.cmps.dogtrainingapp.ui.navigation.AppNavGraph
 import com.cmps.dogtrainingapp.ui.navigation.CustomBottomNav
@@ -63,15 +65,17 @@ class MainActivity : ComponentActivity() {
 
     private val petPrefs by lazy { SelectedPetPreferences(applicationContext) }
     private val trainingJsonSource by lazy { TrainingJsonSource(applicationContext) }
+    private val recsJsonSource by lazy { RecsJsonSource(applicationContext) }
 
     private val profileRepo by lazy { PetRepository(petDao, petPrefs) }
     private val walkRepo by lazy { WalkHubRepository(walkDao, petPrefs) }
     private val weightRepo by lazy { WeightRepository(weightDao, petPrefs) }
     private val healthRepo by lazy { HealthEventRepository(healthDao, petPrefs) }
     private val trainingRepo by lazy { TrainingRepository(trainingJsonSource, lessonDao, petPrefs) }
+    private val recsRepository by lazy { DailyRecommendationsRepository(recsJsonSource) }
 
     private val dashboardViewModel: DashboardViewModel by viewModels {
-        DashboardViewModelFactory() }
+        DashboardViewModelFactory(recsRepository) }
     private val profileViewModel: ProfileViewModel by viewModels {
         ProfileViewModelFactory(profileRepo, weightRepo) }
     private val walkViewModel: WalkViewModel by viewModels {

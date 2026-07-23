@@ -1,6 +1,7 @@
 package com.cmps.dogtrainingapp.ui.screens.dashboard
 
 import android.net.Uri
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -10,6 +11,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -31,6 +37,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.cmps.dogtrainingapp.R
+import com.cmps.dogtrainingapp.ui.screens.dashboard.components.DailyRecItem
+import com.cmps.dogtrainingapp.ui.screens.health.components.EventStatus
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
@@ -104,7 +112,54 @@ fun DashboardScreen(
 
             Spacer(modifier = Modifier.weight(1f))
 
+            Image(
+                painter = painterResource(R.drawable.settings_button),
+                contentDescription = "completion mark",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(30.dp)
+                    .clickable { }//onCompleteClicked() }
+            )
         }
+
+        Spacer(modifier = Modifier.width(10.dp))
+
+        Text(
+            text = "Upcoming Activities",
+            fontWeight = FontWeight.SemiBold,
+            fontFamily = MyFontFamily,
+            fontSize = 20.sp
+        )
+
+        Spacer(modifier = Modifier.width(10.dp))
+
+        Text(
+            text = "Today's Recommendations",
+            fontWeight = FontWeight.SemiBold,
+            fontFamily = MyFontFamily,
+            fontSize = 20.sp
+        )
+
+        LazyRow(
+            modifier = Modifier.fillMaxWidth(),
+            state = rememberLazyListState()
+        ) {
+            itemsIndexed(state.dailyRecs) { index, item ->
+                DailyRecItem(
+                    recommendation = item,
+                    onClick = {}
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.width(10.dp))
+
+        Text(
+            text = "Current Training Progress",
+            fontWeight = FontWeight.SemiBold,
+            fontFamily = MyFontFamily,
+            fontSize = 20.sp
+        )
     }
 }
 

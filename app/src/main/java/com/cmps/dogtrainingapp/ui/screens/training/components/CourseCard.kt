@@ -234,7 +234,7 @@ fun CourseCardPreview() {
         title = "Essential Commands",
         description = "Teach fundamental commands every puppy needs.",
         level = CourseLevel.INTERMEDIATE,
-        imageName = "mod1_l1",
+        imageName = "mod1_l2",
         lessons = lessons
     )
 

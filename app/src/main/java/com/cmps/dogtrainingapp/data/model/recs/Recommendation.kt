@@ -1,6 +1,6 @@
-package com.cmps.dogtrainingapp.domain.model
+package com.cmps.dogtrainingapp.data.model.recs
 
-data class DailyRecommendation(
+data class Recommendation (
     val id: String,
     val title: String,
     val imageName: String,
