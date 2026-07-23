@@ -29,9 +29,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.cmps.dogtrainingapp.data.model.Course
-import com.cmps.dogtrainingapp.data.model.CourseLevel
-import com.cmps.dogtrainingapp.data.model.Lesson
+import com.cmps.dogtrainingapp.data.model.course.Course
+import com.cmps.dogtrainingapp.data.model.course.CourseLevel
+import com.cmps.dogtrainingapp.data.model.course.Lesson
 import com.cmps.dogtrainingapp.ui.components.GradientDot
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.Gray

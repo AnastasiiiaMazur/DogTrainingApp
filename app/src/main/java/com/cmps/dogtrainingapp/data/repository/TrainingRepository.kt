@@ -2,9 +2,9 @@ package com.cmps.dogtrainingapp.data.repository
 
 import com.cmps.dogtrainingapp.data.local.dao.LessonProgressDao
 import com.cmps.dogtrainingapp.data.local.entity.LessonProgressEntity
-import com.cmps.dogtrainingapp.data.model.Course
-import com.cmps.dogtrainingapp.data.model.CourseLevel
-import com.cmps.dogtrainingapp.data.model.Lesson
+import com.cmps.dogtrainingapp.data.model.course.Course
+import com.cmps.dogtrainingapp.data.model.course.CourseLevel
+import com.cmps.dogtrainingapp.data.model.course.Lesson
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
 import com.cmps.dogtrainingapp.data.source.json.TrainingJsonSource
 import kotlinx.coroutines.flow.Flow

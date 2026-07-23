@@ -1,4 +1,4 @@
-package com.cmps.dogtrainingapp.data.model
+package com.cmps.dogtrainingapp.data.model.course
 
 import com.google.gson.annotations.SerializedName
 

@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.R
-import com.cmps.dogtrainingapp.data.model.Lesson
+import com.cmps.dogtrainingapp.data.model.course.Lesson
 import com.cmps.dogtrainingapp.ui.components.BasicButton
 import com.cmps.dogtrainingapp.ui.screens.training.components.LessonItem
 import com.cmps.dogtrainingapp.ui.screens.training.course.CourseUiState

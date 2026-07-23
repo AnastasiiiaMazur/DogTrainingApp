@@ -1,4 +1,7 @@
-package com.cmps.dogtrainingapp.data.model
+package com.cmps.dogtrainingapp.data.model.course
+
+import com.cmps.dogtrainingapp.data.model.course.CourseLevel
+import com.cmps.dogtrainingapp.data.model.course.Lesson
 
 data class Course(
     val id: String,

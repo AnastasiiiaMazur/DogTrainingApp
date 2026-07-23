@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 import com.cmps.dogtrainingapp.data.local.entity.LessonProgressEntity
-import com.cmps.dogtrainingapp.data.model.CourseProgressCount
+import com.cmps.dogtrainingapp.data.model.course.CourseProgressCount
 
 @Dao
 interface LessonProgressDao {

@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cmps.dogtrainingapp.R
-import com.cmps.dogtrainingapp.data.model.Lesson
+import com.cmps.dogtrainingapp.data.model.course.Lesson
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
 import com.cmps.dogtrainingapp.ui.theme.Orange

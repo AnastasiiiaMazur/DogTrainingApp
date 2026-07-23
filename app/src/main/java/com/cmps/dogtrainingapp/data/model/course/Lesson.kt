@@ -1,4 +1,4 @@
-package com.cmps.dogtrainingapp.data.model
+package com.cmps.dogtrainingapp.data.model.course
 
 data class Lesson(
     val id: String,
