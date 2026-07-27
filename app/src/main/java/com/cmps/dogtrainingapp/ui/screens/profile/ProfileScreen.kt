@@ -96,7 +96,10 @@ fun ProfileRoute(
         onPetChanged = { viewModel.onPetChanged(it) },
         onAddNewPetClicked = { viewModel.onAddNewPetClicked() },
         onDeleteClicked = { viewModel.onDeleteClicked(it) },
-        navController = navController
+        onBackClicked = {
+            val exitedEditing = viewModel.exitEditMode()
+            if (!exitedEditing) { navController.navigateHome() }
+        }
     )
 }
 
@@ -115,7 +118,7 @@ fun ProfileScreen(
     onPetChanged: (PetEntity) -> Unit,
     onAddNewPetClicked: () -> Unit,
     onDeleteClicked: (PetEntity) -> Unit,
-    navController: NavHostController
+    onBackClicked: () -> Unit
 ) {
 
     var genderExpanded by remember { mutableStateOf(false) }
@@ -179,7 +182,7 @@ fun ProfileScreen(
             modifier = Modifier
                 .padding(top = 15.dp)
                 .size(25.dp)
-                .clickable{ navController.navigateHome() }
+                .clickable{ onBackClicked() }
         )
 
         Row (
@@ -576,6 +579,6 @@ fun ProfileScreenPreview() {
         onPetChanged = {},
         onAddNewPetClicked = {},
         onDeleteClicked = {},
-        navController = rememberNavController()
+        onBackClicked = {}
     )
 }

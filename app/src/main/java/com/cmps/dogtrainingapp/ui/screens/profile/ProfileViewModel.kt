@@ -67,6 +67,17 @@ class ProfileViewModel(
         }
     }
 
+    fun exitEditMode(): Boolean {
+        return if (uiState.isEditing) {
+            uiState = uiState.copy(
+                isEditing = false
+            )
+            true
+        } else {
+            false
+        }
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun onSaveClicked() {
         val currentPet = uiState.currentPet ?: return
