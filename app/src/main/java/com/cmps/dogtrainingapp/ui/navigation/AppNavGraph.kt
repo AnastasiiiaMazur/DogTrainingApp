@@ -123,7 +123,8 @@ fun AppNavGraph(
 
             RecommendationRoute(
                 recId = recId,
-                viewModel = recViewModel
+                viewModel = recViewModel,
+                navController = navController
             )
         }
     }
