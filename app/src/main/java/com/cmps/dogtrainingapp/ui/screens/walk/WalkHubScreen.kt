@@ -45,6 +45,7 @@ import com.cmps.dogtrainingapp.utils.hideKeyboardOnTap
 import java.time.LocalDate
 import java.time.LocalTime
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -69,6 +70,12 @@ fun WalkHubRoute(
     navController: NavHostController
 ) {
     val state = viewModel.uiState
+
+    DisposableEffect(Unit) {
+        onDispose {
+            viewModel.onWalkScreenClosed()
+        }
+    }
 
     WalkHubScreen(
         state = state,

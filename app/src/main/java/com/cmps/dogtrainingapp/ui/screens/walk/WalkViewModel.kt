@@ -42,6 +42,17 @@ class WalkViewModel(
         }
     }
 
+    fun onWalkScreenClosed() {
+        uiState = uiState.copy(
+            durationText = "",
+            notes = "",
+            errorMessage = null,
+            editingWalkId = null,
+            selectedDate = LocalDate.now(),
+            selectedTime = LocalTime.now()
+        )
+    }
+
     fun onDurationChanged(newDuration: String) {
         uiState = uiState.copy(
             durationText = newDuration

@@ -78,6 +78,12 @@ class ProfileViewModel(
         }
     }
 
+    fun onProfileScreenClosed() {
+        uiState = uiState.copy(
+            isEditing = false
+        )
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun onSaveClicked() {
         val currentPet = uiState.currentPet ?: return

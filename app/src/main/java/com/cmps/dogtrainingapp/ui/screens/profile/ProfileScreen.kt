@@ -28,6 +28,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -83,6 +84,12 @@ fun ProfileRoute(
 
     val state = viewModel.uiState
 
+    DisposableEffect(Unit) {
+        onDispose {
+            viewModel.onProfileScreenClosed()
+        }
+    }
+
     ProfileScreen(
         state = state,
         onEditClicked = { viewModel.onEditClicked() },
@@ -97,8 +104,7 @@ fun ProfileRoute(
         onAddNewPetClicked = { viewModel.onAddNewPetClicked() },
         onDeleteClicked = { viewModel.onDeleteClicked(it) },
         onBackClicked = {
-            val exitedEditing = viewModel.exitEditMode()
-            if (!exitedEditing) { navController.navigateHome() }
+            if (!viewModel.exitEditMode()) { navController.navigateHome() }
         }
     )
 }
