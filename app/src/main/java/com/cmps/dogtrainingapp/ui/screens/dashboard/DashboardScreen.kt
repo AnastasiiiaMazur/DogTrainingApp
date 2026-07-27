@@ -47,6 +47,7 @@ import com.cmps.dogtrainingapp.ui.screens.dashboard.components.DailyRecItem
 import com.cmps.dogtrainingapp.ui.screens.dashboard.components.DailyRecommendationsPager
 import com.cmps.dogtrainingapp.ui.screens.health.components.EventStatus
 import com.cmps.dogtrainingapp.ui.screens.health.components.HealthEventCard
+import com.cmps.dogtrainingapp.ui.screens.training.components.CourseCard
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
 import com.cmps.dogtrainingapp.ui.theme.Gray
@@ -67,7 +68,7 @@ fun DashboardRoute(
 
     DashboardScreen(
         state = state,
-        navController = navController
+        navController = navController,
     )
 }
 
@@ -136,7 +137,7 @@ fun DashboardScreen(
             )
         }
 
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Text(
             text = "Upcoming Events",
@@ -176,7 +177,7 @@ fun DashboardScreen(
             }
         }
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Text(
             text = "Today's Recommendations",
@@ -192,7 +193,7 @@ fun DashboardScreen(
             }
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Text(
             text = "Current Training Progress",
@@ -200,6 +201,14 @@ fun DashboardScreen(
             fontFamily = MyFontFamily,
             fontSize = 20.sp
         )
+
+        state.courseProgress?.let { course ->
+            CourseCard(
+                course = course,
+                completedLessons = state.completedLessons,
+                onClick = { navController.navigate(Routes.course(course.id)) }
+            )
+        }
     }
 }
 

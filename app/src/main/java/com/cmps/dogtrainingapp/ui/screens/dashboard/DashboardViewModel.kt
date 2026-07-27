@@ -7,11 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cmps.dogtrainingapp.data.repository.DailyRecommendationsRepository
 import com.cmps.dogtrainingapp.data.repository.PetRepository
+import com.cmps.dogtrainingapp.data.repository.TrainingRepository
 import kotlinx.coroutines.launch
 
 class DashboardViewModel(
     private val recsRepository: DailyRecommendationsRepository,
-    private val petRepo: PetRepository
+    private val petRepo: PetRepository,
+    private val trainingRepository: TrainingRepository
 ): ViewModel() {
 
     var uiState by mutableStateOf(DashboardUiState())
@@ -20,6 +22,7 @@ class DashboardViewModel(
     init {
         loadRecs()
         loadCurrentPet()
+        observeCourseProgress()
     }
 
     private fun loadRecs() {
@@ -39,4 +42,27 @@ class DashboardViewModel(
             }
         }
     }
+
+    private fun observeCourseProgress() {
+        viewModelScope.launch {
+            trainingRepository.getCompletedLessonCounts()
+                .collect { completedByCourse ->
+
+                    val courses = trainingRepository.getCourses()
+
+                    val course = courses.firstOrNull { c ->
+                        completedByCourse.getOrDefault(c.id, 0) > 0
+                    } ?: courses.firstOrNull()
+
+                    uiState = uiState.copy(
+                        courseProgress = course,
+                        completedLessons = course?.let {
+                            completedByCourse.getOrDefault(it.id, 0)
+                        } ?: 0
+                    )
+                }
+        }
+    }
+
+
 }

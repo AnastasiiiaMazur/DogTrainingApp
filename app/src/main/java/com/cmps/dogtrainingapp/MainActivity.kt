@@ -77,7 +77,7 @@ class MainActivity : ComponentActivity() {
     private val recsRepository by lazy { DailyRecommendationsRepository(recsJsonSource) }
 
     private val dashboardViewModel: DashboardViewModel by viewModels {
-        DashboardViewModelFactory(recsRepository, profileRepo) }
+        DashboardViewModelFactory(recsRepository, profileRepo, trainingRepo) }
     private val profileViewModel: ProfileViewModel by viewModels {
         ProfileViewModelFactory(profileRepo, weightRepo) }
     private val walkViewModel: WalkViewModel by viewModels {

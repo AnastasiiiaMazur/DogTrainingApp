@@ -4,6 +4,7 @@ import com.cmps.dogtrainingapp.data.local.dao.LessonProgressDao
 import com.cmps.dogtrainingapp.data.local.entity.LessonProgressEntity
 import com.cmps.dogtrainingapp.data.model.course.Course
 import com.cmps.dogtrainingapp.data.model.course.CourseLevel
+import com.cmps.dogtrainingapp.data.model.course.CourseProgressCount
 import com.cmps.dogtrainingapp.data.model.course.Lesson
 import com.cmps.dogtrainingapp.data.source.SelectedPetPreferences
 import com.cmps.dogtrainingapp.data.source.json.TrainingJsonSource
