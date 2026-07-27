@@ -1,6 +1,8 @@
 package com.cmps.dogtrainingapp.ui.screens.dashboard
 
 import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -35,34 +38,44 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.cmps.dogtrainingapp.R
+import com.cmps.dogtrainingapp.ui.navigation.Routes
+import com.cmps.dogtrainingapp.ui.navigation.navigateProfile
 import com.cmps.dogtrainingapp.ui.screens.dashboard.components.DailyRecItem
 import com.cmps.dogtrainingapp.ui.screens.dashboard.components.DailyRecommendationsPager
 import com.cmps.dogtrainingapp.ui.screens.health.components.EventStatus
+import com.cmps.dogtrainingapp.ui.screens.health.components.HealthEventCard
 import com.cmps.dogtrainingapp.ui.theme.Black
 import com.cmps.dogtrainingapp.ui.theme.DarkGray
+import com.cmps.dogtrainingapp.ui.theme.Gray
+import com.cmps.dogtrainingapp.ui.theme.LightGray1
 import com.cmps.dogtrainingapp.ui.theme.MyFontFamily
 import com.cmps.dogtrainingapp.ui.theme.White
 import java.io.File
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DashboardRoute(
     viewModel: DashboardViewModel,
-    navController:NavHostController
+    navController: NavHostController
 ) {
 
     val state = viewModel.uiState
 
     DashboardScreen(
-        state = state
+        state = state,
+        navController = navController
     )
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DashboardScreen(
-    state: DashboardUiState
+    state: DashboardUiState,
+    navController: NavHostController
 ) {
 
     Column(
@@ -119,20 +132,51 @@ fun DashboardScreen(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(30.dp)
-                    .clickable { }//onCompleteClicked() }
+                    .clickable { navController.navigateProfile() }
             )
         }
 
-        Spacer(modifier = Modifier.width(10.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
         Text(
-            text = "Upcoming Activities",
+            text = "Upcoming Events",
             fontWeight = FontWeight.SemiBold,
             fontFamily = MyFontFamily,
             fontSize = 20.sp
         )
 
-        Spacer(modifier = Modifier.width(10.dp))
+        if (state.upcomingEvents.isEmpty()) {
+
+            Text(
+                text = "You don't have any events this week.",
+                color = Gray,
+                fontSize = 15.sp,
+                fontFamily = MyFontFamily,
+                fontWeight = FontWeight.Normal,
+                modifier = Modifier.padding(vertical = 5.dp)
+            )
+
+        } else {
+
+            state.upcomingEvents.forEach { event ->
+
+                HealthEventCard(
+                    event = event,
+                    onEditClicked = {
+                        navController.navigate(
+                            Routes.addEditEvent(event.id)
+                        )
+                    },
+                    onCompleteClicked = {
+                        //onCompleteClicked(event)
+                    }
+                )
+
+                Spacer(modifier = Modifier.height(5.dp))
+            }
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
 
         Text(
             text = "Today's Recommendations",
@@ -144,11 +188,11 @@ fun DashboardScreen(
         DailyRecommendationsPager(
             recommendations = state.dailyRecs,
             onClick = { recommendation ->
-                // navigate or open recommendation
+                navController.navigate(Routes.recommendation(recommendation.id))
             }
         )
 
-        Spacer(modifier = Modifier.width(10.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         Text(
             text = "Current Training Progress",
@@ -159,12 +203,14 @@ fun DashboardScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 @Preview
 fun Preview() {
     DashboardScreen(
         state = DashboardUiState(
 
-        )
+        ),
+        navController = rememberNavController()
     )
 }

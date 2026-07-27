@@ -33,6 +33,8 @@ import com.cmps.dogtrainingapp.ui.navigation.AppNavGraph
 import com.cmps.dogtrainingapp.ui.navigation.CustomBottomNav
 import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardViewModel
 import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardViewModelFactory
+import com.cmps.dogtrainingapp.ui.screens.dashboard.recommendation.RecViewModel
+import com.cmps.dogtrainingapp.ui.screens.dashboard.recommendation.RecViewModelFactory
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModel
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModelFactory
 import com.cmps.dogtrainingapp.ui.screens.health.addEditEvent.AddEditViewModel
@@ -90,6 +92,8 @@ class MainActivity : ComponentActivity() {
         LessonViewModelFactory(trainingRepo) }
     private val addEditViewModel: AddEditViewModel by viewModels {
         AddEditViewModelFactory(healthRepo) }
+    private val recViewModel: RecViewModel by viewModels {
+        RecViewModelFactory(recsRepository) }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -127,7 +131,8 @@ class MainActivity : ComponentActivity() {
                             trainingViewModel = trainingViewModel,
                             courseViewModel = courseViewModel,
                             lessonViewModel = lessonViewModel,
-                            addEditViewModel = addEditViewModel
+                            addEditViewModel = addEditViewModel,
+                            recViewModel = recViewModel
                         )
                     }
 

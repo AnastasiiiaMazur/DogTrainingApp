@@ -23,4 +23,7 @@ object Routes {
     }
 
     const val ALL_EVENTS = "all events"
+
+    const val RECOMMENDATION = "dashboard/{recId}"
+    fun recommendation(recId: String) = "dashboard/$recId"
 }

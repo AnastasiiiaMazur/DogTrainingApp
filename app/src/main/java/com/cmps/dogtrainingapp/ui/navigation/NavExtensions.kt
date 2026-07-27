@@ -19,3 +19,12 @@ fun NavHostController.navigateAllEvents() {
         launchSingleTop = true
     }
 }
+
+fun NavHostController.navigateProfile() {
+    navigate(Routes.PROFILE) {
+        popUpTo(Routes.PROFILE) {
+            inclusive = false
+        }
+        launchSingleTop = true
+    }
+}

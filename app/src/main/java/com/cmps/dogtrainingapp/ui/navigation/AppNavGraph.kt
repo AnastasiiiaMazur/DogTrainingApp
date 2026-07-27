@@ -10,6 +10,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardRoute
 import com.cmps.dogtrainingapp.ui.screens.dashboard.DashboardViewModel
+import com.cmps.dogtrainingapp.ui.screens.dashboard.recommendation.RecViewModel
+import com.cmps.dogtrainingapp.ui.screens.dashboard.recommendation.RecommendationRoute
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventRoute
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModel
 import com.cmps.dogtrainingapp.ui.screens.health.addEditEvent.AddEditEventRoute
@@ -37,7 +39,8 @@ fun AppNavGraph(
     trainingViewModel: TrainingViewModel,
     courseViewModel: CourseViewModel,
     lessonViewModel: LessonViewModel,
-    addEditViewModel: AddEditViewModel
+    addEditViewModel: AddEditViewModel,
+    recViewModel: RecViewModel
 ) {
     NavHost(
         navController = navController,
@@ -112,6 +115,16 @@ fun AppNavGraph(
 
         composable(Routes.ALL_EVENTS) {
             ViewAllHealthEventsRoute(healthViewModel, navController)
+        }
+
+        composable(Routes.RECOMMENDATION) { backStackEntry ->
+
+            val recId = backStackEntry.arguments?.getString("recId")
+
+            RecommendationRoute(
+                recId = recId,
+                viewModel = recViewModel
+            )
         }
     }
 }

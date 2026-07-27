@@ -12,4 +12,9 @@ class DailyRecommendationsRepository(
             .getRecs()
 
     }
+
+    fun getRecommendation(recId: String): Recommendation? {
+        return getRecommendations()
+            .firstOrNull { it.id == recId }
+    }
 }
