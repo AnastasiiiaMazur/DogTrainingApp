@@ -97,7 +97,13 @@ app
 
 ## Screenshots
 
-*Screenshots will be added here.*
+| Dashboard | Profile | Walk Hub | Health Hub |
+| --- | --- | --- | --- | 
+| <img src="./screenshots/dashboard.jpg" width="200" alt="Dashboard screen"> | <img src="./screenshots/profile.jpg" width="200" alt="Profile screen"> | <img src="./screenshots/walks.jpg" width="200" alt="Walk Hub screen"> | <img src="./screenshots/health.jpg" width="200" alt="Health Hub screen"> |
+
+| Training | Course | Lesson | Recommendation |
+| --- | --- | --- | --- |
+| <img src="./screenshots/training.jpg" width="200" alt="Training screen"> | <img src="./screenshots/course.jpg" width="200" alt="Course screen"> | <img src="./screenshots/lesson.jpg" width="200" alt="Lesson screen"> |  <img src="./screenshots/recommendation.jpg" width="200" alt="Recommendation screen"> |
 
 ---
 
@@ -112,7 +118,7 @@ app
 1. Clone the repository.
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/AnastasiiiaMazur/DogTrainingApp.git
 ```
 
 2. Open the project in Android Studio.
@@ -129,7 +135,7 @@ git clone <repository-url>
 * Push notifications for health reminders.
 * Training statistics and achievements.
 * Calendar view for health events.
-* Wear OS integration.
+* Implement dependency injection using Hilt for cleaner dependency management.
 
 ---
 
