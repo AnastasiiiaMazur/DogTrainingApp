@@ -163,14 +163,10 @@ fun DashboardScreen(
 
                 HealthEventCard(
                     event = event,
-                    onEditClicked = {
-                        navController.navigate(
-                            Routes.addEditEvent(event.id)
-                        )
-                    },
-                    onCompleteClicked = {
-                        //onCompleteClicked(event)
-                    }
+                    onEditClicked = {},
+                    onCompleteClicked = {},
+                    dashboard = true,
+                    navClick = { navController.navigate(Routes.HEALTH_HUB) }
                 )
 
                 Spacer(modifier = Modifier.height(5.dp))

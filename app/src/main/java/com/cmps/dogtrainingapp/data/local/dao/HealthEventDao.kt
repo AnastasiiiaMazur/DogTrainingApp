@@ -14,6 +14,9 @@ interface HealthEventDao {
                 ORDER BY isCompleted ASC, date ASC, time ASC""")
     fun getEventsForPet(petId: Long): Flow<List<HealthEventEntity>>
 
+    @Query("""SELECT * FROM health_events WHERE petId = :petId ORDER BY date ASC, time ASC""")
+    suspend fun getEventsForPetOnce(petId: Long): List<HealthEventEntity>
+
     @Insert
     suspend fun insert(event: HealthEventEntity): Long
 

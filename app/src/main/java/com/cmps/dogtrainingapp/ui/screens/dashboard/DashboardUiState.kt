@@ -11,5 +11,6 @@ data class DashboardUiState (
     val upcomingEvents: List<HealthEventEntity> = emptyList(),
     val courseProgress: Course? = null,
     val completedLessons: Int = 0,
-    val dailyRecs: List<Recommendation> = emptyList()
+    val dailyRecs: List<Recommendation> = emptyList(),
+    val errorMessage: String? = null
 )

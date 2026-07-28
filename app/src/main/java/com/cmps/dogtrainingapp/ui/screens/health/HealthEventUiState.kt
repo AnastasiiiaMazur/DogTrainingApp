@@ -16,5 +16,7 @@ data class HealthEventUiState(
     val totalEvents: Int = 0,
     val upcomingEvents: Int = 0,
     val overdueEvents: Int = 0,
-    val completedEvents: Int = 0
+    val completedEvents: Int = 0,
+
+    val errorMessage: String? = null
 )

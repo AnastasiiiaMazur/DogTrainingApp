@@ -104,7 +104,8 @@ fun ViewAllHealthEventsScreen(
                 },
                 onCompleteClicked = {
                     onCompleteClicked(event)
-                }
+                },
+                navClick = {}
             )
 
             Spacer(modifier = Modifier.height(5.dp))

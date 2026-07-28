@@ -1,6 +1,7 @@
 package com.cmps.dogtrainingapp.ui.screens.health
 
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,9 +17,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -47,6 +50,20 @@ fun HealthEventRoute(
     navController: NavHostController
 ) {
     val state = viewModel.uiState
+
+    val context = LocalContext.current
+
+    LaunchedEffect(state.errorMessage) {
+        state.errorMessage?.let { message ->
+            Toast.makeText(
+                context,
+                message,
+                Toast.LENGTH_SHORT
+            ).show()
+
+            viewModel.clearErrorMessage()
+        }
+    }
 
     HealthEventScreen(
         state = state,
@@ -139,7 +156,8 @@ fun HealthEventScreen(
                     },
                     onCompleteClicked = {
                         onCompleteClicked(event)
-                    }
+                    },
+                    navClick = {}
                 )
 
                 Spacer(modifier = Modifier.height(5.dp))

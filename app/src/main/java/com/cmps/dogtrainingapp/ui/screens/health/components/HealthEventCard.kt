@@ -72,7 +72,9 @@ fun getEventStatus(event: HealthEventEntity): EventStatus {
 fun HealthEventCard(
     event: HealthEventEntity,
     onEditClicked: () -> Unit,
-    onCompleteClicked: () -> Unit
+    onCompleteClicked: () -> Unit,
+    dashboard: Boolean = false,
+    navClick: () -> Unit
 ) {
     val status = getEventStatus(event)
 
@@ -102,6 +104,7 @@ fun HealthEventCard(
             .clip(RoundedCornerShape(12.dp))
             .background(White)
             .padding(horizontal = 15.dp, vertical = 7.dp)
+            .clickable{ navClick() }
     ) {
         Row {
             Text(
@@ -120,14 +123,16 @@ fun HealthEventCard(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Icon(
-                imageVector = ImageVector.vectorResource(id = R.drawable.edit_button),
-                contentDescription = "Edit button",
-                tint = DarkGray,
-                modifier = Modifier
-                    .size(20.dp)
-                    .clickable { onEditClicked() }
-            )
+            if (!dashboard) {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.edit_button),
+                        contentDescription = "Edit button",
+                        tint = DarkGray,
+                        modifier = Modifier
+                            .size(20.dp)
+                            .clickable { onEditClicked() }
+                    )
+                }
         }
 
         Row(
@@ -142,19 +147,23 @@ fun HealthEventCard(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Image(
-                painter = painterResource(
-                    id = if (status == EventStatus.COMPLETED)
-                        R.drawable.checkbox
-                    else
-                        R.drawable.checkbox_empty
-                ),
-                contentDescription = "completion mark",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(25.dp)
-                    .clickable { onCompleteClicked() }
-            )
+
+            if (!dashboard) {
+                Image(
+                    painter = painterResource(
+                        id = if (status == EventStatus.COMPLETED)
+                            R.drawable.checkbox
+                        else
+                            R.drawable.checkbox_empty
+                    ),
+                    contentDescription = "completion mark",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(25.dp)
+                        .clickable { onCompleteClicked() }
+                )
+            }
+
         }
 
         Row(
@@ -195,6 +204,8 @@ fun PreviewHealthEventCard() {
     HealthEventCard(
         event = sampleEvent,
         onEditClicked = {},
-        onCompleteClicked = {}
+        onCompleteClicked = {},
+        dashboard = true,
+        navClick = {}
     )
 }

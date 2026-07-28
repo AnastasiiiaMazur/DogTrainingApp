@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.cmps.dogtrainingapp.data.repository.DailyRecommendationsRepository
+import com.cmps.dogtrainingapp.data.repository.HealthEventRepository
 import com.cmps.dogtrainingapp.data.repository.PetRepository
 import com.cmps.dogtrainingapp.data.repository.TrainingRepository
 
@@ -13,12 +14,13 @@ import com.cmps.dogtrainingapp.data.repository.TrainingRepository
 class DashboardViewModelFactory(
     private val recsRepository: DailyRecommendationsRepository,
     private val petRepo: PetRepository,
-    private val trainingRepo: TrainingRepository
+    private val trainingRepo: TrainingRepository,
+    private val healthRepo: HealthEventRepository
 ): ViewModelProvider.Factory {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DashboardViewModel::class.java)) {
-            return DashboardViewModel(recsRepository, petRepo, trainingRepo) as T
+            return DashboardViewModel(recsRepository, petRepo, trainingRepo, healthRepo) as T
         } else {
             throw IllegalArgumentException("Unknown ViewModel class")
         }
