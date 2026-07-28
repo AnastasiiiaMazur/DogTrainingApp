@@ -85,7 +85,7 @@ fun RecommendationScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(
-                top = 50.dp,
+                top = 30.dp,
                 bottom = 10.dp,
                 start = 20.dp,
                 end = 20.dp

@@ -66,8 +66,8 @@ fun CourseScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(
-                top = 50.dp,
-                bottom = 50.dp,
+                top = 30.dp,
+                bottom = 30.dp,
                 start = 20.dp,
                 end = 20.dp
             )

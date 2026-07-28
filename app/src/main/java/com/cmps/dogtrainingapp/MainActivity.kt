@@ -12,14 +12,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.cmps.dogtrainingapp.data.local.AppDatabase
-import com.cmps.dogtrainingapp.data.local.dao.PetDao
 import com.cmps.dogtrainingapp.data.repository.DailyRecommendationsRepository
 import com.cmps.dogtrainingapp.data.repository.HealthEventRepository
 import com.cmps.dogtrainingapp.data.repository.PetRepository
@@ -40,8 +36,6 @@ import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModel
 import com.cmps.dogtrainingapp.ui.screens.health.HealthEventViewModelFactory
 import com.cmps.dogtrainingapp.ui.screens.health.addEditEvent.AddEditViewModel
 import com.cmps.dogtrainingapp.ui.screens.health.addEditEvent.AddEditViewModelFactory
-import com.cmps.dogtrainingapp.ui.screens.profile.ProfileRoute
-import com.cmps.dogtrainingapp.ui.screens.profile.ProfileScreen
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModel
 import com.cmps.dogtrainingapp.ui.screens.profile.ProfileViewModelFactory
 import com.cmps.dogtrainingapp.ui.screens.training.TrainingViewModel
@@ -103,9 +97,8 @@ class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
         applyFullscreen()
-
 
         setContent {
             DogTrainingAppTheme {

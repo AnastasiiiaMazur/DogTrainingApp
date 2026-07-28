@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LinearProgressIndicator
-import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,7 +33,6 @@ import com.cmps.dogtrainingapp.data.model.course.CourseLevel
 import com.cmps.dogtrainingapp.data.model.course.Lesson
 import com.cmps.dogtrainingapp.ui.components.GradientDot
 import com.cmps.dogtrainingapp.ui.theme.Black
-import com.cmps.dogtrainingapp.ui.theme.Gray
 import com.cmps.dogtrainingapp.ui.theme.Green
 import com.cmps.dogtrainingapp.ui.theme.LightGray2
 import com.cmps.dogtrainingapp.ui.theme.LightGreen
@@ -76,7 +74,7 @@ fun CourseCard(
             .padding(top = 10.dp)
             .clip(RoundedCornerShape(12.dp))
             .fillMaxWidth()
-            .height(200.dp)
+            .height(180.dp)
             .clickable{ onClick() }
     ) {
 

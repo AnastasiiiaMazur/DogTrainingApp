@@ -82,7 +82,7 @@ fun HealthEventScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 20.dp, top = 50.dp, end = 20.dp)
+            .padding(start = 20.dp, top = 30.dp, end = 20.dp)
             .verticalScroll(rememberScrollState())
     ) {
         Text(
