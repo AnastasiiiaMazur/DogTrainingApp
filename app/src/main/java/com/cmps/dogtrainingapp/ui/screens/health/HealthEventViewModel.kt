@@ -18,75 +18,6 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 
 @RequiresApi(Build.VERSION_CODES.O)
-//class HealthEventViewModel(
-//    private val healthRepo: HealthEventRepository
-//): ViewModel() {
-//
-//    var uiState by mutableStateOf(HealthEventUiState())
-//        private set
-//
-//    init {
-//        loadEvents()
-//    }
-//
-//    private fun loadEvents() {
-//        viewModelScope.launch {
-//            healthRepo.getEventsForPet().collect { events ->
-//
-//                val now = LocalDateTime.now()
-//
-//                val today = LocalDate.now()
-//                val startOfWeek = today.with(DayOfWeek.MONDAY)
-//                val endOfWeek = startOfWeek.plusDays(6)
-//
-//                val overdue = events.count {
-//                    !it.isCompleted && LocalDateTime.of(it.date, it.time).isBefore(now)
-//                }
-//
-//                val upcoming = events.count {
-//                    !it.isCompleted && LocalDateTime.of(it.date, it.time).isAfter(now)
-//                }
-//
-//                val weeklyEvents = events.filter {
-//                    it.date in startOfWeek..endOfWeek
-//                }
-//
-//                val completed = events.count { it.isCompleted }
-//
-//                uiState = uiState.copy(
-//                    healthEvents = events,
-//                    weeklyEvents = weeklyEvents,
-//
-//                    totalEvents = events.size,
-//                    upcomingEvents = upcoming,
-//                    overdueEvents = overdue,
-//                    completedEvents = completed
-//                )
-//            }
-//        }
-//    }
-//
-//    fun onCompleteClicked(event: HealthEventEntity) {
-//        viewModelScope.launch {
-//
-//            val isNowCompleted = !event.isCompleted
-//
-//            val updatedEvent = event.copy(
-//                isCompleted = isNowCompleted,
-//                completedOn = if (isNowCompleted) {
-//                    LocalDateTime.now()
-//                } else {
-//                    null
-//                }
-//            )
-//
-//            healthRepo.updateEvent(updatedEvent)
-//        }
-//    }
-//}
-
-
-
 class HealthEventViewModel(
     private val healthEventRepository: HealthEventRepository
 ) : ViewModel() {
@@ -104,8 +35,7 @@ class HealthEventViewModel(
     private fun refreshRepeatingEvents() {
         viewModelScope.launch {
             runCatching {
-                healthEventRepository
-                    .refreshRepeatingEventsIfNeeded()
+                healthEventRepository.refreshRepeatingEventsIfNeeded()
             }.onFailure { exception ->
                 uiState = uiState.copy(
                     errorMessage =
@@ -118,9 +48,7 @@ class HealthEventViewModel(
 
     private fun observeEvents() {
         viewModelScope.launch {
-            healthEventRepository
-                .getEventsForPet()
-                .collect { events ->
+            healthEventRepository.getEventsForPet().collect { events ->
 
                     val today = LocalDate.now()
 
@@ -186,11 +114,9 @@ class HealthEventViewModel(
                     event.repeat == RepeatInterval.NEVER &&
                     event.isCompleted
                 ) {
-                    healthEventRepository
-                        .uncompleteEvent(event)
+                    healthEventRepository.uncompleteEvent(event)
                 } else {
-                    healthEventRepository
-                        .completeEvent(event)
+                    healthEventRepository.completeEvent(event)
                 }
             }.onFailure { exception ->
                 uiState = uiState.copy(
